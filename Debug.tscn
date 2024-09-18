@@ -1,0 +1,34 @@
+[gd_scene load_steps=2 format=3 uid="uid://vlij1ydovk1k"]
+
+[ext_resource type="Script" path="res://Scripts/Player.cs" id="1_sd8ln"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(285, 177)
+
+[node name="Ground" type="Node2D" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="Ground"]
+offset_right = 546.0
+offset_bottom = 384.0
+color = Color(0.400698, 0.400698, 0.400698, 1)
+
+[node name="Player" type="Node2D" parent="."]
+script = ExtResource("1_sd8ln")
+
+[node name="ColorRect" type="ColorRect" parent="Player"]
+offset_left = 224.0
+offset_top = 77.0
+offset_right = 264.0
+offset_bottom = 117.0
+color = Color(0, 0.475337, 0.937192, 1)
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="Node2D"]
+offset_left = 104.0
+offset_top = 195.0
+offset_right = 144.0
+offset_bottom = 235.0
+color = Color(0.6465, 0.45781, 0.112513, 1)
