@@ -1,5 +1,6 @@
 package;
 
+import entities.*;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxState;
@@ -23,7 +24,33 @@ class PlayState extends FlxState
 	var tempWall = new FlxSprite(0, 600);
 	var player:Player = new Player(400,750);
 	var wall:FlxGroup;
+	var playerHalo:FlxSprite = new FlxSprite(0, 0);
 
+	var overlaps:Bool = false;
+
+	private function switchState():Void
+	{
+		FlxG.switchState(new OtherState());
+	}
+
+	private function thing(object1:FlxSprite, object2:FlxSprite):Void
+	{
+		overlaps = true;
+		// if (Std.is(object2, FlxSprite))
+		// {
+		// 	presentPlaceholder.color = FlxColor.ORANGE;
+		// }
+		// else
+		// {
+		// 	presentPlaceholder.color = FlxColor.CYAN;
+		// }
+	}
+
+	private function notthing(object1:FlxSprite, object2:FlxSprite):Bool
+	{
+		presentPlaceholder.color = FlxColor.CYAN;
+		return false;
+	}
 
 	override public function create()
 	{
@@ -32,6 +59,7 @@ class PlayState extends FlxState
 		var screenWidth = 1920;
 		var screenHeight = 1080;
 		FlxG.resizeGame(screenWidth, screenHeight);
+
 
 		var offset = screenWidth * 0.4;
 
@@ -57,6 +85,8 @@ class PlayState extends FlxState
 		//presentPlaceholder.immovable = true;
 		wall = FlxCollision.createCameraWall(FlxG.camera, true, 20, false);
 
+		playerHalo.makeGraphic(100, 100, FlxColor.GRAY);
+		add(playerHalo);
 		add(writing);
 		add(button);
 		add(player);
@@ -69,14 +99,27 @@ class PlayState extends FlxState
 	override public function update(elapsed:Float)
 	{
 		//clear();
+		overlaps = false;
+
 		var xPos = FlxG.mouse.screenX;
 		var yPos = FlxG.mouse.screenY;
+
+		playerHalo.x = player.x - 25;
+		playerHalo.y = player.y - 25;
 
 		FlxG.collide(presentPlaceholder, player);
 		FlxG.collide(wall, player);
 		FlxG.collide(tempWall, player);
+		FlxG.overlap(playerHalo, presentPlaceholder, thing);
 		
-
+		if (overlaps && FlxG.keys.justPressed.E)
+		{
+			presentPlaceholder.color = FlxColor.ORANGE;
+		}
+		else
+		{
+			presentPlaceholder.color = FlxColor.CYAN;
+		}
 		
 		locationText.text = xPos + ", " + yPos + ", " + Std.int(1/elapsed);
 		//add(locationText);
@@ -92,8 +135,5 @@ class PlayState extends FlxState
 		
 	}
 
-	private function switchState():Void{
 
-		FlxG.switchState(new OtherState());
-	}
 }

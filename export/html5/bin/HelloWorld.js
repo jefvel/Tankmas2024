@@ -900,7 +900,7 @@ ApplicationMain.main = function() {
 ApplicationMain.create = function(config) {
 	var app = new openfl_display_Application();
 	ManifestResources.init(config);
-	app.meta.h["build"] = "84";
+	app.meta.h["build"] = "6";
 	app.meta.h["company"] = "HaxeFlixel";
 	app.meta.h["file"] = "HelloWorld";
 	app.meta.h["name"] = "HelloWorld";
@@ -3575,7 +3575,7 @@ ManifestResources.init = function(config) {
 	openfl_text_Font.registerFont(_$_$ASSET_$_$OPENFL_$_$flixel_$fonts_$nokiafc22_$ttf);
 	openfl_text_Font.registerFont(_$_$ASSET_$_$OPENFL_$_$flixel_$fonts_$monsterrat_$ttf);
 	var bundle;
-	var data = "{\"name\":null,\"assets\":\"aoy4:pathy34:assets%2Fdata%2Fdata-goes-here.txty4:sizezy4:typey4:TEXTy2:idR1y7:preloadtgoR0y36:assets%2Fimages%2Fimages-go-here.txtR2zR3R4R5R7R6tgoR0y36:assets%2Fmusic%2Fmusic-goes-here.txtR2zR3R4R5R8R6tgoR0y36:assets%2Fsounds%2Fsounds-go-here.txtR2zR3R4R5R9R6tgoR0y80:assets%2FTest%20stuff%20from%20Shmood%2FBackground-Den_%28MelonJam%202022%29.pngR2i1573143R3y5:IMAGER5R10R6tgoR0y84:assets%2FTest%20stuff%20from%20Shmood%2FBackground-Outside_%28MelonJam%202022%29.pngR2i2323754R3R11R5R12R6tgoR0y135:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FHazards%2FHazard%20-%20Clock%20%5BMelonJam%5D%2FTimeline%2010001.pngR2i16372R3R11R5R13R6tgoR0y135:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FHazards%2FHazard%20-%20Clock%20%5BMelonJam%5D%2FTimeline%2010002.pngR2i16372R3R11R5R14R6tgoR0y135:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FHazards%2FHazard%20-%20Clock%20%5BMelonJam%5D%2FTimeline%2010003.pngR2i22732R3R11R5R15R6tgoR0y135:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FHazards%2FHazard%20-%20Clock%20%5BMelonJam%5D%2FTimeline%2010004.pngR2i22732R3R11R5R16R6tgoR0y135:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FHazards%2FHazard%20-%20Clock%20%5BMelonJam%5D%2FTimeline%2010005.pngR2i24552R3R11R5R17R6tgoR0y135:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FHazards%2FHazard%20-%20Clock%20%5BMelonJam%5D%2FTimeline%2010006.pngR2i24552R3R11R5R18R6tgoR0y135:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FHazards%2FHazard%20-%20Clock%20%5BMelonJam%5D%2FTimeline%2010007.pngR2i22732R3R11R5R19R6tgoR0y135:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FHazards%2FHazard%20-%20Clock%20%5BMelonJam%5D%2FTimeline%2010008.pngR2i22732R3R11R5R20R6tgoR0y135:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FHazards%2FHazard%20-%20Clock%20%5BMelonJam%5D%2FTimeline%2010009.pngR2i24552R3R11R5R21R6tgoR0y135:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FHazards%2FHazard%20-%20Clock%20%5BMelonJam%5D%2FTimeline%2010010.pngR2i24552R3R11R5R22R6tgoR0y135:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FHazards%2FHazard%20-%20Clock%20%5BMelonJam%5D%2FTimeline%2010011.pngR2i22732R3R11R5R23R6tgoR0y135:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FHazards%2FHazard%20-%20Clock%20%5BMelonJam%5D%2FTimeline%2010012.pngR2i22732R3R11R5R24R6tgoR0y135:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FHazards%2FHazard%20-%20Clock%20%5BMelonJam%5D%2FTimeline%2010013.pngR2i24552R3R11R5R25R6tgoR0y135:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FHazards%2FHazard%20-%20Clock%20%5BMelonJam%5D%2FTimeline%2010014.pngR2i24552R3R11R5R26R6tgoR0y135:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FHazards%2FHazard%20-%20Clock%20%5BMelonJam%5D%2FTimeline%2010015.pngR2i24552R3R11R5R27R6tgoR0y135:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FHazards%2FHazard%20-%20Clock%20%5BMelonJam%5D%2FTimeline%2010016.pngR2i24552R3R11R5R28R6tgoR0y116:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FHazards%2FHazard%20-%20Clock%20%5BMelonJam%5D.zipR2i365038R3y6:BINARYR5R29R6tgoR0y98:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FSpace%20Debris%2FDebris0001.pngR2i11111R3R11R5R31R6tgoR0y98:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FSpace%20Debris%2FDebris0002.pngR2i21827R3R11R5R32R6tgoR0y98:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FSpace%20Debris%2FDebris0003.pngR2i68050R3R11R5R33R6tgoR0y98:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FSpace%20Debris%2FDebris0004.pngR2i22349R3R11R5R34R6tgoR0y98:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FSpace%20Debris%2FDebris0005.pngR2i58092R3R11R5R35R6tgoR0y98:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FSpace%20Debris%2FDebris0006.pngR2i154306R3R11R5R36R6tgoR0y98:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FSpace%20Debris%2FDebris0007.pngR2i15498R3R11R5R37R6tgoR0y98:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FSpace%20Debris%2FDebris0008.pngR2i29785R3R11R5R38R6tgoR0y98:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FSpace%20Debris%2FDebris0009.pngR2i27735R3R11R5R39R6tgoR0y98:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FSpace%20Debris%2FDebris0010.pngR2i33389R3R11R5R40R6tgoR0y98:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FSpace%20Debris%2FDebris0011.pngR2i8992R3R11R5R41R6tgoR0y98:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FSpace%20Debris%2FDebris0012.pngR2i13576R3R11R5R42R6tgoR0y98:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FSpace%20Debris%2FDebris0013.pngR2i81246R3R11R5R43R6tgoR0y98:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FSpace%20Debris%2FDebris0014.pngR2i70092R3R11R5R44R6tgoR0y98:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FSpace%20Debris%2FDebris0015.pngR2i28141R3R11R5R45R6tgoR0y98:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FSpace%20Debris%2FDebris0016.pngR2i38851R3R11R5R46R6tgoR0y98:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FSpace%20Debris%2FDebris0017.pngR2i34498R3R11R5R47R6tgoR0y98:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FSpace%20Debris%2FDebris0018.pngR2i19453R3R11R5R48R6tgoR0y98:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FSpace%20Debris%2FDebris0019.pngR2i13876R3R11R5R49R6tgoR0y98:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FSpace%20Debris%2FDebris0020.pngR2i83878R3R11R5R50R6tgoR0y98:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FSpace%20Debris%2FDebris0021.pngR2i17511R3R11R5R51R6tgoR0y98:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FSpace%20Debris%2FDebris0022.pngR2i141646R3R11R5R52R6tgoR0y98:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FSpace%20Debris%2FDebris0023.pngR2i157260R3R11R5R53R6tgoR0y98:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FSpace%20Debris%2FDebris0024.pngR2i57602R3R11R5R54R6tgoR0y98:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FSpace%20Debris%2FDebris0025.pngR2i39098R3R11R5R55R6tgoR0y98:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FSpace%20Debris%2FDebris0026.pngR2i27775R3R11R5R56R6tgoR0y98:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FSpace%20Debris%2FDebris0027.pngR2i103190R3R11R5R57R6tgoR0y141:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FSpace%20Debris%2FDebris0028%20%5BPut%20it%20in%2C%20IF%20YOU%20DARE%5D.pngR2i7913R3R11R5R58R6tgoR0y98:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FSpace%20Debris%2FDebris0029.pngR2i160216R3R11R5R59R6tgoR0y98:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FSpace%20Debris%2FDebris0030.pngR2i193646R3R11R5R60R6tgoR0y96:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FStealables%2FBeach%20Ball.pngR2i57186R3R11R5R61R6tgoR0y96:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FStealables%2FBook%20Black.pngR2i18624R3R11R5R62R6tgoR0y95:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FStealables%2FBook%20Blue.pngR2i20057R3R11R5R63R6tgoR0y96:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FStealables%2FBook%20Green.pngR2i19346R3R11R5R64R6tgoR0y97:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FStealables%2FBook%20Purple.pngR2i19828R3R11R5R65R6tgoR0y94:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FStealables%2FBook%20Red.pngR2i19456R3R11R5R66R6tgoR0y97:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FStealables%2FBook%20Yellow.pngR2i19930R3R11R5R67R6tgoR0y89:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FStealables%2FCouch.pngR2i86693R3R11R5R68R6tgoR0y110:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FStealables%2FNew%20stuff%2FCoffee%20Mug.pngR2i14044R3R11R5R69R6tgoR0y94:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FStealables%2FPoster%201.pngR2i57950R3R11R5R70R6tgoR0y94:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FStealables%2FPoster%202.pngR2i59213R3R11R5R71R6tgoR0y94:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FStealables%2FPoster%203.pngR2i82537R3R11R5R72R6tgoR0y90:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FStealables%2FPoster.pngR2i223214R3R11R5R73R6tgoR0y92:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FStealables%2FTricycle.pngR2i25058R3R11R5R74R6tgoR0y91:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FStealables%2Funknown.pngR2i18477R3R11R5R75R6tgoR0y99:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FStealables%2FWelcome%20Matte.pngR2i60844R3R11R5R76R6tgoR0y80:assets%2FTest%20stuff%20from%20Shmood%2FWALK%20%5BHands%20Free%5D%2FWalk0001.pngR2i34369R3R11R5R77R6tgoR0y80:assets%2FTest%20stuff%20from%20Shmood%2FWALK%20%5BHands%20Free%5D%2FWalk0002.pngR2i34369R3R11R5R78R6tgoR0y80:assets%2FTest%20stuff%20from%20Shmood%2FWALK%20%5BHands%20Free%5D%2FWalk0003.pngR2i34369R3R11R5R79R6tgoR0y80:assets%2FTest%20stuff%20from%20Shmood%2FWALK%20%5BHands%20Free%5D%2FWalk0004.pngR2i34369R3R11R5R80R6tgoR0y80:assets%2FTest%20stuff%20from%20Shmood%2FWALK%20%5BHands%20Free%5D%2FWalk0005.pngR2i34064R3R11R5R81R6tgoR0y80:assets%2FTest%20stuff%20from%20Shmood%2FWALK%20%5BHands%20Free%5D%2FWalk0006.pngR2i34064R3R11R5R82R6tgoR0y80:assets%2FTest%20stuff%20from%20Shmood%2FWALK%20%5BHands%20Free%5D%2FWalk0007.pngR2i34064R3R11R5R83R6tgoR0y80:assets%2FTest%20stuff%20from%20Shmood%2FWALK%20%5BHands%20Free%5D%2FWalk0008.pngR2i34064R3R11R5R84R6tgoR0y80:assets%2FTest%20stuff%20from%20Shmood%2FWALK%20%5BHands%20Free%5D%2FWalk0009.pngR2i32724R3R11R5R85R6tgoR0y80:assets%2FTest%20stuff%20from%20Shmood%2FWALK%20%5BHands%20Free%5D%2FWalk0010.pngR2i32724R3R11R5R86R6tgoR0y80:assets%2FTest%20stuff%20from%20Shmood%2FWALK%20%5BHands%20Free%5D%2FWalk0011.pngR2i32724R3R11R5R87R6tgoR0y80:assets%2FTest%20stuff%20from%20Shmood%2FWALK%20%5BHands%20Free%5D%2FWalk0012.pngR2i32724R3R11R5R88R6tgoR0y80:assets%2FTest%20stuff%20from%20Shmood%2FWALK%20%5BHands%20Free%5D%2FWalk0013.pngR2i34064R3R11R5R89R6tgoR0y80:assets%2FTest%20stuff%20from%20Shmood%2FWALK%20%5BHands%20Free%5D%2FWalk0014.pngR2i34064R3R11R5R90R6tgoR0y80:assets%2FTest%20stuff%20from%20Shmood%2FWALK%20%5BHands%20Free%5D%2FWalk0015.pngR2i34064R3R11R5R91R6tgoR2i8220R3y5:MUSICR5y26:flixel%2Fsounds%2Fbeep.mp3y9:pathGroupaR93y26:flixel%2Fsounds%2Fbeep.ogghR6tgoR2i39706R3R92R5y28:flixel%2Fsounds%2Fflixel.mp3R94aR96y28:flixel%2Fsounds%2Fflixel.ogghR6tgoR2i6840R3y5:SOUNDR5R95R94aR93R95hgoR2i33629R3R98R5R97R94aR96R97hgoR2i15744R3y4:FONTy9:classNamey35:__ASSET__flixel_fonts_nokiafc22_ttfR5y30:flixel%2Ffonts%2Fnokiafc22.ttfR6tgoR2i29724R3R99R100y36:__ASSET__flixel_fonts_monsterrat_ttfR5y31:flixel%2Ffonts%2Fmonsterrat.ttfR6tgoR0y33:flixel%2Fimages%2Fui%2Fbutton.pngR2i277R3R11R5R105R6tgoR0y36:flixel%2Fimages%2Flogo%2Fdefault.pngR2i505R3R11R5R106R6tgh\",\"rootPath\":null,\"version\":2,\"libraryArgs\":[],\"libraryType\":null}";
+	var data = "{\"name\":null,\"assets\":\"aoy4:pathy41:assets%2Fart%2FDailyArt%2Fthedyingsun.pngy4:sizei4292431y4:typey5:IMAGEy2:idR1y7:preloadtgoR0y48:assets%2Fart%2FDailyArt%2Fthedyingsun.png.importR2i779R3y4:TEXTR5R7R6tgoR0y34:assets%2Fdata%2Fdata-goes-here.txtR2zR3R8R5R9R6tgoR0y36:assets%2Fimages%2Fimages-go-here.txtR2zR3R8R5R10R6tgoR0y36:assets%2Fmusic%2Fmusic-goes-here.txtR2zR3R8R5R11R6tgoR2i3005383R3y5:MUSICR5y54:assets%2Fmusic%2Frudolftehrednosereindeer_littlbox.mp3y9:pathGroupaR13hR6tgoR2i2910110R3R12R5y47:assets%2Fmusic%2Fsadgamertime_ninjamuffin99.mp3R14aR15hR6tgoR0y36:assets%2Fsounds%2Fsounds-go-here.txtR2zR3R8R5R16R6tgoR0y80:assets%2FTest%20stuff%20from%20Shmood%2FBackground-Den_%28MelonJam%202022%29.pngR2i1573143R3R4R5R17R6tgoR0y84:assets%2FTest%20stuff%20from%20Shmood%2FBackground-Outside_%28MelonJam%202022%29.pngR2i2323754R3R4R5R18R6tgoR0y135:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FHazards%2FHazard%20-%20Clock%20%5BMelonJam%5D%2FTimeline%2010001.pngR2i16372R3R4R5R19R6tgoR0y135:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FHazards%2FHazard%20-%20Clock%20%5BMelonJam%5D%2FTimeline%2010002.pngR2i16372R3R4R5R20R6tgoR0y135:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FHazards%2FHazard%20-%20Clock%20%5BMelonJam%5D%2FTimeline%2010003.pngR2i22732R3R4R5R21R6tgoR0y135:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FHazards%2FHazard%20-%20Clock%20%5BMelonJam%5D%2FTimeline%2010004.pngR2i22732R3R4R5R22R6tgoR0y135:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FHazards%2FHazard%20-%20Clock%20%5BMelonJam%5D%2FTimeline%2010005.pngR2i24552R3R4R5R23R6tgoR0y135:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FHazards%2FHazard%20-%20Clock%20%5BMelonJam%5D%2FTimeline%2010006.pngR2i24552R3R4R5R24R6tgoR0y135:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FHazards%2FHazard%20-%20Clock%20%5BMelonJam%5D%2FTimeline%2010007.pngR2i22732R3R4R5R25R6tgoR0y135:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FHazards%2FHazard%20-%20Clock%20%5BMelonJam%5D%2FTimeline%2010008.pngR2i22732R3R4R5R26R6tgoR0y135:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FHazards%2FHazard%20-%20Clock%20%5BMelonJam%5D%2FTimeline%2010009.pngR2i24552R3R4R5R27R6tgoR0y135:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FHazards%2FHazard%20-%20Clock%20%5BMelonJam%5D%2FTimeline%2010010.pngR2i24552R3R4R5R28R6tgoR0y135:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FHazards%2FHazard%20-%20Clock%20%5BMelonJam%5D%2FTimeline%2010011.pngR2i22732R3R4R5R29R6tgoR0y135:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FHazards%2FHazard%20-%20Clock%20%5BMelonJam%5D%2FTimeline%2010012.pngR2i22732R3R4R5R30R6tgoR0y135:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FHazards%2FHazard%20-%20Clock%20%5BMelonJam%5D%2FTimeline%2010013.pngR2i24552R3R4R5R31R6tgoR0y135:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FHazards%2FHazard%20-%20Clock%20%5BMelonJam%5D%2FTimeline%2010014.pngR2i24552R3R4R5R32R6tgoR0y135:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FHazards%2FHazard%20-%20Clock%20%5BMelonJam%5D%2FTimeline%2010015.pngR2i24552R3R4R5R33R6tgoR0y135:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FHazards%2FHazard%20-%20Clock%20%5BMelonJam%5D%2FTimeline%2010016.pngR2i24552R3R4R5R34R6tgoR0y116:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FHazards%2FHazard%20-%20Clock%20%5BMelonJam%5D.zipR2i365038R3y6:BINARYR5R35R6tgoR0y98:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FSpace%20Debris%2FDebris0001.pngR2i11111R3R4R5R37R6tgoR0y98:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FSpace%20Debris%2FDebris0002.pngR2i21827R3R4R5R38R6tgoR0y98:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FSpace%20Debris%2FDebris0003.pngR2i68050R3R4R5R39R6tgoR0y98:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FSpace%20Debris%2FDebris0004.pngR2i22349R3R4R5R40R6tgoR0y98:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FSpace%20Debris%2FDebris0005.pngR2i58092R3R4R5R41R6tgoR0y98:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FSpace%20Debris%2FDebris0006.pngR2i154306R3R4R5R42R6tgoR0y98:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FSpace%20Debris%2FDebris0007.pngR2i15498R3R4R5R43R6tgoR0y98:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FSpace%20Debris%2FDebris0008.pngR2i29785R3R4R5R44R6tgoR0y98:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FSpace%20Debris%2FDebris0009.pngR2i27735R3R4R5R45R6tgoR0y98:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FSpace%20Debris%2FDebris0010.pngR2i33389R3R4R5R46R6tgoR0y98:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FSpace%20Debris%2FDebris0011.pngR2i8992R3R4R5R47R6tgoR0y98:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FSpace%20Debris%2FDebris0012.pngR2i13576R3R4R5R48R6tgoR0y98:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FSpace%20Debris%2FDebris0013.pngR2i81246R3R4R5R49R6tgoR0y98:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FSpace%20Debris%2FDebris0014.pngR2i70092R3R4R5R50R6tgoR0y98:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FSpace%20Debris%2FDebris0015.pngR2i28141R3R4R5R51R6tgoR0y98:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FSpace%20Debris%2FDebris0016.pngR2i38851R3R4R5R52R6tgoR0y98:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FSpace%20Debris%2FDebris0017.pngR2i34498R3R4R5R53R6tgoR0y98:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FSpace%20Debris%2FDebris0018.pngR2i19453R3R4R5R54R6tgoR0y98:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FSpace%20Debris%2FDebris0019.pngR2i13876R3R4R5R55R6tgoR0y98:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FSpace%20Debris%2FDebris0020.pngR2i83878R3R4R5R56R6tgoR0y98:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FSpace%20Debris%2FDebris0021.pngR2i17511R3R4R5R57R6tgoR0y98:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FSpace%20Debris%2FDebris0022.pngR2i141646R3R4R5R58R6tgoR0y98:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FSpace%20Debris%2FDebris0023.pngR2i157260R3R4R5R59R6tgoR0y98:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FSpace%20Debris%2FDebris0024.pngR2i57602R3R4R5R60R6tgoR0y98:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FSpace%20Debris%2FDebris0025.pngR2i39098R3R4R5R61R6tgoR0y98:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FSpace%20Debris%2FDebris0026.pngR2i27775R3R4R5R62R6tgoR0y98:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FSpace%20Debris%2FDebris0027.pngR2i103190R3R4R5R63R6tgoR0y141:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FSpace%20Debris%2FDebris0028%20%5BPut%20it%20in%2C%20IF%20YOU%20DARE%5D.pngR2i7913R3R4R5R64R6tgoR0y98:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FSpace%20Debris%2FDebris0029.pngR2i160216R3R4R5R65R6tgoR0y98:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FSpace%20Debris%2FDebris0030.pngR2i193646R3R4R5R66R6tgoR0y96:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FStealables%2FBeach%20Ball.pngR2i57186R3R4R5R67R6tgoR0y96:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FStealables%2FBook%20Black.pngR2i18624R3R4R5R68R6tgoR0y95:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FStealables%2FBook%20Blue.pngR2i20057R3R4R5R69R6tgoR0y96:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FStealables%2FBook%20Green.pngR2i19346R3R4R5R70R6tgoR0y97:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FStealables%2FBook%20Purple.pngR2i19828R3R4R5R71R6tgoR0y94:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FStealables%2FBook%20Red.pngR2i19456R3R4R5R72R6tgoR0y97:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FStealables%2FBook%20Yellow.pngR2i19930R3R4R5R73R6tgoR0y89:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FStealables%2FCouch.pngR2i86693R3R4R5R74R6tgoR0y110:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FStealables%2FNew%20stuff%2FCoffee%20Mug.pngR2i14044R3R4R5R75R6tgoR0y94:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FStealables%2FPoster%201.pngR2i57950R3R4R5R76R6tgoR0y94:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FStealables%2FPoster%202.pngR2i59213R3R4R5R77R6tgoR0y94:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FStealables%2FPoster%203.pngR2i82537R3R4R5R78R6tgoR0y90:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FStealables%2FPoster.pngR2i223214R3R4R5R79R6tgoR0y92:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FStealables%2FTricycle.pngR2i25058R3R4R5R80R6tgoR0y91:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FStealables%2Funknown.pngR2i18477R3R4R5R81R6tgoR0y99:assets%2FTest%20stuff%20from%20Shmood%2FObjects%20%5BMelonJam%5D%2FStealables%2FWelcome%20Matte.pngR2i60844R3R4R5R82R6tgoR0y80:assets%2FTest%20stuff%20from%20Shmood%2FWALK%20%5BHands%20Free%5D%2FWalk0001.pngR2i34369R3R4R5R83R6tgoR0y80:assets%2FTest%20stuff%20from%20Shmood%2FWALK%20%5BHands%20Free%5D%2FWalk0002.pngR2i34369R3R4R5R84R6tgoR0y80:assets%2FTest%20stuff%20from%20Shmood%2FWALK%20%5BHands%20Free%5D%2FWalk0003.pngR2i34369R3R4R5R85R6tgoR0y80:assets%2FTest%20stuff%20from%20Shmood%2FWALK%20%5BHands%20Free%5D%2FWalk0004.pngR2i34369R3R4R5R86R6tgoR0y80:assets%2FTest%20stuff%20from%20Shmood%2FWALK%20%5BHands%20Free%5D%2FWalk0005.pngR2i34064R3R4R5R87R6tgoR0y80:assets%2FTest%20stuff%20from%20Shmood%2FWALK%20%5BHands%20Free%5D%2FWalk0006.pngR2i34064R3R4R5R88R6tgoR0y80:assets%2FTest%20stuff%20from%20Shmood%2FWALK%20%5BHands%20Free%5D%2FWalk0007.pngR2i34064R3R4R5R89R6tgoR0y80:assets%2FTest%20stuff%20from%20Shmood%2FWALK%20%5BHands%20Free%5D%2FWalk0008.pngR2i34064R3R4R5R90R6tgoR0y80:assets%2FTest%20stuff%20from%20Shmood%2FWALK%20%5BHands%20Free%5D%2FWalk0009.pngR2i32724R3R4R5R91R6tgoR0y80:assets%2FTest%20stuff%20from%20Shmood%2FWALK%20%5BHands%20Free%5D%2FWalk0010.pngR2i32724R3R4R5R92R6tgoR0y80:assets%2FTest%20stuff%20from%20Shmood%2FWALK%20%5BHands%20Free%5D%2FWalk0011.pngR2i32724R3R4R5R93R6tgoR0y80:assets%2FTest%20stuff%20from%20Shmood%2FWALK%20%5BHands%20Free%5D%2FWalk0012.pngR2i32724R3R4R5R94R6tgoR0y80:assets%2FTest%20stuff%20from%20Shmood%2FWALK%20%5BHands%20Free%5D%2FWalk0013.pngR2i34064R3R4R5R95R6tgoR0y80:assets%2FTest%20stuff%20from%20Shmood%2FWALK%20%5BHands%20Free%5D%2FWalk0014.pngR2i34064R3R4R5R96R6tgoR0y80:assets%2FTest%20stuff%20from%20Shmood%2FWALK%20%5BHands%20Free%5D%2FWalk0015.pngR2i34064R3R4R5R97R6tgoR2i8220R3R12R5y26:flixel%2Fsounds%2Fbeep.mp3R14aR98y26:flixel%2Fsounds%2Fbeep.ogghR6tgoR2i39706R3R12R5y28:flixel%2Fsounds%2Fflixel.mp3R14aR100y28:flixel%2Fsounds%2Fflixel.ogghR6tgoR2i6840R3y5:SOUNDR5R99R14aR98R99hgoR2i33629R3R102R5R101R14aR100R101hgoR2i15744R3y4:FONTy9:classNamey35:__ASSET__flixel_fonts_nokiafc22_ttfR5y30:flixel%2Ffonts%2Fnokiafc22.ttfR6tgoR2i29724R3R103R104y36:__ASSET__flixel_fonts_monsterrat_ttfR5y31:flixel%2Ffonts%2Fmonsterrat.ttfR6tgoR0y33:flixel%2Fimages%2Fui%2Fbutton.pngR2i277R3R4R5R109R6tgoR0y36:flixel%2Fimages%2Flogo%2Fdefault.pngR2i505R3R4R5R110R6tgh\",\"rootPath\":null,\"version\":2,\"libraryArgs\":[],\"libraryType\":null}";
 	var manifest = lime_utils_AssetManifest.parse(data,ManifestResources.rootPath);
 	var library = lime_utils_AssetLibrary.fromManifest(manifest);
 	lime_utils_Assets.registerLibrary("default",library);
@@ -4776,7 +4776,9 @@ OtherState.prototype = $extend(flixel_FlxState.prototype,{
 	,__class__: OtherState
 });
 var PlayState = function() {
-	this.player = new Player(400,750);
+	this.overlaps = false;
+	this.playerHalo = new flixel_FlxSprite(0,0);
+	this.player = new entities_Player(400,750);
 	this.tempWall = new flixel_FlxSprite(0,600);
 	this.presentPlaceholder = new flixel_FlxSprite(850,900);
 	this.locationText = new flixel_text_FlxText(0,0,0,"Loaded",16);
@@ -4786,7 +4788,27 @@ $hxClasses["PlayState"] = PlayState;
 PlayState.__name__ = "PlayState";
 PlayState.__super__ = flixel_FlxState;
 PlayState.prototype = $extend(flixel_FlxState.prototype,{
-	create: function() {
+	switchState: function() {
+		var nextState = flixel_util_typeLimit_NextState.fromState(new OtherState());
+		var stateOnCall = flixel_FlxG.game._state;
+		if(!((nextState) instanceof flixel_FlxState) || flixel_FlxG.canSwitchTo(nextState)) {
+			flixel_FlxG.game._state.startOutro(function() {
+				if(flixel_FlxG.game._state == stateOnCall) {
+					flixel_FlxG.game._nextState = nextState;
+				} else {
+					flixel_FlxG.log.advanced("`onOutroComplete` was called after the state was switched. This will be ignored",flixel_system_debug_log_LogStyle.WARNING,true);
+				}
+			});
+		}
+	}
+	,thing: function(object1,object2) {
+		this.overlaps = true;
+	}
+	,notthing: function(object1,object2) {
+		this.presentPlaceholder.set_color(-16711681);
+		return false;
+	}
+	,create: function() {
 		flixel_FlxState.prototype.create.call(this);
 		var screenWidth = 1920;
 		var screenHeight = 1080;
@@ -4810,6 +4832,8 @@ PlayState.prototype = $extend(flixel_FlxState.prototype,{
 		this.presentPlaceholder.drag.set_x(500);
 		this.presentPlaceholder.drag.set_y(500);
 		this.wall = flixel_util_FlxCollision.createCameraWall(flixel_FlxG.camera,true,20,false);
+		this.playerHalo.makeGraphic(100,100,-8355712);
+		this.add(this.playerHalo);
 		this.add(writing);
 		this.add(button);
 		this.add(this.player);
@@ -4818,11 +4842,27 @@ PlayState.prototype = $extend(flixel_FlxState.prototype,{
 		this.add(this.tempWall);
 	}
 	,update: function(elapsed) {
+		this.overlaps = false;
 		var xPos = flixel_FlxG.mouse.screenX;
 		var yPos = flixel_FlxG.mouse.screenY;
+		this.playerHalo.set_x(this.player.x - 25);
+		this.playerHalo.set_y(this.player.y - 25);
 		flixel_FlxG.overlap(this.presentPlaceholder,this.player,null,flixel_FlxObject.separate);
 		flixel_FlxG.overlap(this.wall,this.player,null,flixel_FlxObject.separate);
 		flixel_FlxG.overlap(this.tempWall,this.player,null,flixel_FlxObject.separate);
+		flixel_FlxG.overlap(this.playerHalo,this.presentPlaceholder,$bind(this,this.thing));
+		var tmp;
+		if(this.overlaps) {
+			var _this = flixel_FlxG.keys.justPressed;
+			tmp = _this.keyManager.checkStatusUnsafe(69,_this.status);
+		} else {
+			tmp = false;
+		}
+		if(tmp) {
+			this.presentPlaceholder.set_color(-23296);
+		} else {
+			this.presentPlaceholder.set_color(-16711681);
+		}
 		this.locationText.set_text(xPos + ", " + yPos + ", " + (1 / elapsed | 0));
 		var _this = flixel_FlxG.keys.justPressed;
 		if(_this.keyManager.checkStatusUnsafe(32,_this.status)) {
@@ -4830,21 +4870,652 @@ PlayState.prototype = $extend(flixel_FlxState.prototype,{
 		}
 		flixel_FlxState.prototype.update.call(this,elapsed);
 	}
-	,switchState: function() {
-		var nextState = flixel_util_typeLimit_NextState.fromState(new OtherState());
-		var stateOnCall = flixel_FlxG.game._state;
-		if(!((nextState) instanceof flixel_FlxState) || flixel_FlxG.canSwitchTo(nextState)) {
-			flixel_FlxG.game._state.startOutro(function() {
-				if(flixel_FlxG.game._state == stateOnCall) {
-					flixel_FlxG.game._nextState = nextState;
-				} else {
-					flixel_FlxG.log.advanced("`onOutroComplete` was called after the state was switched. This will be ignored",flixel_system_debug_log_LogStyle.WARNING,true);
-				}
-			});
-		}
-	}
 	,__class__: PlayState
 });
+var Reflect = function() { };
+$hxClasses["Reflect"] = Reflect;
+Reflect.__name__ = "Reflect";
+Reflect.field = function(o,field) {
+	try {
+		return o[field];
+	} catch( _g ) {
+		haxe_NativeStackTrace.lastError = _g;
+		return null;
+	}
+};
+Reflect.getProperty = function(o,field) {
+	var tmp;
+	if(o == null) {
+		return null;
+	} else {
+		var tmp1;
+		if(o.__properties__) {
+			tmp = o.__properties__["get_" + field];
+			tmp1 = tmp;
+		} else {
+			tmp1 = false;
+		}
+		if(tmp1) {
+			return o[tmp]();
+		} else {
+			return o[field];
+		}
+	}
+};
+Reflect.setProperty = function(o,field,value) {
+	var tmp;
+	var tmp1;
+	if(o.__properties__) {
+		tmp = o.__properties__["set_" + field];
+		tmp1 = tmp;
+	} else {
+		tmp1 = false;
+	}
+	if(tmp1) {
+		o[tmp](value);
+	} else {
+		o[field] = value;
+	}
+};
+Reflect.fields = function(o) {
+	var a = [];
+	if(o != null) {
+		var hasOwnProperty = Object.prototype.hasOwnProperty;
+		for( var f in o ) {
+		if(f != "__id__" && f != "hx__closures__" && hasOwnProperty.call(o,f)) {
+			a.push(f);
+		}
+		}
+	}
+	return a;
+};
+Reflect.isFunction = function(f) {
+	if(typeof(f) == "function") {
+		return !(f.__name__ || f.__ename__);
+	} else {
+		return false;
+	}
+};
+Reflect.compare = function(a,b) {
+	if(a == b) {
+		return 0;
+	} else if(a > b) {
+		return 1;
+	} else {
+		return -1;
+	}
+};
+Reflect.isObject = function(v) {
+	if(v == null) {
+		return false;
+	}
+	var t = typeof(v);
+	if(!(t == "string" || t == "object" && v.__enum__ == null)) {
+		if(t == "function") {
+			return (v.__name__ || v.__ename__) != null;
+		} else {
+			return false;
+		}
+	} else {
+		return true;
+	}
+};
+Reflect.isEnumValue = function(v) {
+	if(v != null) {
+		return v.__enum__ != null;
+	} else {
+		return false;
+	}
+};
+Reflect.deleteField = function(o,field) {
+	if(!Object.prototype.hasOwnProperty.call(o,field)) {
+		return false;
+	}
+	delete(o[field]);
+	return true;
+};
+Reflect.makeVarArgs = function(f) {
+	return function() {
+		var a = Array.prototype.slice;
+		var a1 = arguments;
+		var a2 = a.call(a1);
+		return f(a2);
+	};
+};
+var Std = function() { };
+$hxClasses["Std"] = Std;
+Std.__name__ = "Std";
+Std.string = function(s) {
+	return js_Boot.__string_rec(s,"");
+};
+Std.parseInt = function(x) {
+	var v = parseInt(x);
+	if(isNaN(v)) {
+		return null;
+	}
+	return v;
+};
+var _$String_String_$Impl_$ = function() { };
+$hxClasses["_String.String_Impl_"] = _$String_String_$Impl_$;
+_$String_String_$Impl_$.__name__ = "_String.String_Impl_";
+_$String_String_$Impl_$.fromCharCode = function(code) {
+	return String.fromCodePoint(code);
+};
+var StringBuf = function() {
+	this.b = "";
+};
+$hxClasses["StringBuf"] = StringBuf;
+StringBuf.__name__ = "StringBuf";
+StringBuf.prototype = {
+	__class__: StringBuf
+};
+var StringTools = function() { };
+$hxClasses["StringTools"] = StringTools;
+StringTools.__name__ = "StringTools";
+StringTools.htmlEscape = function(s,quotes) {
+	var buf_b = "";
+	var _g_offset = 0;
+	var _g_s = s;
+	while(_g_offset < _g_s.length) {
+		var s = _g_s;
+		var index = _g_offset++;
+		var c = s.charCodeAt(index);
+		if(c >= 55296 && c <= 56319) {
+			c = c - 55232 << 10 | s.charCodeAt(index + 1) & 1023;
+		}
+		var c1 = c;
+		if(c1 >= 65536) {
+			++_g_offset;
+		}
+		var code = c1;
+		switch(code) {
+		case 34:
+			if(quotes) {
+				buf_b += "&quot;";
+			} else {
+				buf_b += String.fromCodePoint(code);
+			}
+			break;
+		case 38:
+			buf_b += "&amp;";
+			break;
+		case 39:
+			if(quotes) {
+				buf_b += "&#039;";
+			} else {
+				buf_b += String.fromCodePoint(code);
+			}
+			break;
+		case 60:
+			buf_b += "&lt;";
+			break;
+		case 62:
+			buf_b += "&gt;";
+			break;
+		default:
+			buf_b += String.fromCodePoint(code);
+		}
+	}
+	return buf_b;
+};
+StringTools.htmlUnescape = function(s) {
+	return s.split("&gt;").join(">").split("&lt;").join("<").split("&quot;").join("\"").split("&#039;").join("'").split("&amp;").join("&");
+};
+StringTools.startsWith = function(s,start) {
+	if(s.length >= start.length) {
+		return s.lastIndexOf(start,0) == 0;
+	} else {
+		return false;
+	}
+};
+StringTools.endsWith = function(s,end) {
+	var elen = end.length;
+	var slen = s.length;
+	if(slen >= elen) {
+		return s.indexOf(end,slen - elen) == slen - elen;
+	} else {
+		return false;
+	}
+};
+StringTools.isSpace = function(s,pos) {
+	var c = HxOverrides.cca(s,pos);
+	if(!(c > 8 && c < 14)) {
+		return c == 32;
+	} else {
+		return true;
+	}
+};
+StringTools.ltrim = function(s) {
+	var l = s.length;
+	var r = 0;
+	while(r < l && StringTools.isSpace(s,r)) ++r;
+	if(r > 0) {
+		return HxOverrides.substr(s,r,l - r);
+	} else {
+		return s;
+	}
+};
+StringTools.rtrim = function(s) {
+	var l = s.length;
+	var r = 0;
+	while(r < l && StringTools.isSpace(s,l - r - 1)) ++r;
+	if(r > 0) {
+		return HxOverrides.substr(s,0,l - r);
+	} else {
+		return s;
+	}
+};
+StringTools.trim = function(s) {
+	return StringTools.ltrim(StringTools.rtrim(s));
+};
+StringTools.replace = function(s,sub,by) {
+	return s.split(sub).join(by);
+};
+StringTools.hex = function(n,digits) {
+	var s = "";
+	var hexChars = "0123456789ABCDEF";
+	do {
+		s = hexChars.charAt(n & 15) + s;
+		n >>>= 4;
+	} while(n > 0);
+	if(digits != null) {
+		while(s.length < digits) s = "0" + s;
+	}
+	return s;
+};
+var ValueType = $hxEnums["ValueType"] = { __ename__:"ValueType",__constructs__:null
+	,TNull: {_hx_name:"TNull",_hx_index:0,__enum__:"ValueType",toString:$estr}
+	,TInt: {_hx_name:"TInt",_hx_index:1,__enum__:"ValueType",toString:$estr}
+	,TFloat: {_hx_name:"TFloat",_hx_index:2,__enum__:"ValueType",toString:$estr}
+	,TBool: {_hx_name:"TBool",_hx_index:3,__enum__:"ValueType",toString:$estr}
+	,TObject: {_hx_name:"TObject",_hx_index:4,__enum__:"ValueType",toString:$estr}
+	,TFunction: {_hx_name:"TFunction",_hx_index:5,__enum__:"ValueType",toString:$estr}
+	,TClass: ($_=function(c) { return {_hx_index:6,c:c,__enum__:"ValueType",toString:$estr}; },$_._hx_name="TClass",$_.__params__ = ["c"],$_)
+	,TEnum: ($_=function(e) { return {_hx_index:7,e:e,__enum__:"ValueType",toString:$estr}; },$_._hx_name="TEnum",$_.__params__ = ["e"],$_)
+	,TUnknown: {_hx_name:"TUnknown",_hx_index:8,__enum__:"ValueType",toString:$estr}
+};
+ValueType.__constructs__ = [ValueType.TNull,ValueType.TInt,ValueType.TFloat,ValueType.TBool,ValueType.TObject,ValueType.TFunction,ValueType.TClass,ValueType.TEnum,ValueType.TUnknown];
+var Type = function() { };
+$hxClasses["Type"] = Type;
+Type.__name__ = "Type";
+Type.getEnum = function(o) {
+	if(o == null) {
+		return null;
+	}
+	return $hxEnums[o.__enum__];
+};
+Type.resolveEnum = function(name) {
+	return $hxEnums[name];
+};
+Type.createInstance = function(cl,args) {
+	var ctor = Function.prototype.bind.apply(cl,[null].concat(args));
+	return new (ctor);
+};
+Type.createEnum = function(e,constr,params) {
+	var f = Reflect.field(e,constr);
+	if(f == null) {
+		throw haxe_Exception.thrown("No such constructor " + constr);
+	}
+	if(Reflect.isFunction(f)) {
+		if(params == null) {
+			throw haxe_Exception.thrown("Constructor " + constr + " need parameters");
+		}
+		return f.apply(e,params);
+	}
+	if(params != null && params.length != 0) {
+		throw haxe_Exception.thrown("Constructor " + constr + " does not need parameters");
+	}
+	return f;
+};
+Type.typeof = function(v) {
+	switch(typeof(v)) {
+	case "boolean":
+		return ValueType.TBool;
+	case "function":
+		if(v.__name__ || v.__ename__) {
+			return ValueType.TObject;
+		}
+		return ValueType.TFunction;
+	case "number":
+		if(Math.ceil(v) == v % 2147483648.0) {
+			return ValueType.TInt;
+		}
+		return ValueType.TFloat;
+	case "object":
+		if(v == null) {
+			return ValueType.TNull;
+		}
+		var e = v.__enum__;
+		if(e != null) {
+			return ValueType.TEnum($hxEnums[e]);
+		}
+		var c = js_Boot.getClass(v);
+		if(c != null) {
+			return ValueType.TClass(c);
+		}
+		return ValueType.TObject;
+	case "string":
+		return ValueType.TClass(String);
+	case "undefined":
+		return ValueType.TNull;
+	default:
+		return ValueType.TUnknown;
+	}
+};
+Type.enumParameters = function(e) {
+	var enm = $hxEnums[e.__enum__];
+	var params = enm.__constructs__[e._hx_index].__params__;
+	if(params != null) {
+		var _g = [];
+		var _g1 = 0;
+		while(_g1 < params.length) {
+			var p = params[_g1];
+			++_g1;
+			_g.push(e[p]);
+		}
+		return _g;
+	} else {
+		return [];
+	}
+};
+var UInt = {};
+UInt.gt = function(a,b) {
+	var aNeg = a < 0;
+	var bNeg = b < 0;
+	if(aNeg != bNeg) {
+		return aNeg;
+	} else {
+		return a > b;
+	}
+};
+UInt.toFloat = function(this1) {
+	var int = this1;
+	if(int < 0) {
+		return 4294967296.0 + int;
+	} else {
+		return int + 0.0;
+	}
+};
+var UnicodeString = {};
+UnicodeString.__properties__ = {get_length:"get_length"};
+UnicodeString.charCodeAt = function(this1,index) {
+	if(index < 0) {
+		return null;
+	}
+	var unicodeOffset = 0;
+	var nativeOffset = 0;
+	while(nativeOffset < this1.length) {
+		var index1 = nativeOffset++;
+		var c = this1.charCodeAt(index1);
+		if(c >= 55296 && c <= 56319) {
+			c = c - 55232 << 10 | this1.charCodeAt(index1 + 1) & 1023;
+		}
+		var c1 = c;
+		if(unicodeOffset == index) {
+			return c1;
+		}
+		if(c1 >= 65536) {
+			++nativeOffset;
+		}
+		++unicodeOffset;
+	}
+	return null;
+};
+UnicodeString.substr = function(this1,pos,len) {
+	if(pos < 0) {
+		pos = UnicodeString.get_length(this1) + pos;
+		if(pos < 0) {
+			pos = 0;
+		}
+	}
+	if(len != null) {
+		if(len < 0) {
+			len = UnicodeString.get_length(this1) + len;
+		}
+		if(len <= 0) {
+			return "";
+		}
+	}
+	var unicodeOffset = 0;
+	var nativeOffset = 0;
+	var fromOffset = -1;
+	var subLength = 0;
+	while(nativeOffset < this1.length) {
+		var c = this1.charCodeAt(nativeOffset);
+		if(c >= 55296 && c <= 56319) {
+			c = c - 55232 << 10 | this1.charCodeAt(nativeOffset + 1) & 1023;
+		}
+		var c1 = c;
+		if(unicodeOffset >= pos) {
+			if(fromOffset < 0) {
+				if(len == null) {
+					return HxOverrides.substr(this1,nativeOffset,null);
+				}
+				fromOffset = nativeOffset;
+			}
+			++subLength;
+			if(subLength >= len) {
+				var lastOffset = c1 < 65536 ? nativeOffset : nativeOffset + 1;
+				return HxOverrides.substr(this1,fromOffset,lastOffset - fromOffset + 1);
+			}
+		}
+		nativeOffset += c1 >= 65536 ? 2 : 1;
+		++unicodeOffset;
+	}
+	if(fromOffset < 0) {
+		return "";
+	} else {
+		return HxOverrides.substr(this1,fromOffset,null);
+	}
+};
+UnicodeString.get_length = function(this1) {
+	var l = 0;
+	var _g_offset = 0;
+	var _g_s = this1;
+	while(_g_offset < _g_s.length) {
+		var s = _g_s;
+		var index = _g_offset++;
+		var c = s.charCodeAt(index);
+		if(c >= 55296 && c <= 56319) {
+			c = c - 55232 << 10 | s.charCodeAt(index + 1) & 1023;
+		}
+		var c1 = c;
+		if(c1 >= 65536) {
+			++_g_offset;
+		}
+		var c2 = c1;
+		++l;
+	}
+	return l;
+};
+var XmlType = {};
+XmlType.toString = function(this1) {
+	switch(this1) {
+	case 0:
+		return "Element";
+	case 1:
+		return "PCData";
+	case 2:
+		return "CData";
+	case 3:
+		return "Comment";
+	case 4:
+		return "DocType";
+	case 5:
+		return "ProcessingInstruction";
+	case 6:
+		return "Document";
+	}
+};
+var Xml = function(nodeType) {
+	this.nodeType = nodeType;
+	this.children = [];
+	this.attributeMap = new haxe_ds_StringMap();
+};
+$hxClasses["Xml"] = Xml;
+Xml.__name__ = "Xml";
+Xml.parse = function(str) {
+	return haxe_xml_Parser.parse(str);
+};
+Xml.createElement = function(name) {
+	var xml = new Xml(Xml.Element);
+	if(xml.nodeType != Xml.Element) {
+		throw haxe_Exception.thrown("Bad node type, expected Element but found " + (xml.nodeType == null ? "null" : XmlType.toString(xml.nodeType)));
+	}
+	xml.nodeName = name;
+	return xml;
+};
+Xml.createPCData = function(data) {
+	var xml = new Xml(Xml.PCData);
+	if(xml.nodeType == Xml.Document || xml.nodeType == Xml.Element) {
+		throw haxe_Exception.thrown("Bad node type, unexpected " + (xml.nodeType == null ? "null" : XmlType.toString(xml.nodeType)));
+	}
+	xml.nodeValue = data;
+	return xml;
+};
+Xml.createCData = function(data) {
+	var xml = new Xml(Xml.CData);
+	if(xml.nodeType == Xml.Document || xml.nodeType == Xml.Element) {
+		throw haxe_Exception.thrown("Bad node type, unexpected " + (xml.nodeType == null ? "null" : XmlType.toString(xml.nodeType)));
+	}
+	xml.nodeValue = data;
+	return xml;
+};
+Xml.createComment = function(data) {
+	var xml = new Xml(Xml.Comment);
+	if(xml.nodeType == Xml.Document || xml.nodeType == Xml.Element) {
+		throw haxe_Exception.thrown("Bad node type, unexpected " + (xml.nodeType == null ? "null" : XmlType.toString(xml.nodeType)));
+	}
+	xml.nodeValue = data;
+	return xml;
+};
+Xml.createDocType = function(data) {
+	var xml = new Xml(Xml.DocType);
+	if(xml.nodeType == Xml.Document || xml.nodeType == Xml.Element) {
+		throw haxe_Exception.thrown("Bad node type, unexpected " + (xml.nodeType == null ? "null" : XmlType.toString(xml.nodeType)));
+	}
+	xml.nodeValue = data;
+	return xml;
+};
+Xml.createProcessingInstruction = function(data) {
+	var xml = new Xml(Xml.ProcessingInstruction);
+	if(xml.nodeType == Xml.Document || xml.nodeType == Xml.Element) {
+		throw haxe_Exception.thrown("Bad node type, unexpected " + (xml.nodeType == null ? "null" : XmlType.toString(xml.nodeType)));
+	}
+	xml.nodeValue = data;
+	return xml;
+};
+Xml.createDocument = function() {
+	return new Xml(Xml.Document);
+};
+Xml.prototype = {
+	get: function(att) {
+		if(this.nodeType != Xml.Element) {
+			throw haxe_Exception.thrown("Bad node type, expected Element but found " + (this.nodeType == null ? "null" : XmlType.toString(this.nodeType)));
+		}
+		return this.attributeMap.h[att];
+	}
+	,set: function(att,value) {
+		if(this.nodeType != Xml.Element) {
+			throw haxe_Exception.thrown("Bad node type, expected Element but found " + (this.nodeType == null ? "null" : XmlType.toString(this.nodeType)));
+		}
+		this.attributeMap.h[att] = value;
+	}
+	,exists: function(att) {
+		if(this.nodeType != Xml.Element) {
+			throw haxe_Exception.thrown("Bad node type, expected Element but found " + (this.nodeType == null ? "null" : XmlType.toString(this.nodeType)));
+		}
+		return Object.prototype.hasOwnProperty.call(this.attributeMap.h,att);
+	}
+	,attributes: function() {
+		if(this.nodeType != Xml.Element) {
+			throw haxe_Exception.thrown("Bad node type, expected Element but found " + (this.nodeType == null ? "null" : XmlType.toString(this.nodeType)));
+		}
+		return new haxe_ds__$StringMap_StringMapKeyIterator(this.attributeMap.h);
+	}
+	,elements: function() {
+		if(this.nodeType != Xml.Document && this.nodeType != Xml.Element) {
+			throw haxe_Exception.thrown("Bad node type, expected Element or Document but found " + (this.nodeType == null ? "null" : XmlType.toString(this.nodeType)));
+		}
+		var _g = [];
+		var _g1 = 0;
+		var _g2 = this.children;
+		while(_g1 < _g2.length) {
+			var child = _g2[_g1];
+			++_g1;
+			if(child.nodeType == Xml.Element) {
+				_g.push(child);
+			}
+		}
+		var ret = _g;
+		return new haxe_iterators_ArrayIterator(ret);
+	}
+	,elementsNamed: function(name) {
+		if(this.nodeType != Xml.Document && this.nodeType != Xml.Element) {
+			throw haxe_Exception.thrown("Bad node type, expected Element or Document but found " + (this.nodeType == null ? "null" : XmlType.toString(this.nodeType)));
+		}
+		var _g = [];
+		var _g1 = 0;
+		var _g2 = this.children;
+		while(_g1 < _g2.length) {
+			var child = _g2[_g1];
+			++_g1;
+			var tmp;
+			if(child.nodeType == Xml.Element) {
+				if(child.nodeType != Xml.Element) {
+					throw haxe_Exception.thrown("Bad node type, expected Element but found " + (child.nodeType == null ? "null" : XmlType.toString(child.nodeType)));
+				}
+				tmp = child.nodeName == name;
+			} else {
+				tmp = false;
+			}
+			if(tmp) {
+				_g.push(child);
+			}
+		}
+		var ret = _g;
+		return new haxe_iterators_ArrayIterator(ret);
+	}
+	,firstElement: function() {
+		if(this.nodeType != Xml.Document && this.nodeType != Xml.Element) {
+			throw haxe_Exception.thrown("Bad node type, expected Element or Document but found " + (this.nodeType == null ? "null" : XmlType.toString(this.nodeType)));
+		}
+		var _g = 0;
+		var _g1 = this.children;
+		while(_g < _g1.length) {
+			var child = _g1[_g];
+			++_g;
+			if(child.nodeType == Xml.Element) {
+				return child;
+			}
+		}
+		return null;
+	}
+	,addChild: function(x) {
+		if(this.nodeType != Xml.Document && this.nodeType != Xml.Element) {
+			throw haxe_Exception.thrown("Bad node type, expected Element or Document but found " + (this.nodeType == null ? "null" : XmlType.toString(this.nodeType)));
+		}
+		if(x.parent != null) {
+			x.parent.removeChild(x);
+		}
+		this.children.push(x);
+		x.parent = this;
+	}
+	,removeChild: function(x) {
+		if(this.nodeType != Xml.Document && this.nodeType != Xml.Element) {
+			throw haxe_Exception.thrown("Bad node type, expected Element or Document but found " + (this.nodeType == null ? "null" : XmlType.toString(this.nodeType)));
+		}
+		if(HxOverrides.remove(this.children,x)) {
+			x.parent = null;
+			return true;
+		}
+		return false;
+	}
+	,toString: function() {
+		return haxe_xml_Printer.print(this);
+	}
+	,__class__: Xml
+};
 var flixel_util_IFlxPooled = function() { };
 $hxClasses["flixel.util.IFlxPooled"] = flixel_util_IFlxPooled;
 flixel_util_IFlxPooled.__name__ = "flixel.util.IFlxPooled";
@@ -8069,7 +8740,7 @@ flixel_FlxSprite.prototype = $extend(flixel_FlxObject.prototype,{
 	,__class__: flixel_FlxSprite
 	,__properties__: $extend(flixel_FlxObject.prototype.__properties__,{set_clipRect:"set_clipRect",set_color:"set_color",set_blend:"set_blend",set_flipY:"set_flipY",set_flipX:"set_flipX",set_facing:"set_facing",set_alpha:"set_alpha",set_graphic:"set_graphic",set_frames:"set_frames",get_numFrames:"get_numFrames",set_frame:"set_frame",set_pixels:"set_pixels",get_pixels:"get_pixels",set_antialiasing:"set_antialiasing",set_useFramePixels:"set_useFramePixels"})
 });
-var Player = function(x,y) {
+var entities_Player = function(x,y) {
 	if(y == null) {
 		y = 0;
 	}
@@ -8078,13 +8749,15 @@ var Player = function(x,y) {
 	}
 	flixel_FlxSprite.call(this,x,y);
 	this.makeGraphic(50,50,-16776961);
-	this.halo = new flixel_FlxSprite(x,y);
+	this.set_width(50);
+	this.set_height(50);
+	this.centerOffsets();
 	this.drag.set_x(this.drag.set_y(800));
 };
-$hxClasses["Player"] = Player;
-Player.__name__ = "Player";
-Player.__super__ = flixel_FlxSprite;
-Player.prototype = $extend(flixel_FlxSprite.prototype,{
+$hxClasses["entities.Player"] = entities_Player;
+entities_Player.__name__ = "entities.Player";
+entities_Player.__super__ = flixel_FlxSprite;
+entities_Player.prototype = $extend(flixel_FlxSprite.prototype,{
 	update: function(elapsed) {
 		this.updateMovement();
 		flixel_FlxSprite.prototype.update.call(this,elapsed);
@@ -8132,652 +8805,8 @@ Player.prototype = $extend(flixel_FlxSprite.prototype,{
 			flixel_math_FlxPoint.setPolarRadians(this.velocity,300,angle * (Math.PI / 180));
 		}
 	}
-	,__class__: Player
+	,__class__: entities_Player
 });
-var Reflect = function() { };
-$hxClasses["Reflect"] = Reflect;
-Reflect.__name__ = "Reflect";
-Reflect.field = function(o,field) {
-	try {
-		return o[field];
-	} catch( _g ) {
-		haxe_NativeStackTrace.lastError = _g;
-		return null;
-	}
-};
-Reflect.getProperty = function(o,field) {
-	var tmp;
-	if(o == null) {
-		return null;
-	} else {
-		var tmp1;
-		if(o.__properties__) {
-			tmp = o.__properties__["get_" + field];
-			tmp1 = tmp;
-		} else {
-			tmp1 = false;
-		}
-		if(tmp1) {
-			return o[tmp]();
-		} else {
-			return o[field];
-		}
-	}
-};
-Reflect.setProperty = function(o,field,value) {
-	var tmp;
-	var tmp1;
-	if(o.__properties__) {
-		tmp = o.__properties__["set_" + field];
-		tmp1 = tmp;
-	} else {
-		tmp1 = false;
-	}
-	if(tmp1) {
-		o[tmp](value);
-	} else {
-		o[field] = value;
-	}
-};
-Reflect.fields = function(o) {
-	var a = [];
-	if(o != null) {
-		var hasOwnProperty = Object.prototype.hasOwnProperty;
-		for( var f in o ) {
-		if(f != "__id__" && f != "hx__closures__" && hasOwnProperty.call(o,f)) {
-			a.push(f);
-		}
-		}
-	}
-	return a;
-};
-Reflect.isFunction = function(f) {
-	if(typeof(f) == "function") {
-		return !(f.__name__ || f.__ename__);
-	} else {
-		return false;
-	}
-};
-Reflect.compare = function(a,b) {
-	if(a == b) {
-		return 0;
-	} else if(a > b) {
-		return 1;
-	} else {
-		return -1;
-	}
-};
-Reflect.isObject = function(v) {
-	if(v == null) {
-		return false;
-	}
-	var t = typeof(v);
-	if(!(t == "string" || t == "object" && v.__enum__ == null)) {
-		if(t == "function") {
-			return (v.__name__ || v.__ename__) != null;
-		} else {
-			return false;
-		}
-	} else {
-		return true;
-	}
-};
-Reflect.isEnumValue = function(v) {
-	if(v != null) {
-		return v.__enum__ != null;
-	} else {
-		return false;
-	}
-};
-Reflect.deleteField = function(o,field) {
-	if(!Object.prototype.hasOwnProperty.call(o,field)) {
-		return false;
-	}
-	delete(o[field]);
-	return true;
-};
-Reflect.makeVarArgs = function(f) {
-	return function() {
-		var a = Array.prototype.slice;
-		var a1 = arguments;
-		var a2 = a.call(a1);
-		return f(a2);
-	};
-};
-var Std = function() { };
-$hxClasses["Std"] = Std;
-Std.__name__ = "Std";
-Std.string = function(s) {
-	return js_Boot.__string_rec(s,"");
-};
-Std.parseInt = function(x) {
-	var v = parseInt(x);
-	if(isNaN(v)) {
-		return null;
-	}
-	return v;
-};
-var _$String_String_$Impl_$ = function() { };
-$hxClasses["_String.String_Impl_"] = _$String_String_$Impl_$;
-_$String_String_$Impl_$.__name__ = "_String.String_Impl_";
-_$String_String_$Impl_$.fromCharCode = function(code) {
-	return String.fromCodePoint(code);
-};
-var StringBuf = function() {
-	this.b = "";
-};
-$hxClasses["StringBuf"] = StringBuf;
-StringBuf.__name__ = "StringBuf";
-StringBuf.prototype = {
-	__class__: StringBuf
-};
-var StringTools = function() { };
-$hxClasses["StringTools"] = StringTools;
-StringTools.__name__ = "StringTools";
-StringTools.htmlEscape = function(s,quotes) {
-	var buf_b = "";
-	var _g_offset = 0;
-	var _g_s = s;
-	while(_g_offset < _g_s.length) {
-		var s = _g_s;
-		var index = _g_offset++;
-		var c = s.charCodeAt(index);
-		if(c >= 55296 && c <= 56319) {
-			c = c - 55232 << 10 | s.charCodeAt(index + 1) & 1023;
-		}
-		var c1 = c;
-		if(c1 >= 65536) {
-			++_g_offset;
-		}
-		var code = c1;
-		switch(code) {
-		case 34:
-			if(quotes) {
-				buf_b += "&quot;";
-			} else {
-				buf_b += String.fromCodePoint(code);
-			}
-			break;
-		case 38:
-			buf_b += "&amp;";
-			break;
-		case 39:
-			if(quotes) {
-				buf_b += "&#039;";
-			} else {
-				buf_b += String.fromCodePoint(code);
-			}
-			break;
-		case 60:
-			buf_b += "&lt;";
-			break;
-		case 62:
-			buf_b += "&gt;";
-			break;
-		default:
-			buf_b += String.fromCodePoint(code);
-		}
-	}
-	return buf_b;
-};
-StringTools.htmlUnescape = function(s) {
-	return s.split("&gt;").join(">").split("&lt;").join("<").split("&quot;").join("\"").split("&#039;").join("'").split("&amp;").join("&");
-};
-StringTools.startsWith = function(s,start) {
-	if(s.length >= start.length) {
-		return s.lastIndexOf(start,0) == 0;
-	} else {
-		return false;
-	}
-};
-StringTools.endsWith = function(s,end) {
-	var elen = end.length;
-	var slen = s.length;
-	if(slen >= elen) {
-		return s.indexOf(end,slen - elen) == slen - elen;
-	} else {
-		return false;
-	}
-};
-StringTools.isSpace = function(s,pos) {
-	var c = HxOverrides.cca(s,pos);
-	if(!(c > 8 && c < 14)) {
-		return c == 32;
-	} else {
-		return true;
-	}
-};
-StringTools.ltrim = function(s) {
-	var l = s.length;
-	var r = 0;
-	while(r < l && StringTools.isSpace(s,r)) ++r;
-	if(r > 0) {
-		return HxOverrides.substr(s,r,l - r);
-	} else {
-		return s;
-	}
-};
-StringTools.rtrim = function(s) {
-	var l = s.length;
-	var r = 0;
-	while(r < l && StringTools.isSpace(s,l - r - 1)) ++r;
-	if(r > 0) {
-		return HxOverrides.substr(s,0,l - r);
-	} else {
-		return s;
-	}
-};
-StringTools.trim = function(s) {
-	return StringTools.ltrim(StringTools.rtrim(s));
-};
-StringTools.replace = function(s,sub,by) {
-	return s.split(sub).join(by);
-};
-StringTools.hex = function(n,digits) {
-	var s = "";
-	var hexChars = "0123456789ABCDEF";
-	do {
-		s = hexChars.charAt(n & 15) + s;
-		n >>>= 4;
-	} while(n > 0);
-	if(digits != null) {
-		while(s.length < digits) s = "0" + s;
-	}
-	return s;
-};
-var ValueType = $hxEnums["ValueType"] = { __ename__:"ValueType",__constructs__:null
-	,TNull: {_hx_name:"TNull",_hx_index:0,__enum__:"ValueType",toString:$estr}
-	,TInt: {_hx_name:"TInt",_hx_index:1,__enum__:"ValueType",toString:$estr}
-	,TFloat: {_hx_name:"TFloat",_hx_index:2,__enum__:"ValueType",toString:$estr}
-	,TBool: {_hx_name:"TBool",_hx_index:3,__enum__:"ValueType",toString:$estr}
-	,TObject: {_hx_name:"TObject",_hx_index:4,__enum__:"ValueType",toString:$estr}
-	,TFunction: {_hx_name:"TFunction",_hx_index:5,__enum__:"ValueType",toString:$estr}
-	,TClass: ($_=function(c) { return {_hx_index:6,c:c,__enum__:"ValueType",toString:$estr}; },$_._hx_name="TClass",$_.__params__ = ["c"],$_)
-	,TEnum: ($_=function(e) { return {_hx_index:7,e:e,__enum__:"ValueType",toString:$estr}; },$_._hx_name="TEnum",$_.__params__ = ["e"],$_)
-	,TUnknown: {_hx_name:"TUnknown",_hx_index:8,__enum__:"ValueType",toString:$estr}
-};
-ValueType.__constructs__ = [ValueType.TNull,ValueType.TInt,ValueType.TFloat,ValueType.TBool,ValueType.TObject,ValueType.TFunction,ValueType.TClass,ValueType.TEnum,ValueType.TUnknown];
-var Type = function() { };
-$hxClasses["Type"] = Type;
-Type.__name__ = "Type";
-Type.getEnum = function(o) {
-	if(o == null) {
-		return null;
-	}
-	return $hxEnums[o.__enum__];
-};
-Type.resolveEnum = function(name) {
-	return $hxEnums[name];
-};
-Type.createInstance = function(cl,args) {
-	var ctor = Function.prototype.bind.apply(cl,[null].concat(args));
-	return new (ctor);
-};
-Type.createEnum = function(e,constr,params) {
-	var f = Reflect.field(e,constr);
-	if(f == null) {
-		throw haxe_Exception.thrown("No such constructor " + constr);
-	}
-	if(Reflect.isFunction(f)) {
-		if(params == null) {
-			throw haxe_Exception.thrown("Constructor " + constr + " need parameters");
-		}
-		return f.apply(e,params);
-	}
-	if(params != null && params.length != 0) {
-		throw haxe_Exception.thrown("Constructor " + constr + " does not need parameters");
-	}
-	return f;
-};
-Type.typeof = function(v) {
-	switch(typeof(v)) {
-	case "boolean":
-		return ValueType.TBool;
-	case "function":
-		if(v.__name__ || v.__ename__) {
-			return ValueType.TObject;
-		}
-		return ValueType.TFunction;
-	case "number":
-		if(Math.ceil(v) == v % 2147483648.0) {
-			return ValueType.TInt;
-		}
-		return ValueType.TFloat;
-	case "object":
-		if(v == null) {
-			return ValueType.TNull;
-		}
-		var e = v.__enum__;
-		if(e != null) {
-			return ValueType.TEnum($hxEnums[e]);
-		}
-		var c = js_Boot.getClass(v);
-		if(c != null) {
-			return ValueType.TClass(c);
-		}
-		return ValueType.TObject;
-	case "string":
-		return ValueType.TClass(String);
-	case "undefined":
-		return ValueType.TNull;
-	default:
-		return ValueType.TUnknown;
-	}
-};
-Type.enumParameters = function(e) {
-	var enm = $hxEnums[e.__enum__];
-	var params = enm.__constructs__[e._hx_index].__params__;
-	if(params != null) {
-		var _g = [];
-		var _g1 = 0;
-		while(_g1 < params.length) {
-			var p = params[_g1];
-			++_g1;
-			_g.push(e[p]);
-		}
-		return _g;
-	} else {
-		return [];
-	}
-};
-var UInt = {};
-UInt.gt = function(a,b) {
-	var aNeg = a < 0;
-	var bNeg = b < 0;
-	if(aNeg != bNeg) {
-		return aNeg;
-	} else {
-		return a > b;
-	}
-};
-UInt.toFloat = function(this1) {
-	var int = this1;
-	if(int < 0) {
-		return 4294967296.0 + int;
-	} else {
-		return int + 0.0;
-	}
-};
-var UnicodeString = {};
-UnicodeString.__properties__ = {get_length:"get_length"};
-UnicodeString.charCodeAt = function(this1,index) {
-	if(index < 0) {
-		return null;
-	}
-	var unicodeOffset = 0;
-	var nativeOffset = 0;
-	while(nativeOffset < this1.length) {
-		var index1 = nativeOffset++;
-		var c = this1.charCodeAt(index1);
-		if(c >= 55296 && c <= 56319) {
-			c = c - 55232 << 10 | this1.charCodeAt(index1 + 1) & 1023;
-		}
-		var c1 = c;
-		if(unicodeOffset == index) {
-			return c1;
-		}
-		if(c1 >= 65536) {
-			++nativeOffset;
-		}
-		++unicodeOffset;
-	}
-	return null;
-};
-UnicodeString.substr = function(this1,pos,len) {
-	if(pos < 0) {
-		pos = UnicodeString.get_length(this1) + pos;
-		if(pos < 0) {
-			pos = 0;
-		}
-	}
-	if(len != null) {
-		if(len < 0) {
-			len = UnicodeString.get_length(this1) + len;
-		}
-		if(len <= 0) {
-			return "";
-		}
-	}
-	var unicodeOffset = 0;
-	var nativeOffset = 0;
-	var fromOffset = -1;
-	var subLength = 0;
-	while(nativeOffset < this1.length) {
-		var c = this1.charCodeAt(nativeOffset);
-		if(c >= 55296 && c <= 56319) {
-			c = c - 55232 << 10 | this1.charCodeAt(nativeOffset + 1) & 1023;
-		}
-		var c1 = c;
-		if(unicodeOffset >= pos) {
-			if(fromOffset < 0) {
-				if(len == null) {
-					return HxOverrides.substr(this1,nativeOffset,null);
-				}
-				fromOffset = nativeOffset;
-			}
-			++subLength;
-			if(subLength >= len) {
-				var lastOffset = c1 < 65536 ? nativeOffset : nativeOffset + 1;
-				return HxOverrides.substr(this1,fromOffset,lastOffset - fromOffset + 1);
-			}
-		}
-		nativeOffset += c1 >= 65536 ? 2 : 1;
-		++unicodeOffset;
-	}
-	if(fromOffset < 0) {
-		return "";
-	} else {
-		return HxOverrides.substr(this1,fromOffset,null);
-	}
-};
-UnicodeString.get_length = function(this1) {
-	var l = 0;
-	var _g_offset = 0;
-	var _g_s = this1;
-	while(_g_offset < _g_s.length) {
-		var s = _g_s;
-		var index = _g_offset++;
-		var c = s.charCodeAt(index);
-		if(c >= 55296 && c <= 56319) {
-			c = c - 55232 << 10 | s.charCodeAt(index + 1) & 1023;
-		}
-		var c1 = c;
-		if(c1 >= 65536) {
-			++_g_offset;
-		}
-		var c2 = c1;
-		++l;
-	}
-	return l;
-};
-var XmlType = {};
-XmlType.toString = function(this1) {
-	switch(this1) {
-	case 0:
-		return "Element";
-	case 1:
-		return "PCData";
-	case 2:
-		return "CData";
-	case 3:
-		return "Comment";
-	case 4:
-		return "DocType";
-	case 5:
-		return "ProcessingInstruction";
-	case 6:
-		return "Document";
-	}
-};
-var Xml = function(nodeType) {
-	this.nodeType = nodeType;
-	this.children = [];
-	this.attributeMap = new haxe_ds_StringMap();
-};
-$hxClasses["Xml"] = Xml;
-Xml.__name__ = "Xml";
-Xml.parse = function(str) {
-	return haxe_xml_Parser.parse(str);
-};
-Xml.createElement = function(name) {
-	var xml = new Xml(Xml.Element);
-	if(xml.nodeType != Xml.Element) {
-		throw haxe_Exception.thrown("Bad node type, expected Element but found " + (xml.nodeType == null ? "null" : XmlType.toString(xml.nodeType)));
-	}
-	xml.nodeName = name;
-	return xml;
-};
-Xml.createPCData = function(data) {
-	var xml = new Xml(Xml.PCData);
-	if(xml.nodeType == Xml.Document || xml.nodeType == Xml.Element) {
-		throw haxe_Exception.thrown("Bad node type, unexpected " + (xml.nodeType == null ? "null" : XmlType.toString(xml.nodeType)));
-	}
-	xml.nodeValue = data;
-	return xml;
-};
-Xml.createCData = function(data) {
-	var xml = new Xml(Xml.CData);
-	if(xml.nodeType == Xml.Document || xml.nodeType == Xml.Element) {
-		throw haxe_Exception.thrown("Bad node type, unexpected " + (xml.nodeType == null ? "null" : XmlType.toString(xml.nodeType)));
-	}
-	xml.nodeValue = data;
-	return xml;
-};
-Xml.createComment = function(data) {
-	var xml = new Xml(Xml.Comment);
-	if(xml.nodeType == Xml.Document || xml.nodeType == Xml.Element) {
-		throw haxe_Exception.thrown("Bad node type, unexpected " + (xml.nodeType == null ? "null" : XmlType.toString(xml.nodeType)));
-	}
-	xml.nodeValue = data;
-	return xml;
-};
-Xml.createDocType = function(data) {
-	var xml = new Xml(Xml.DocType);
-	if(xml.nodeType == Xml.Document || xml.nodeType == Xml.Element) {
-		throw haxe_Exception.thrown("Bad node type, unexpected " + (xml.nodeType == null ? "null" : XmlType.toString(xml.nodeType)));
-	}
-	xml.nodeValue = data;
-	return xml;
-};
-Xml.createProcessingInstruction = function(data) {
-	var xml = new Xml(Xml.ProcessingInstruction);
-	if(xml.nodeType == Xml.Document || xml.nodeType == Xml.Element) {
-		throw haxe_Exception.thrown("Bad node type, unexpected " + (xml.nodeType == null ? "null" : XmlType.toString(xml.nodeType)));
-	}
-	xml.nodeValue = data;
-	return xml;
-};
-Xml.createDocument = function() {
-	return new Xml(Xml.Document);
-};
-Xml.prototype = {
-	get: function(att) {
-		if(this.nodeType != Xml.Element) {
-			throw haxe_Exception.thrown("Bad node type, expected Element but found " + (this.nodeType == null ? "null" : XmlType.toString(this.nodeType)));
-		}
-		return this.attributeMap.h[att];
-	}
-	,set: function(att,value) {
-		if(this.nodeType != Xml.Element) {
-			throw haxe_Exception.thrown("Bad node type, expected Element but found " + (this.nodeType == null ? "null" : XmlType.toString(this.nodeType)));
-		}
-		this.attributeMap.h[att] = value;
-	}
-	,exists: function(att) {
-		if(this.nodeType != Xml.Element) {
-			throw haxe_Exception.thrown("Bad node type, expected Element but found " + (this.nodeType == null ? "null" : XmlType.toString(this.nodeType)));
-		}
-		return Object.prototype.hasOwnProperty.call(this.attributeMap.h,att);
-	}
-	,attributes: function() {
-		if(this.nodeType != Xml.Element) {
-			throw haxe_Exception.thrown("Bad node type, expected Element but found " + (this.nodeType == null ? "null" : XmlType.toString(this.nodeType)));
-		}
-		return new haxe_ds__$StringMap_StringMapKeyIterator(this.attributeMap.h);
-	}
-	,elements: function() {
-		if(this.nodeType != Xml.Document && this.nodeType != Xml.Element) {
-			throw haxe_Exception.thrown("Bad node type, expected Element or Document but found " + (this.nodeType == null ? "null" : XmlType.toString(this.nodeType)));
-		}
-		var _g = [];
-		var _g1 = 0;
-		var _g2 = this.children;
-		while(_g1 < _g2.length) {
-			var child = _g2[_g1];
-			++_g1;
-			if(child.nodeType == Xml.Element) {
-				_g.push(child);
-			}
-		}
-		var ret = _g;
-		return new haxe_iterators_ArrayIterator(ret);
-	}
-	,elementsNamed: function(name) {
-		if(this.nodeType != Xml.Document && this.nodeType != Xml.Element) {
-			throw haxe_Exception.thrown("Bad node type, expected Element or Document but found " + (this.nodeType == null ? "null" : XmlType.toString(this.nodeType)));
-		}
-		var _g = [];
-		var _g1 = 0;
-		var _g2 = this.children;
-		while(_g1 < _g2.length) {
-			var child = _g2[_g1];
-			++_g1;
-			var tmp;
-			if(child.nodeType == Xml.Element) {
-				if(child.nodeType != Xml.Element) {
-					throw haxe_Exception.thrown("Bad node type, expected Element but found " + (child.nodeType == null ? "null" : XmlType.toString(child.nodeType)));
-				}
-				tmp = child.nodeName == name;
-			} else {
-				tmp = false;
-			}
-			if(tmp) {
-				_g.push(child);
-			}
-		}
-		var ret = _g;
-		return new haxe_iterators_ArrayIterator(ret);
-	}
-	,firstElement: function() {
-		if(this.nodeType != Xml.Document && this.nodeType != Xml.Element) {
-			throw haxe_Exception.thrown("Bad node type, expected Element or Document but found " + (this.nodeType == null ? "null" : XmlType.toString(this.nodeType)));
-		}
-		var _g = 0;
-		var _g1 = this.children;
-		while(_g < _g1.length) {
-			var child = _g1[_g];
-			++_g;
-			if(child.nodeType == Xml.Element) {
-				return child;
-			}
-		}
-		return null;
-	}
-	,addChild: function(x) {
-		if(this.nodeType != Xml.Document && this.nodeType != Xml.Element) {
-			throw haxe_Exception.thrown("Bad node type, expected Element or Document but found " + (this.nodeType == null ? "null" : XmlType.toString(this.nodeType)));
-		}
-		if(x.parent != null) {
-			x.parent.removeChild(x);
-		}
-		this.children.push(x);
-		x.parent = this;
-	}
-	,removeChild: function(x) {
-		if(this.nodeType != Xml.Document && this.nodeType != Xml.Element) {
-			throw haxe_Exception.thrown("Bad node type, expected Element or Document but found " + (this.nodeType == null ? "null" : XmlType.toString(this.nodeType)));
-		}
-		if(HxOverrides.remove(this.children,x)) {
-			x.parent = null;
-			return true;
-		}
-		return false;
-	}
-	,toString: function() {
-		return haxe_xml_Printer.print(this);
-	}
-	,__class__: Xml
-};
 var flixel_IFlxBasic = function() { };
 $hxClasses["flixel.IFlxBasic"] = flixel_IFlxBasic;
 flixel_IFlxBasic.__name__ = "flixel.IFlxBasic";
@@ -70714,7 +70743,7 @@ var lime_utils_AssetCache = function() {
 	this.audio = new haxe_ds_StringMap();
 	this.font = new haxe_ds_StringMap();
 	this.image = new haxe_ds_StringMap();
-	this.version = 914139;
+	this.version = 954646;
 };
 $hxClasses["lime.utils.AssetCache"] = lime_utils_AssetCache;
 lime_utils_AssetCache.__name__ = "lime.utils.AssetCache";
@@ -118332,6 +118361,13 @@ openfl_display_DisplayObject.__tempStack = new lime_utils_ObjectPool(function() 
 openfl_text_Font.__fontByName = new haxe_ds_StringMap();
 openfl_text_Font.__registeredFonts = [];
 flixel_FlxBasic.idEnumerator = 0;
+Xml.Element = 0;
+Xml.PCData = 1;
+Xml.CData = 2;
+Xml.Comment = 3;
+Xml.DocType = 4;
+Xml.ProcessingInstruction = 5;
+Xml.Document = 6;
 flixel_math_FlxRect._pool = (function($this) {
 	var $r;
 	var X = 0;
@@ -118412,14 +118448,7 @@ flixel_FlxObject._secondSeparateFlxRect = (function($this) {
 	return $r;
 }(this));
 flixel_FlxSprite.defaultAntialiasing = false;
-Player.SPEED = 300;
-Xml.Element = 0;
-Xml.PCData = 1;
-Xml.CData = 2;
-Xml.Comment = 3;
-Xml.DocType = 4;
-Xml.ProcessingInstruction = 5;
-Xml.Document = 6;
+entities_Player.SPEED = 300;
 flixel_math_FlxBasePoint.pool = (function($this) {
 	var $r;
 	var x = 0;
