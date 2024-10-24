@@ -5,6 +5,11 @@ class Wombo extends FlxSpriteExt
 		super(X, Y);
 	}
 
+	override function kill()
+	{
+		super.kill();
+	}
+
 	override function update(elapsed:Float)
 	{
 		fsm();

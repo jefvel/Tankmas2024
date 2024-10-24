@@ -59,20 +59,10 @@ class AsepriteLoader
 
 			if (write_to_file && Lists.animSets.get(image) == null)
 			{
-				// assets/<get>/images/subdir/
-				var world:String = Paths.get(file_name).split("/")[1];
-				// assets/world/images/<get>/
 				var subdir:String = Paths.get(file_name).split("/")[3];
 				var assets_path:String = "../../../assets";
 
-				var xml_file_path:String = '${world}/entries/${world}-${subdir}-anims.xml';
-				xml_file_path = xml_file_path.replace("enemies", "enemy");
-
-				xml_file_path = xml_file_path.replace("misc-", "");
-				xml_file_path = xml_file_path.replace("misc/entries", "data/entries/anim");
-				xml_file_path = xml_file_path.replace("platforms-", "misc-");
-				xml_file_path = xml_file_path.replace("npcs", "npc");
-				xml_file_path = xml_file_path.replace("forest-npc", "forest-npcs");
+				var xml_file_path:String = 'data/anims/general-anims.xml';
 
 				var local_file_path:String = 'assets/${xml_file_path}';
 				var root_target_file_path:String = '${assets_path}/${xml_file_path}';
@@ -323,7 +313,7 @@ class AsepriteLoader
 			Sys.sleep(.25);
 			sys.io.File.saveContent(local_file_path, content);
 			Sys.sleep(.25);
-			Sys.command('code $root_target_file_path');
+			// Sys.command('code $root_target_file_path');
 		}
 		catch (e)
 		{

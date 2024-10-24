@@ -4,6 +4,13 @@
 	<animSet image = "" path = "assets\images">
 		<anim name = ""></anim>
 	</animSet>
-</root>
 
-<!---->
+	<animSet image="paco">
+		<anim name="idle" fps="100ms" looping="false">0</anim>
+		<anim name="start-stop" fps="100ms" looping="false">1t2</anim>
+		<anim name="moving" fps="50ms">3t9</anim>
+		<anim name="emote" fps="100ms" looping="false">10t11</anim>
+		<anim name="jump-start" fps="100ms" looping="false">12t13</anim>
+		<anim name="jump-land" fps="100ms" looping="false">18t19</anim>
+	</animSet>
+</root>
