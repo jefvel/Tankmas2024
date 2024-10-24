@@ -1,6 +1,7 @@
 #if gif
 package squid.recorder;
 
+import flixel.FlxBasic;
 import gif.GifEncoder;
 import openfl.display.BitmapData;
 import openfl.geom.Matrix;
@@ -165,34 +166,11 @@ class GifRecorder extends FlxBasic
 
 			var image:BitmapData = new BitmapData(Math.floor(FlxG.camera.width), Math.floor(FlxG.camera.height), false, 0);
 
-			var image_43:BitmapData;
-			var image_169:BitmapData;
-
 			#if shader_gif_draw_test
 			FlxG.stage.context3D.drawToBitmapData(image);
 			#else
 			image.draw(FlxG.camera.canvas, mat);
 			#end
-
-			var player:Player = PlayState.players == null ? null : Player.player_one;
-
-			if (player != null)
-			{
-				var rect_43:Rectangle = new Rectangle(0, 0, Main.GIF_FOLLOW_SIZE_43.x, Main.GIF_FOLLOW_SIZE_43.y);
-				var rect_169:Rectangle = new Rectangle(0, 0, Main.GIF_FOLLOW_SIZE_169.x, Main.GIF_FOLLOW_SIZE_169.y);
-
-				rect_track_sprite(rect_43, player);
-				rect_track_sprite(rect_169, player);
-
-				var image_43:BitmapData = new BitmapData(Math.floor(rect_43.width), Math.floor(rect_43.height), false, 0);
-				var image_169:BitmapData = new BitmapData(Math.floor(rect_169.width), Math.floor(rect_169.height), false, 0);
-
-				image_43.copyPixels(image, rect_43, new openfl.geom.Point(0, 0));
-				image_169.copyPixels(image, rect_169, new openfl.geom.Point(0, 0));
-
-				frames_43.push(image_43);
-				frames_169.push(image_169);
-			}
 
 			frames.push(image);
 
@@ -288,7 +266,7 @@ class GifRecorder extends FlxBasic
 
 		#if sys
 		var date:Date = Date.now();
-		timestamp = 'renaine_${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}_${date.getHours()}-${date.getMinutes()}-${date.getSeconds()}';
+		timestamp = '${file_prefix}_${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}_${date.getHours()}-${date.getMinutes()}-${date.getSeconds()}';
 
 		sys.FileSystem.createDirectory('$raw_dir');
 		sys.FileSystem.createDirectory('$raw_dir/3-4');
@@ -446,7 +424,7 @@ class GifRecorder extends FlxBasic
 	function regenerate_timestamp():String
 	{
 		var date:Date = Date.now();
-		timestamp = 'renaine_${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}_${date.getHours()}-${date.getMinutes()}-${date.getSeconds()}';
+		timestamp = '${file_prefix}_${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}_${date.getHours()}-${date.getMinutes()}-${date.getSeconds()}';
 		return timestamp;
 	}
 }

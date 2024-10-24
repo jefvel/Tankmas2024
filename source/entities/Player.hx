@@ -8,16 +8,20 @@ class Player extends FlxSpriteExt
 {
 	var costume:CostumeDef = Costumes.PACO;
 
-	var move_acl:Int = 15;
-	var move_speed:Int = 300;
+	var move_acl:Int = 30;
+	var move_speed:Int = 500;
 
-	var move_reverse_mod:Float = 2;
+	var move_reverse_mod:Float = 3;
+
+	var shadow:FlxSpriteExt;
 
 	public function new(?X:Float, ?Y:Float)
 	{
 		super(X, Y);
 
 		PlayState.self.players.add(this);
+
+		PlayState.self.player_shadows.add(shadow = new FlxSpriteExt().one_line("player-shadow"));
 
 		loadAllFromAnimationSet(costume.name);
 
@@ -30,6 +34,12 @@ class Player extends FlxSpriteExt
 		screenCenter();
 	}
 
+	override function updateMotion(elapsed:Float)
+	{
+		shadow.center_on_bottom(this);
+		super.updateMotion(elapsed);
+	}
+	
 	override function kill()
 	{
 		PlayState.self.players.remove(this, true);
@@ -48,6 +58,7 @@ class Player extends FlxSpriteExt
 		{
 			case NEUTRAL:
 				general_movement();
+				detect_presents();
 			case JUMPING:
 			case EMOTING:
 		}
@@ -58,12 +69,12 @@ class Player extends FlxSpriteExt
 		final DOWN:Bool = Ctrl.down[1];
 		final LEFT:Bool = Ctrl.left[1];
 		final RIGHT:Bool = Ctrl.right[1];
-		final NO_KEYS:Bool = !UP&&!DOWN&&!LEFT&&!RIGHT;
+		final NO_KEYS:Bool = !UP && !DOWN && !LEFT && !RIGHT;
 
 		if (UP)
 			velocity.y -= move_speed / move_acl * (velocity.y > 0 ? 1 : move_reverse_mod);
 		else if (DOWN)
-			velocity.y += move_speed / move_acl  * (velocity.y < 0 ? 1 : move_reverse_mod);
+			velocity.y += move_speed / move_acl * (velocity.y < 0 ? 1 : move_reverse_mod);
 
 		if (LEFT)
 			velocity.x -= move_speed / move_acl * (velocity.x > 0 ? 1 : move_reverse_mod);
@@ -72,11 +83,14 @@ class Player extends FlxSpriteExt
 
 		if (!LEFT && !RIGHT)
 			velocity.x = velocity.x * .95;
+		else
+			flipX = velocity.x < 0;
+
 		if (!UP && !DOWN)
 			velocity.y = velocity.y * .95;
 
 		final MOVING:Bool = velocity.x.abs() + velocity.y.abs() > 0;
-		final DO_MOVE_ANIMATION:Bool = MOVING&& !NO_KEYS;
+		final DO_MOVE_ANIMATION:Bool = MOVING && !NO_KEYS;
 
 		switch (animation.name)
 		{
@@ -90,6 +104,17 @@ class Player extends FlxSpriteExt
 				if (!DO_MOVE_ANIMATION)
 					animProtect("start-stop");
 		}
+	}
+	function detect_presents()
+	{
+		var present:Present = Present.find_present_in_detect_range(this);
+
+		Present.un_mark_all_presents();
+
+		if (present == null)
+			return;
+
+		present.mark_target(true);
 	}
 }
 

@@ -13,4 +13,15 @@
 		<anim name="jump-start" fps="100ms" looping="false">12t13</anim>
 		<anim name="jump-land" fps="100ms" looping="false">18t19</anim>
 	</animSet>
+
+	<animSet image="player-shadow">
+		
+	</animSet>
+
+	<animSet image="present">
+		<anim name="idle" fps="100ms" looping="false">0</anim>
+		<anim name="nearby" fps="100ms">1t6</anim>
+		<anim name="open" fps="100ms" looping="false">7t9</anim>
+		<anim name="opened" fps="100ms" looping="false">9</anim>
+	</animSet>
 </root>

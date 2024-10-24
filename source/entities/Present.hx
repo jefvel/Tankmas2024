@@ -2,12 +2,19 @@ package entities;
 
 class Present extends FlxSpriteExt
 {
-	public var detect_range:Int = 100;
+	public var detect_range:Int = 300;
+
+	public var openable:Bool = true;
 
 	public function new(?X:Float, ?Y:Float)
 	{
 		super(X, Y);
+		loadAllFromAnimationSet("present");
+
 		PlayState.self.presents.add(this);
+		screenCenter();
+
+		x += 500;
 	}
 
 	override function kill() {
@@ -26,9 +33,9 @@ class Present extends FlxSpriteExt
 		{
 			default:
 			case IDLE:
+				animProtect("idle");
 			case NEARBY:
 				animProtect("nearby");
-
 			case OPENING:
 				animProtect("opening");
 				if(animation.finished)
@@ -39,7 +46,8 @@ class Present extends FlxSpriteExt
 		
 		}
 
-	public static function find_present_in_detect_range(player:Player) {
+	public static function find_present_in_detect_range(player:Player):Present
+	{
 		var presents_in_range:Array<{present:Present, distance:Float}>=[];
 		var mp_player:FlxPoint= player.mp();
 
@@ -51,10 +59,30 @@ class Present extends FlxSpriteExt
 
 		if(presents_in_range.length>0){
 			presents_in_range.sort((a, b) -> a.distance > b.distance ? 1 : -1); //might be other way around
-			return presents_in_range.pop(); //or this might be shift
+			return presents_in_range.pop().present; // or this might be shift
 		}
 
 		return null;
+	}
+	public static function un_mark_all_presents()
+	{
+		for (present in PlayState.self.presents)
+			present.mark_target(false);
+	}
+
+	public function mark_target(mark:Bool)
+	{
+		if (mark && openable)
+			sstate(NEARBY);
+		if (!mark && openable)
+			sstate(IDLE);
+	}
+
+	public function open()
+	{
+		if (openable)
+			sstate(OPENING);
+		openable = false;
 	}
 }
 

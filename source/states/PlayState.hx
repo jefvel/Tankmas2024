@@ -25,6 +25,7 @@ class PlayState extends BaseState
 		add(players);
 
 		new Player();
+		new Present();
 	}
 
 	override public function update(elapsed:Float)
