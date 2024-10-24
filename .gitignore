@@ -2,5 +2,5 @@
 .godot/
 /android/
 .history
-.export
 .vscode
+export
