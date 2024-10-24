@@ -1,3 +1,4 @@
+#if deprecated
 package;
 
 import entities.*;
@@ -15,14 +16,12 @@ import flixel.util.FlxDirection;
 import haxe.Template;
 import js.lib.intl.Collator.Collation;
 
-
 class PlayState extends FlxState
 {
-
-	var locationText = new flixel.text.FlxText(0,0,0,"Loaded", 16);
+	var locationText = new flixel.text.FlxText(0, 0, 0, "Loaded", 16);
 	var presentPlaceholder = new FlxSprite(850, 900);
 	var tempWall = new FlxSprite(0, 600);
-	var player:Player = new Player(400,750);
+	var player:Player = new Player(400, 750);
 	var wall:FlxGroup;
 	var playerHalo:FlxSprite = new FlxSprite(0, 0);
 
@@ -60,29 +59,28 @@ class PlayState extends FlxState
 		var screenHeight = 1080;
 		FlxG.resizeGame(screenWidth, screenHeight);
 
-
 		var offset = screenWidth * 0.4;
 
-		//testing
+		// testing
 		var sprite = new FlxSprite();
 		sprite.loadGraphic("assets/Test stuff from Shmood/Background-Outside_(MelonJam 2022).png");
 		sprite.screenCenter();
 		add(sprite);
 
 		var writing = new flixel.text.FlxText(0, 0, 0, "Hello World\nin this new world", 32);
-		var button = new FlxButton(0,0, "Switch States", switchState);
-		//writing.screenCenter();
-		//writing.alignment = FlxTextAlign.LEFT;
+		var button = new FlxButton(0, 0, "Switch States", switchState);
+		// writing.screenCenter();
+		// writing.alignment = FlxTextAlign.LEFT;
 		writing.color = FlxColor.CYAN;
-		//writing.font = "Isonorm";
-		
-		presentPlaceholder.makeGraphic(100,100, FlxColor.CYAN);
+		// writing.font = "Isonorm";
+
+		presentPlaceholder.makeGraphic(100, 100, FlxColor.CYAN);
 		tempWall.makeGraphic(screenWidth, 10, FlxColor.RED);
 		tempWall.immovable = true;
-		//presentPlaceholder.alpha = 0;
+		// presentPlaceholder.alpha = 0;
 		presentPlaceholder.drag.x = 500;
 		presentPlaceholder.drag.y = 500;
-		//presentPlaceholder.immovable = true;
+		// presentPlaceholder.immovable = true;
 		wall = FlxCollision.createCameraWall(FlxG.camera, true, 20, false);
 
 		playerHalo.makeGraphic(100, 100, FlxColor.GRAY);
@@ -93,12 +91,11 @@ class PlayState extends FlxState
 		add(presentPlaceholder);
 		add(locationText);
 		add(tempWall);
-
 	}
 
 	override public function update(elapsed:Float)
 	{
-		//clear();
+		// clear();
 		overlaps = false;
 
 		var xPos = FlxG.mouse.screenX;
@@ -111,7 +108,7 @@ class PlayState extends FlxState
 		FlxG.collide(wall, player);
 		FlxG.collide(tempWall, player);
 		FlxG.overlap(playerHalo, presentPlaceholder, thing);
-		
+
 		if (overlaps && FlxG.keys.justPressed.E)
 		{
 			presentPlaceholder.color = FlxColor.ORANGE;
@@ -120,20 +117,18 @@ class PlayState extends FlxState
 		{
 			presentPlaceholder.color = FlxColor.CYAN;
 		}
-		
-		locationText.text = xPos + ", " + yPos + ", " + Std.int(1/elapsed);
-		//add(locationText);
 
-		//FlxG.collide(player, presentPlaceholder);
+		locationText.text = xPos + ", " + yPos + ", " + Std.int(1 / elapsed);
+		// add(locationText);
 
-		if(FlxG.keys.justPressed.SPACE){
+		// FlxG.collide(player, presentPlaceholder);
+
+		if (FlxG.keys.justPressed.SPACE)
+		{
 			FlxG.fullscreen = !FlxG.fullscreen;
 		}
-		
+
 		super.update(elapsed);
-
-		
 	}
-
-
 }
+#end

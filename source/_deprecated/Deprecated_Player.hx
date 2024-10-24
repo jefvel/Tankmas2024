@@ -1,3 +1,4 @@
+#if deprecated
 package entities;
 
 import flixel.FlxG;
@@ -99,3 +100,4 @@ class Player extends FlxSprite
 		}
 	}
 }
+#end

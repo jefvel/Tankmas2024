@@ -11,7 +11,6 @@ class PlayState extends BaseState
 	{
 		super.create();
 		self = this;
-		add(new FlxText(0, 0, 0, "Hello World", 32).screenCenter());
 	}
 
 	override public function update(elapsed:Float)
