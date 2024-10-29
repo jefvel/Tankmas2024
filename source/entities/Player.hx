@@ -2,11 +2,12 @@ package entities;
 
 import data.types.TankmasDefs.CostumeDef;
 import data.types.TankmasEnums.Costumes;
+import data.types.TankmasEnums.PlayerAnimation;
 import data.types.TankmasEnums.UnlockCondition;
 
 class Player extends FlxSpriteExt
 {
-	var costume:CostumeDef = Costumes.PACO;
+	var costume:CostumeDef = Costumes.TANKMAN;
 
 	var move_acl:Int = 30;
 	var move_speed:Int = 500;
@@ -15,17 +16,18 @@ class Player extends FlxSpriteExt
 
 	var shadow:FlxSpriteExt;
 
+	var sprite_anim:PlayerAnimation = PlayerAnimation.MOVING;
+
 	public function new(?X:Float, ?Y:Float)
 	{
 		super(X, Y);
 
 		PlayState.self.players.add(this);
 
-		PlayState.self.player_shadows.add(shadow = new FlxSpriteExt().one_line("player-shadow"));
-
-		loadAllFromAnimationSet(costume.name);
+		PlayState.self.player_shadows.add(shadow = new FlxSpriteExt(Paths.get("player-shadow.png")));
 
 		maxVelocity.set(move_speed, move_speed);
+		loadGraphic(Paths.get('${costume.name}.png'));
 
 		drag.set(300, 300);
 
@@ -57,8 +59,10 @@ class Player extends FlxSpriteExt
 		switch (cast(state, State))
 		{
 			case NEUTRAL:
+				/*
 				general_movement();
 				detect_presents();
+				 */
 			case JUMPING:
 			case EMOTING:
 		}
@@ -116,6 +120,7 @@ class Player extends FlxSpriteExt
 
 		present.mark_target(true);
 	}
+	function move_animation() {}
 }
 
 private enum abstract State(String) from String to String

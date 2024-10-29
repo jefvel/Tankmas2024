@@ -1,12 +1,16 @@
 package data.types;
 
 import data.types.TankmasDefs.CostumeDef;
+import data.types.TankmasDefs.SpriteAnimationDef;
 
 /**
  * Enum of costume defs, these are just examples
  */
 enum abstract Costumes(CostumeDef)
 {
+	/**The problems of the future, today!**/
+	public static final TANKMAN = {name: "tankman"};
+
 	/**the most popular school shooter hero of 1999**/
 	public static final PACO = {name: "paco"};
 
@@ -48,3 +52,62 @@ enum abstract UnlockCondition(String) from String to String
         }
 }
 
+
+/**
+ * Enum of fixed player animations, probably will be moved
+ */
+enum abstract PlayerAnimation(SpriteAnimationDef) from SpriteAnimationDef to SpriteAnimationDef
+{
+	public static final IDLE = {
+		name: "idle",
+		fps: Utils.ms_to_frames_per_second("40ms"),
+		looping: true,
+		frames: [{duration: 1, x: 0, y: 0}]
+	};
+
+	public static final MOVING = {
+		name: "moving",
+		fps: Utils.ms_to_frames_per_second("40ms"),
+		looping: true,
+		frames: [
+			{
+				duration: 4,
+				x: 0,
+				y: 0,
+				rotation: 0
+			},
+			{
+				duration: 2,
+				x: -5,
+				y: -4,
+				rotation: 7
+			},
+			{
+				duration: 2,
+				y: -5,
+			},
+			{
+				duration: 4,
+				x: 0,
+				y: 0,
+				rotation: 0
+			},
+			{
+				duration: 3,
+				x: 0,
+				y: 0,
+				rotation: 0
+			},
+			{
+				duration: 2,
+				x: 5,
+				y: -4,
+				rotation: -7
+			},
+			{
+				duration: 2,
+				y: -5,
+			},
+		]
+	};
+}
