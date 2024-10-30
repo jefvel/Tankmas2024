@@ -62,7 +62,16 @@ enum abstract PlayerAnimation(SpriteAnimationDef) from SpriteAnimationDef to Spr
 		name: "idle",
 		fps: Utils.ms_to_frames_per_second("40ms"),
 		looping: true,
-		frames: [{duration: 1, x: 0, y: 0}]
+		frames: [
+			{
+				duration: 1,
+				x: 0,
+				y: 0,
+				angle: 0,
+				height: 1.0,
+				width: 1.0
+			}
+		]
 	};
 
 	public static final MOVING = {
@@ -71,42 +80,66 @@ enum abstract PlayerAnimation(SpriteAnimationDef) from SpriteAnimationDef to Spr
 		looping: true,
 		frames: [
 			{
-				duration: 4,
+				duration: 3,
 				x: 0,
 				y: 0,
-				rotation: 0
+				angle: 0,
+				height: 1.0,
+				width: 1.0
 			},
 			{
 				duration: 2,
 				x: -5,
-				y: -4,
-				rotation: 7
+				y: -16,
+				angle: 7
 			},
 			{
 				duration: 2,
-				y: -5,
-			},
-			{
-				duration: 4,
-				x: 0,
-				y: 0,
-				rotation: 0
+				y: -20,
 			},
 			{
 				duration: 3,
 				x: 0,
 				y: 0,
-				rotation: 0
+				angle: 0
 			},
 			{
 				duration: 2,
 				x: 5,
-				y: -4,
-				rotation: -7
+				y: -16,
+				angle: -7
 			},
 			{
 				duration: 2,
+				y: -20,
+			},
+		]
+	};
+
+	public static final START_STOP = {
+		name: "start-stop",
+		fps: Utils.ms_to_frames_per_second("40ms"),
+		looping: false,
+		frames: [
+			{
+				duration: 3,
+				x: 0,
+				y: 0,
+				angle: 0,
+				height: 1.0,
+				width: 1.0
+			},
+			{
+				duration: 5,
+				x: 0,
+				y: -10,
+				angle: -10,
+			},
+			{
+				duration: 5,
+				x: 0,
 				y: -5,
+				angle: 5,
 			},
 		]
 	};

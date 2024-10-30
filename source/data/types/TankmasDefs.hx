@@ -23,6 +23,6 @@ typedef SpriteAnimationFrameDef =
 	var ?y:Int;
 	var ?width:Float;
 	var ?height:Float;
-	var ?rotation:Float;
+	var ?angle:Int;
 	var duration:Int;
 }
