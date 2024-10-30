@@ -13,6 +13,7 @@ class Player extends NGSprite
 
 	var move_acl:Int = 60;
 	var move_speed:Int = 500;
+	var move_no_input_drag:Float = 0.9;
 
 	var move_reverse_mod:Float = 3;
 
@@ -29,7 +30,7 @@ class Player extends NGSprite
 		PlayState.self.player_shadows.add(shadow = new FlxSpriteExt(Paths.get("player-shadow.png")));
 
 		maxVelocity.set(move_speed, move_speed);
-		loadGraphic(Paths.get('${costume.name}.png'));
+		new_costume(costume);
 
 		original_size.set(width, height);
 
@@ -42,13 +43,28 @@ class Player extends NGSprite
 		screenCenter();
 	}
 
+	function debug_switch_costume()
+	{
+		if (FlxG.keys.anyJustPressed(["ONE"]))
+			new_costume(Costumes.TANKMAN);
+		if (FlxG.keys.anyJustPressed(["TWO"]))
+			new_costume(Costumes.PACO);
+	}
+
+	function new_costume(costume:CostumeDef)
+	{
+		trace('New Costume: ${costume}');
+		loadGraphic(Paths.get('${costume.name}.png'));
+	}
+
 	override function updateMotion(elapsed:Float)
 	{
+		super.updateMotion(elapsed);
+
 		shadow.center_on_bottom(this);
 		shadow.offset.x = offset.x;
-		shadow.x = shadow.x + (flipX ? -12 : 16);
-
-		super.updateMotion(elapsed);
+		shadow.updateMotion(elapsed);
+		// shadow.x = shadow.x + (flipX ? -12 : 16);
 	}
 	
 	override function kill()
@@ -60,6 +76,7 @@ class Player extends NGSprite
 
 	override function update(elapsed:Float)
 	{
+		debug_switch_costume();
 		fsm();
 		super.update(elapsed);
 	}
@@ -100,7 +117,7 @@ class Player extends NGSprite
 		// flipX = velocity.x > 0;
 
 		if (!UP && !DOWN)
-			velocity.y = velocity.y * .95;
+			velocity.y = velocity.y * move_no_input_drag;
 
 		final MOVING:Bool = velocity.x.abs() + velocity.y.abs() > 10;
 		final DO_MOVE_ANIMATION:Bool = MOVING && !NO_KEYS;
