@@ -91,16 +91,10 @@ class SpriteAnimationController
 			index = 0;
 
 		update_sprite();
-
-		// var flip_mod:Int = sprite.flipX ? 1 : -1;
-
-		// trace(index, animation == null, animation.frames.length);
 	}
 
 	function update_sprite()
 	{
-		trace(index, frame);
-
 		sprite.offset.x = frame.x == null ? sprite.offset.x : -frame.x;
 		sprite.offset.y = frame.y == null ? sprite.offset.y : -frame.y;
 		sprite.scale.x = frame.width == null ? sprite.scale.x : frame.width;
