@@ -1,14 +1,17 @@
 package entities;
 
 import data.types.TankmasDefs.CostumeDef;
+import data.types.TankmasDefs.SpriteAnimationDef;
 import data.types.TankmasEnums.Costumes;
+import data.types.TankmasEnums.PlayerAnimation;
 import data.types.TankmasEnums.UnlockCondition;
+import entities.NGSprite;
 
-class Player extends FlxSpriteExt
+class Player extends NGSprite
 {
-	var costume:CostumeDef = Costumes.PACO;
+	var costume:CostumeDef = Costumes.TANKMAN;
 
-	var move_acl:Int = 30;
+	var move_acl:Int = 60;
 	var move_speed:Int = 500;
 
 	var move_reverse_mod:Float = 3;
@@ -19,13 +22,18 @@ class Player extends FlxSpriteExt
 	{
 		super(X, Y);
 
+		sprite_anim.anim(PlayerAnimation.MOVING);
+
 		PlayState.self.players.add(this);
 
-		PlayState.self.player_shadows.add(shadow = new FlxSpriteExt().one_line("player-shadow"));
-
-		loadAllFromAnimationSet(costume.name);
+		PlayState.self.player_shadows.add(shadow = new FlxSpriteExt(Paths.get("player-shadow.png")));
 
 		maxVelocity.set(move_speed, move_speed);
+		loadGraphic(Paths.get('${costume.name}.png'));
+
+		original_size.set(width, height);
+
+		sprite_anim.anim(PlayerAnimation.IDLE);
 
 		drag.set(300, 300);
 
@@ -37,6 +45,9 @@ class Player extends FlxSpriteExt
 	override function updateMotion(elapsed:Float)
 	{
 		shadow.center_on_bottom(this);
+		shadow.offset.x = offset.x;
+		shadow.x = shadow.x + (flipX ? -12 : 16);
+
 		super.updateMotion(elapsed);
 	}
 	
@@ -71,6 +82,7 @@ class Player extends FlxSpriteExt
 		final RIGHT:Bool = Ctrl.right[1];
 		final NO_KEYS:Bool = !UP && !DOWN && !LEFT && !RIGHT;
 
+
 		if (UP)
 			velocity.y -= move_speed / move_acl * (velocity.y > 0 ? 1 : move_reverse_mod);
 		else if (DOWN)
@@ -84,27 +96,44 @@ class Player extends FlxSpriteExt
 		if (!LEFT && !RIGHT)
 			velocity.x = velocity.x * .95;
 		else
-			flipX = velocity.x < 0;
+			flipX = RIGHT;
+		// flipX = velocity.x > 0;
 
 		if (!UP && !DOWN)
 			velocity.y = velocity.y * .95;
 
-		final MOVING:Bool = velocity.x.abs() + velocity.y.abs() > 0;
+		final MOVING:Bool = velocity.x.abs() + velocity.y.abs() > 10;
 		final DO_MOVE_ANIMATION:Bool = MOVING && !NO_KEYS;
 
-		switch (animation.name)
+		switch (sprite_anim.name)
 		{
+			default:
 			case "idle":
 				if (DO_MOVE_ANIMATION)
-					animProtect("start-stop");
-			case "start-stop":
-				if (animation.finished)
-					animProtect(DO_MOVE_ANIMATION ? "moving" : "idle");
+					sprite_anim.anim(PlayerAnimation.MOVING);
 			case "moving":
 				if (!DO_MOVE_ANIMATION)
-					animProtect("start-stop");
+					sprite_anim.anim(PlayerAnimation.IDLE);
 		}
+		/*
+				switch (sprite_anim.name){
+					default:
+				case "idle":
+					if (DO_MOVE_ANIMATION)
+						sprite_anim.anim(PlayerAnimation.START_STOP, post_start_stop);
+				case "moving":
+					if (!DO_MOVE_ANIMATION)
+						sprite_anim.anim(PlayerAnimation.START_STOP, post_start_stop);
+			}
+		 */
 	}
+
+	function post_start_stop()
+	{
+		final MOVING:Bool = velocity.x.abs() + velocity.y.abs() > 10;
+		sprite_anim.anim(MOVING ? PlayerAnimation.MOVING : PlayerAnimation.IDLE);
+	}
+	
 	function detect_presents()
 	{
 		var present:Present = Present.find_present_in_detect_range(this);
@@ -116,6 +145,7 @@ class Player extends FlxSpriteExt
 
 		present.mark_target(true);
 	}
+	function move_animation() {}
 }
 
 private enum abstract State(String) from String to String

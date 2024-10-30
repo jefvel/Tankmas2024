@@ -1,12 +1,16 @@
 package data.types;
 
 import data.types.TankmasDefs.CostumeDef;
+import data.types.TankmasDefs.SpriteAnimationDef;
 
 /**
  * Enum of costume defs, these are just examples
  */
 enum abstract Costumes(CostumeDef)
 {
+	/**The problems of the future, today!**/
+	public static final TANKMAN = {name: "tankman"};
+
 	/**the most popular school shooter hero of 1999**/
 	public static final PACO = {name: "paco"};
 
@@ -48,3 +52,95 @@ enum abstract UnlockCondition(String) from String to String
         }
 }
 
+
+/**
+ * Enum of fixed player animations, probably will be moved
+ */
+enum abstract PlayerAnimation(SpriteAnimationDef) from SpriteAnimationDef to SpriteAnimationDef
+{
+	public static final IDLE = {
+		name: "idle",
+		fps: Utils.ms_to_frames_per_second("40ms"),
+		looping: true,
+		frames: [
+			{
+				duration: 1,
+				x: 0,
+				y: 0,
+				angle: 0,
+				height: 1.0,
+				width: 1.0
+			}
+		]
+	};
+
+	public static final MOVING = {
+		name: "moving",
+		fps: Utils.ms_to_frames_per_second("40ms"),
+		looping: true,
+		frames: [
+			{
+				duration: 3,
+				x: 0,
+				y: 0,
+				angle: 0,
+				height: 1.0,
+				width: 1.0
+			},
+			{
+				duration: 2,
+				x: -5,
+				y: -16,
+				angle: 7
+			},
+			{
+				duration: 2,
+				y: -20,
+			},
+			{
+				duration: 3,
+				x: 0,
+				y: 0,
+				angle: 0
+			},
+			{
+				duration: 2,
+				x: 5,
+				y: -16,
+				angle: -7
+			},
+			{
+				duration: 2,
+				y: -20,
+			},
+		]
+	};
+
+	public static final START_STOP = {
+		name: "start-stop",
+		fps: Utils.ms_to_frames_per_second("40ms"),
+		looping: false,
+		frames: [
+			{
+				duration: 3,
+				x: 0,
+				y: 0,
+				angle: 0,
+				height: 1.0,
+				width: 1.0
+			},
+			{
+				duration: 5,
+				x: 0,
+				y: -10,
+				angle: -10,
+			},
+			{
+				duration: 5,
+				x: 0,
+				y: -5,
+				angle: 5,
+			},
+		]
+	};
+}

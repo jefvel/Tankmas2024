@@ -1,6 +1,6 @@
 package entities;
 
-class Present extends FlxSpriteExt
+class Present extends NGSprite
 {
 	public var detect_range:Int = 300;
 
