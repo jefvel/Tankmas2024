@@ -367,13 +367,13 @@ class GifRecorder extends FlxBasic
 		var scale_y:Int = scale.y.floor();
 
 		// big version
-		cmds.push('ffmpeg -framerate ${ms} -i "$full_dir/${timestamp}_%d.png" -c:v libx264 -vf "scale=${scale_x * 4}:${scale_y * 4}:flags=neighbor" -r 60 -crf 0 "${base_dir}gifs/mp4/big_dump/$file_name.mp4"');
+		cmds.push('ffmpeg -framerate ${ms} -i "$full_dir/${timestamp}_%d.png" -c:v libx264 -vf "scale=${scale_x * .5}:${scale_y * .5}:flags=neighbor" -r 60 -crf 0 "${base_dir}gifs/mp4/big_dump/$file_name.mp4"');
 
 		// small version
 		cmds.push('ffmpeg -framerate ${ms} -i "$full_dir/${timestamp}_%d.png" -c:v libx264 -crf 0 ${base_dir}/gifs/mp4/smol/$file_name.mp4');
 
 		// small version -> gif
-		cmds.push('ffmpeg -i ${base_dir}/gifs/mp4/smol/${file_name}.mp4 -vf "fps=${ms},scale=${scale_x}:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse" "${base_dir}/gifs/${file_name}_raw.gif"');
+		cmds.push('ffmpeg -i ${base_dir}/gifs/mp4/smol/${file_name}.mp4 -vf "fps=${ms},scale=${scale_x * .5}:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse" "${base_dir}/gifs/${file_name}_raw.gif"');
 
 		// convert big version to work with VideoPad because welp
 		cmds.push('ffmpeg -i "${base_dir}/gifs/mp4/big_dump/$file_name.mp4" -c:v libx264 -c:a copy "${base_dir}/gifs/mp4/$file_name.mp4"');

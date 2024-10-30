@@ -29,6 +29,10 @@ class BaseState extends FlxState
 	override function update(elapsed:Float)
 	{
 		Ctrl.update();
+		#if gif
+		if (FlxG.keys.anyJustPressed(["G"]))
+			squid.recorder.GifRecorder.self.handle_record_button();
+		#end
 		super.update(elapsed);
 	}
 
