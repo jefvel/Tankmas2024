@@ -1,10 +1,8 @@
 package entities;
 
 import data.types.TankmasDefs.CostumeDef;
-import data.types.TankmasDefs.SpriteAnimationDef;
 import data.types.TankmasEnums.Costumes;
 import data.types.TankmasEnums.PlayerAnimation;
-import data.types.TankmasEnums.UnlockCondition;
 import entities.NGSprite;
 
 class Player extends NGSprite
@@ -120,7 +118,9 @@ class Player extends NGSprite
 			velocity.y = velocity.y * move_no_input_drag;
 
 		final MOVING:Bool = velocity.x.abs() + velocity.y.abs() > 10;
-		final DO_MOVE_ANIMATION:Bool = MOVING && !NO_KEYS;
+		// final DO_MOVE_ANIMATION:Bool = MOVING && !NO_KEYS;
+
+		final DO_MOVE_ANIMATION:Bool = !NO_KEYS;
 
 		switch (sprite_anim.name)
 		{

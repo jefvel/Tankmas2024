@@ -57,7 +57,63 @@ class SpriteAnimationController
 		tick = 0;
 		index = 0;
 
-		iterate();
+		reset_sprite();
+		update_sprite();
+	}
+
+	public function iterate()
+	{
+		if (animation == null)
+			return;
+
+		tick++;
+
+		var frame_length:Float = 60 / animation.fps;
+		var duration:Float = tick / frame_length;
+		var duration_elapsed:Bool = duration >= frame.duration;
+
+		if (!duration_elapsed)
+			return;
+
+		tick = 0;
+
+		index++;
+
+		if (finished)
+		{
+			trace('${animation.name} finished');
+			animation = null;
+			on_complete == null ? false : on_complete();
+			return;
+		}
+
+		if (index > max_index)
+			index = 0;
+
+		update_sprite();
+
+		// var flip_mod:Int = sprite.flipX ? 1 : -1;
+
+		// trace(index, animation == null, animation.frames.length);
+	}
+
+	function update_sprite()
+	{
+		trace(index, frame);
+
+		sprite.offset.x = frame.x == null ? sprite.offset.x : -frame.x;
+		sprite.offset.y = frame.y == null ? sprite.offset.y : -frame.y;
+		sprite.scale.x = frame.width == null ? sprite.scale.x : frame.width;
+		sprite.scale.y = frame.height == null ? sprite.scale.y : frame.height;
+
+		sprite.angle = frame.angle == null ? sprite.angle : frame.angle;
+	}
+
+	public function reset_sprite()
+	{
+		sprite.offset.set(0, 0);
+		sprite.scale.set(1, 1);
+		sprite.angle = 0;
 	}
 
 	public function get_name():String
@@ -71,47 +127,4 @@ class SpriteAnimationController
 
 	public function get_max_index():Int
 		return animation == null ? 0 : animation.frames.length - 1;
-
-	public function iterate(?flip_mod:Int = 1)
-	{
-		if (animation == null)
-			return;
-
-		tick++;
-
-		var frame_length:Float = 60 / animation.fps;
-		var duration:Float = tick / frame_length;
-		var duration_elapsed:Bool = duration >= frame.duration;
-
-		// trace(tick, duration_elapsed, animation.fps, duration, frame.duration, frame_length);
-
-		if (!duration_elapsed)
-			return;
-
-		tick = 0;
-
-		index++;
-
-		if (finished)
-		{
-			trace('${animation.name}  finished');
-			animation = null;
-			on_complete == null ? false : on_complete();
-			return;
-		}
-
-		if (index >= max_index)
-			index = 0;
-
-		// var flip_mod:Int = sprite.flipX ? 1 : -1;
-
-		// trace(index, animation == null, animation.frames.length);
-
-		sprite.offset.x = frame.x == null ? sprite.offset.x : -frame.x;
-		sprite.offset.y = frame.y == null ? sprite.offset.y : -frame.y;
-		sprite.scale.x = frame.width == null ? sprite.scale.x : frame.width;
-		sprite.scale.y = frame.height == null ? sprite.scale.y : frame.height;
-
-		sprite.angle = frame.angle == null ? sprite.angle : frame.angle;
-	}
 }

@@ -80,14 +80,6 @@ enum abstract PlayerAnimation(SpriteAnimationDef) from SpriteAnimationDef to Spr
 		looping: true,
 		frames: [
 			{
-				duration: 3,
-				x: 0,
-				y: 0,
-				angle: 0,
-				height: 1.0,
-				width: 1.0
-			},
-			{
 				duration: 2,
 				x: -5,
 				y: -16,
@@ -112,6 +104,12 @@ enum abstract PlayerAnimation(SpriteAnimationDef) from SpriteAnimationDef to Spr
 			{
 				duration: 2,
 				y: -20,
+			},
+			{
+				duration: 3,
+				x: 0,
+				y: 0,
+				angle: 0
 			},
 		]
 	};
