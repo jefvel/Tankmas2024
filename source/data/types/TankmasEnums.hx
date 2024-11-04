@@ -11,7 +11,7 @@ enum abstract Costumes(CostumeDef)
 	/**The problems of the future, today!**/
 	public static final TANKMAN = {name: "tankman"};
 
-	/**the most popular school shooter hero of 1999**/
+	/**The most popular school shooter hero of 1999**/
 	public static final PACO = {name: "paco"};
 
 	/**"I'm gonna go watch hentai cartoons and play dating sims on newgrounds"**/
@@ -35,6 +35,9 @@ enum abstract UnlockCondition(String) from String to String
 	/**Always false >:(*/
 	final ANGRY_FAIC;
 
+	/**Checks on flag, data is a String representing flag(s)*/
+	final FLAG;
+
 	public static inline function get_unlocked(condition:UnlockCondition, data:Dynamic):Bool
         switch (cast(condition, UnlockCondition))
         {
@@ -49,6 +52,8 @@ enum abstract UnlockCondition(String) from String to String
             case UnlockCondition.ACHIEVEMENT:
 				return true;
                 // TODO: insert code that handles achievements from NG API here
+			case UnlockCondition.FLAG:
+				return Flags.get(data);
         }
 }
 
