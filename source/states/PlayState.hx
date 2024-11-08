@@ -24,6 +24,8 @@ class PlayState extends BaseState
 	{
 		super.create();
 		self = this;
+
+		OnlineLoop.init();
 		
 		bgColor = FlxColor.GRAY;
 

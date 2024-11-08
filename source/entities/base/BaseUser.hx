@@ -20,6 +20,8 @@ class BaseUser extends NGSprite
 	{
 		super(X, Y);
 
+		type = "base-user";
+		
 		this.username = username;
 
 		new_costume(Costumes.TANKMAN);
@@ -40,7 +42,7 @@ class BaseUser extends NGSprite
 		switch (sprite_anim.name)
 		{
 			default:
-			case "idle":
+			case "idle" | null:
 				if (moving)
 					sprite_anim.anim(PlayerAnimation.MOVING);
 			case "moving":
@@ -49,7 +51,7 @@ class BaseUser extends NGSprite
 		}
 	}
 
-	function new_costume(costume:CostumeDef)
+	public function new_costume(costume:CostumeDef)
 	{
 		loadGraphic(Paths.get('${costume.name}.png'));
 		original_size.set(width, height);

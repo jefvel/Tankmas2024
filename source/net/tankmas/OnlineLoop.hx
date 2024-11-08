@@ -1,5 +1,6 @@
 package net.tankmas;
 
+import data.types.TankmasDefs.CostumeDef;
 import data.types.TankmasEnums.Costumes;
 import entities.NetUser;
 import entities.Player;
@@ -11,13 +12,19 @@ import net.tankmas.TankmasClient;
  */
 class OnlineLoop
 {
-	static var tick_rate:Float = 0;
+	public static var tick_rate:Float = 0;
 
 	static var last_update_timestamp:Float;
 	static var current_timestamp(get, default):Float;
 
 	static function get_current_timestamp():Float
 		return haxe.Timer.stamp();
+
+	public static function init()
+	{
+		tick_rate = 0;
+		last_update_timestamp = current_timestamp;
+	}
 
 	public static function iterate()
 	{
@@ -49,16 +56,23 @@ class OnlineLoop
 
 	public static function update_user_visuals(data:Dynamic)
 	{
-		var users = data.data;
+		var usernames:Array<String> = Reflect.fields(data.data);
 
-		for (username in Reflect.fields(users))
+		usernames.remove(Main.username);
+
+		for (username in usernames)
 		{
-			var def:NetUserDef = Reflect.field(users, username);
+			var def:NetUserDef = Reflect.field(data.data, username);
+			var costume:CostumeDef = Costumes.string_to_costume(def.costume);
 			var user:BaseUser = BaseUser.get_user(username, function()
 			{
-				return new NetUser(0, 0, username, Costumes.string_to_costume(def.costume));
+				return new NetUser(def.x, def.y, username, costume);
 			});
-			user.setPosition(def.x, def.y);
+
+			cast(user, NetUser).move_to(def.x, def.y);
+
+			if (user.costume == null || user.costume.name != costume.name)
+				user.new_costume(costume);
 		}
 		tick_rate = data.tick_rate;
 	}
