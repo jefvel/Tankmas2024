@@ -27,6 +27,8 @@ class Player extends BaseUser
 	{
 		super(X, Y, Main.username);
 
+		type = "player";
+
 		PlayState.self.player = this;
 
 		sprite_anim.anim(PlayerAnimation.MOVING);
