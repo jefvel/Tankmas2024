@@ -3,6 +3,7 @@ package entities;
 import data.types.TankmasDefs.CostumeDef;
 import data.types.TankmasEnums.Costumes;
 import entities.base.BaseUser;
+import flixel.math.FlxVelocity;
 import net.tankmas.OnlineLoop;
 
 class NetUser extends BaseUser
@@ -10,14 +11,12 @@ class NetUser extends BaseUser
 	var move_tween:FlxTween;
 	var last_hit:Int = 0;
 
-	var min_move_dist:Int = 10;
+	var min_move_dist:Int = 32;
 
 	var teleport_move:Bool = true;
 
 	var moving:Bool = false;
 
-	var prev_position:FlxPoint = new FlxPoint();
-	
 	public function new(?X:Float, ?Y:Float, username:String, ?costume:CostumeDef)
 	{
 		super(X, Y, username);
@@ -25,43 +24,50 @@ class NetUser extends BaseUser
 
 		new_costume(costume);
 		move_to(X, Y, true);
+		trace("NEW USER " + username);
 	}
 
 	override function update(elapsed:Float)
 	{
 		move_animation_handler(moving);
 		super.update(elapsed);
-		prev_position.set(x, y);
+	}
+
+	override function updateMotion(elapsed:Float)
+	{
+		var prev_x:Float = x;
+		var prev_y:Float = y;
+
+		super.updateMotion(elapsed);
+
+		var total_move_dist:Float = Math.abs(x - prev_x) + Math.abs(y - prev_y);
+
+		moving = total_move_dist >= 4;
+
+		if (velocity.x != 0)
+			flipX = velocity.x > 0;
 	}
 
 	public function move_to(X:Float, Y:Float, teleport:Bool = false)
 	{
 		if (teleport)
 		{
-			prev_position.set(x, y);
 			setPosition(x, y);
+			velocity.set(0, 0);
+			acceleration.set(0, 0);
+			
 			return;
 		}
 
-		var total_move_dist:Float = Math.abs(x - X) + Math.abs(y - Y);
+		var target_point:FlxPoint = FlxPoint.weak(X, Y).add(origin.x, origin.y);
 
-		if (total_move_dist < min_move_dist)
-			return;
-
-		if (move_tween != null)
+		if (distance(target_point) < min_move_dist)
 		{
-			move_tween.cancel();
-			move_tween.destroy();
-			move_tween = null;
+			move_to(X, Y, true);
+			return;
 		}
 
-		move_tween = FlxTween.tween(this, {x: X, y: Y}, OnlineLoop.tick_rate * .001, {onUpdate: update_moving, onComplete: finish_moving});
+		FlxVelocity.moveTowardsPoint(this, target_point, move_speed);
 	}
-
-	function finish_moving(tween:FlxTween)
-		moving = false;
-
-	function update_moving(tween:FlxTween)
-		moving = true;
 
 }
