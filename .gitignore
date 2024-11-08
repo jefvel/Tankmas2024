@@ -5,3 +5,5 @@
 .vscode
 export
 archive
+server
+server/server.py

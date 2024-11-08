@@ -1,4 +1,4 @@
-package entities;
+package entities.base;
 
 import data.types.TankmasDefs.CostumeDef;
 import data.types.TankmasDefs.SpriteAnimationDef;
@@ -24,6 +24,10 @@ class NGSprite extends FlxSpriteExt
 		sprite_anim.iterate();
 		super.update(elapsed);
 	}
+	/*TODO:implement
+		override function actually_play_the_animation(new_anim:String)
+			sprite_anim.anim(new_anim);
+	 */
 }
 
 class SpriteAnimationController

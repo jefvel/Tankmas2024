@@ -2,8 +2,12 @@ package states;
 
 import entities.Player;
 import entities.Present;
+import entities.base.BaseUser;
 import flixel.FlxState;
 import flixel.text.FlxText;
+import net.tankmas.OnlineLoop;
+import net.tankmas.TankmasClient;
+
 
 class PlayState extends BaseState
 {
@@ -11,9 +15,10 @@ class PlayState extends BaseState
 
 	var bg:FlxSpriteExt;
 
-	public var players:FlxTypedGroup<Player> = new FlxTypedGroup<Player>();
+	public var player:Player;
+	public var users:FlxTypedGroup<BaseUser> = new FlxTypedGroup<BaseUser>();
 	public var presents:FlxTypedGroup<Present> = new FlxTypedGroup<Present>();
-	public var player_shadows:FlxTypedGroup<FlxSpriteExt> = new FlxTypedGroup<FlxSpriteExt>();
+	public var shadows:FlxTypedGroup<FlxSpriteExt> = new FlxTypedGroup<FlxSpriteExt>();
 
 	override public function create()
 	{
@@ -24,21 +29,25 @@ class PlayState extends BaseState
 
 		add(bg = new FlxSpriteExt(Paths.get("bg-outside-hotel.png")));
 
-		add(player_shadows);
+		add(shadows);
 		add(presents);
-		add(players);
+		add(users);
 
 		new Player();
 		new Present();
-		players.getFirstAlive().center_on(bg);
+		
+		player.center_on(bg);
 
-		FlxG.camera.target = players.getFirstAlive();
+		FlxG.camera.target = player;
 
 		FlxG.camera.setScrollBounds(bg.x, bg.width, bg.y, bg.height);
+		OnlineLoop.iterate();
 	}
 
 	override public function update(elapsed:Float)
 	{
+		OnlineLoop.iterate();
+
 		super.update(elapsed);
 
 		if (FlxG.keys.anyJustPressed(["R"]))
