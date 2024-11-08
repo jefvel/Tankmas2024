@@ -41,6 +41,8 @@
 	<haxelib name="ldtk-haxe-api" if="ldtk"/>
 	<haxelib name="deepnightLibs" if="ldtk"/>
 	<haxelib name="gif" if="gif"/>
+
+	<!--Follow instructions in scripts! This needs core-haxe-->
 	<haxelib name="http" />
 
 	<!--In case you want to use the addons package-->
