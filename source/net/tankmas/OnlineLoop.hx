@@ -23,7 +23,7 @@ class OnlineLoop
 	{
 		var time_diff:Float = current_timestamp - last_update_timestamp;
 
-		if (time_diff > tick_rate * .001)
+		if (time_diff > tick_rate * .001 && tick_rate > -1)
 		{
 			last_update_timestamp = current_timestamp;
 			OnlineLoop.update_player_position("1", PlayState.self.player);
@@ -32,6 +32,7 @@ class OnlineLoop
 
 	public static function update_player_position(room_id:String, user:Player)
 	{
+		tick_rate = 999;
 		TankmasClient.post_user(room_id, {
 			name: Main.username,
 			x: user.x.floor(),
@@ -42,15 +43,13 @@ class OnlineLoop
 
 	public static function update_room(room_id:String)
 	{
+		tick_rate = 999;
 		TankmasClient.get_users_in_room(room_id, update_user_visuals);
 	}
 
-	public static function update_user_visuals(data:String)
+	public static function update_user_visuals(data:Dynamic)
 	{
-		data = data.replace('\\\"', '\"').replace('\"{', '{').replace('}\"', '}');
-
-		var pack = haxe.Json.parse(data);
-		var users = pack.data;
+		var users = data.data;
 
 		for (username in Reflect.fields(users))
 		{
@@ -61,7 +60,6 @@ class OnlineLoop
 			});
 			user.setPosition(def.x, def.y);
 		}
-		tick_rate = pack.tick_rate;
-		trace(tick_rate);
+		tick_rate = data.tick_rate;
 	}
 }
