@@ -7,12 +7,15 @@ import http.HttpError;
 
 class Client
 {
-	public static function basic_client():HttpClient
+	static var client(get, default):HttpClient;
+
+	public static function get_client():HttpClient
 	{
-		var client:HttpClient = new HttpClient();
-
-		client.defaultRequestHeaders = ["Content-Type" => "application/json"];
-
+		if (client == null)
+		{
+			client = new HttpClient();
+			client.defaultRequestHeaders = ["Content-Type" => "application/json"];
+		}
 		return client;
 	}
 
@@ -23,8 +26,6 @@ class Client
 	 */
 	public static function get(url:String, ?on_data:Dynamic->Void)
 	{
-		var client:HttpClient = basic_client();
-
 		#if trace_net
 		trace('GET <- $url');
 		#end
@@ -47,8 +48,6 @@ class Client
 	 */
 	public static function post(url:String, data:Dynamic, ?on_data:Dynamic->Void)
 	{
-		var client:HttpClient = basic_client();
-
 		#if trace_net
 		trace('POST -> $url>>\tdata = $data');
 		#end

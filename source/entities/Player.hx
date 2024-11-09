@@ -4,11 +4,14 @@ import data.types.TankmasDefs.CostumeDef;
 import data.types.TankmasEnums.Costumes;
 import data.types.TankmasEnums.PlayerAnimation;
 import entities.base.BaseUser;
+import net.tankmas.TankmasClient.NetUserDef;
 
 class Player extends BaseUser
 {
 	var move_no_input_drag:Float = 0.9;
 	var move_reverse_mod:Float = 3;
+
+	var last_update_json:NetUserDef;
 
 	static var debug_costume_rotation:Array<CostumeDef> = [
 		Costumes.TANKMAN,
@@ -26,6 +29,8 @@ class Player extends BaseUser
 	public function new(?X:Float, ?Y:Float)
 	{
 		super(X, Y, Main.username);
+
+		last_update_json = {name: username};
 
 		type = "player";
 
@@ -129,6 +134,28 @@ class Player extends BaseUser
 	{
 		PlayState.self.player = null;
 		super.kill();
+	}
+	public function get_user_update_json():NetUserDef
+	{
+		var def:NetUserDef = {name: username};
+
+		if (last_update_json.x != x.floor())
+			def.x = x.floor();
+
+		if (last_update_json.y != y.floor())
+			def.y = y.floor();
+
+		if (last_update_json.costume != costume.name)
+			def.costume = costume.name;
+
+		last_update_json = {
+			name: username,
+			x: x.floor(),
+			y: y.floor(),
+			costume: costume.name
+		};
+
+		return def;
 	}
 }
 

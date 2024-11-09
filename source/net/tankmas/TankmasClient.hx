@@ -5,9 +5,9 @@ import net.core.Client;
 typedef NetUserDef =
 {
 	name:String,
-	x:Int,
-	y:Int,
-	costume:String,
+	?x:Int,
+	?y:Int,
+	?costume:String,
 	?timestamp:Int
 }
 
