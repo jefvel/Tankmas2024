@@ -24,11 +24,15 @@ class OnlineLoop
 
 	static var current_timestamp(get, default):Float;
 
+	public static var force_send_full_user:Bool;
+
 	static function get_current_timestamp():Float
 		return haxe.Timer.stamp();
 
 	public static function init()
 	{
+		force_send_full_user = true;
+
 		post_tick_rate = 0;
 		get_tick_rate = 0;
 
@@ -44,7 +48,7 @@ class OnlineLoop
 		if (post_time_diff > post_tick_rate * .001 && post_tick_rate > -1)
 		{
 			last_post_timestamp = current_timestamp;
-			OnlineLoop.post_player("1", PlayState.self.player);
+			OnlineLoop.post_player("1", force_send_full_user, PlayState.self.player);
 		}
 
 		if (get_time_diff > get_tick_rate * .001 && get_tick_rate > -1)
@@ -55,7 +59,7 @@ class OnlineLoop
 	}
 
 	/**This is a post request**/
-	public static function post_player(room_id:String, user:Player)
+	public static function post_player(room_id:String, force_send_full_user:Bool = false, user:Player)
 	{
 		post_tick_rate = 999;
 		var json:NetUserDef = user.get_user_update_json();
@@ -72,7 +76,14 @@ class OnlineLoop
 	}
 
 	public static function after_post_player(data:Dynamic)
+	{
 		post_tick_rate = data.tick_rate * post_tick_rate_multiplier;
+		if (data.request_for_more_info)
+		{
+			force_send_full_user = true;
+			data.tick_rate = 0;
+		}
+	}
 
 	public static function update_user_visuals(data:Dynamic)
 	{

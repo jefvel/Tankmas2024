@@ -17,6 +17,8 @@ class NetUser extends BaseUser
 
 	var moving:Bool = false;
 
+	var move_target:FlxPoint = new FlxPoint();
+
 	public function new(?X:Float, ?Y:Float, username:String, ?costume:CostumeDef)
 	{
 		super(X, Y, username);
@@ -29,23 +31,38 @@ class NetUser extends BaseUser
 
 	override function update(elapsed:Float)
 	{
+		if (moving)
+			trace(distance(move_target));
+		if (moving && distance(move_target) > 0)
+			move_update();
+
 		move_animation_handler(moving);
+
 		super.update(elapsed);
 	}
 
 	override function updateMotion(elapsed:Float)
 	{
-		var prev_x:Float = x;
-		var prev_y:Float = y;
+		// var prev_x:Float = x;
+		// var prev_y:Float = y;
 
 		super.updateMotion(elapsed);
 
-		var total_move_dist:Float = Math.abs(x - prev_x) + Math.abs(y - prev_y);
-
-		moving = total_move_dist >= 4;
+		// var total_move_dist:Float = Math.abs(x - prev_x) + Math.abs(y - prev_y);
 
 		if (velocity.x != 0)
 			flipX = velocity.x > 0;
+	}
+
+	public function move_update()
+	{
+		if (distance(move_target) < min_move_dist)
+		{
+			move_to(move_target.x, move_target.y, true);
+			return;
+		}
+
+		FlxVelocity.moveTowardsPoint(this, move_target, move_speed);
 	}
 
 	public function move_to(X:Float, Y:Float, teleport:Bool = false)
@@ -55,19 +72,15 @@ class NetUser extends BaseUser
 			setPosition(x, y);
 			velocity.set(0, 0);
 			acceleration.set(0, 0);
-			
+			moving = false;
+
 			return;
 		}
 
-		var target_point:FlxPoint = FlxPoint.weak(X, Y).add(origin.x, origin.y);
+		moving = true;
 
-		if (distance(target_point) < min_move_dist)
-		{
-			move_to(X, Y, true);
-			return;
-		}
+		move_target.set(X, Y).add(origin.x, origin.y);
 
-		FlxVelocity.moveTowardsPoint(this, target_point, move_speed);
+		move_update();
 	}
-
 }

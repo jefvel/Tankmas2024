@@ -135,17 +135,17 @@ class Player extends BaseUser
 		PlayState.self.player = null;
 		super.kill();
 	}
-	public function get_user_update_json():NetUserDef
+	public function get_user_update_json(force_send_full_user:Bool = false):NetUserDef
 	{
 		var def:NetUserDef = {name: username};
 
-		if (last_update_json.x != x.floor())
+		if (last_update_json.x != x.floor() || force_send_full_user)
 			def.x = x.floor();
 
-		if (last_update_json.y != y.floor())
+		if (last_update_json.y != y.floor() || force_send_full_user)
 			def.y = y.floor();
 
-		if (last_update_json.costume != costume.name)
+		if (last_update_json.costume != costume.name || force_send_full_user)
 			def.costume = costume.name;
 
 		last_update_json = {
