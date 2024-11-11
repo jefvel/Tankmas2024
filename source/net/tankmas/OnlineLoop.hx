@@ -31,6 +31,8 @@ class OnlineLoop
 
 	public static function init()
 	{
+		#if offline return; #end
+		
 		force_send_full_user = true;
 
 		post_tick_rate = 0;
@@ -42,6 +44,8 @@ class OnlineLoop
 
 	public static function iterate()
 	{
+		#if offline return; #end
+
 		var post_time_diff:Float = current_timestamp - last_post_timestamp;
 		var get_time_diff:Float = current_timestamp - last_get_timestamp;
 
@@ -87,6 +91,7 @@ class OnlineLoop
 
 	public static function update_user_visuals(data:Dynamic)
 	{
+		#if !ghost_town
 		var usernames:Array<String> = Reflect.fields(data.data);
 
 		usernames.remove(Main.username);
@@ -106,5 +111,6 @@ class OnlineLoop
 				user.new_costume(costume);
 		}
 		get_tick_rate = data.tick_rate * get_tick_rate_multiplier;
+		#end
 	}
 }

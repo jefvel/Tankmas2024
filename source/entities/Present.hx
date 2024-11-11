@@ -1,5 +1,6 @@
 package entities;
 
+import data.types.TankmasEnums.PresentAnimation;
 import entities.base.NGSprite;
 
 class Present extends NGSprite
@@ -11,12 +12,14 @@ class Present extends NGSprite
 	public function new(?X:Float, ?Y:Float)
 	{
 		super(X, Y);
-		loadAllFromAnimationSet("present");
+		loadAllFromAnimationSet("present-1");
 
 		PlayState.self.presents.add(this);
-		screenCenter();
 
+		this.center_on(PlayState.self.player);
 		x += 500;
+		sprite_anim.anim(PresentAnimation.IDLE);
+		sstate(IDLE);
 	}
 
 	override function kill() {
@@ -35,17 +38,15 @@ class Present extends NGSprite
 		{
 			default:
 			case IDLE:
-				animProtect("idle");
+				sprite_anim.anim(PresentAnimation.IDLE);
 			case NEARBY:
-				animProtect("nearby");
+				sprite_anim.anim(PresentAnimation.NEARBY);
 			case OPENING:
 				animProtect("opening");
 				if(animation.finished)
 					sstate(OPENED);
 			case OPENED:			
 				animProtect("opened");
-
-		
 		}
 
 	public static function find_present_in_detect_range(player:Player):Present

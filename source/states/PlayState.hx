@@ -36,9 +36,10 @@ class PlayState extends BaseState
 		add(users);
 
 		new Player();
-		new Present();
 		
 		player.center_on(bg);
+
+		new Present();
 
 		FlxG.camera.target = player;
 
