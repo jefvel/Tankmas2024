@@ -33,6 +33,10 @@
 	<source path="source" />
 	<assets path="assets" embed="false" exclude="*.gif"/>
 
+	<section if="offline">
+		<haxedef name="ghost_town" />
+	</section>
+
 	<!-- _______________________________ Libraries ______________________________ -->
 
 	<haxelib name="flixel" />
