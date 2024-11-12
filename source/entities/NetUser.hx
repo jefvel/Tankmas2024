@@ -1,7 +1,6 @@
 package entities;
 
 import data.types.TankmasDefs.CostumeDef;
-import data.types.TankmasEnums.Costumes;
 import entities.base.BaseUser;
 import flixel.math.FlxVelocity;
 import net.tankmas.OnlineLoop;

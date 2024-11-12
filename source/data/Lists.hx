@@ -32,6 +32,7 @@ class Lists
 	public static var ldtk_project:LdtkProject = new LdtkProject();
 	#end
 
+
 	static var assets_path(get, never):String;
 
 	static function get_assets_path():String
@@ -44,6 +45,9 @@ class Lists
 		Fonts.init();
 
 		Flags.generate();
+
+		Costumes.init();
+
 
 		/*
 			var xml:String = "";
@@ -74,6 +78,7 @@ class Lists
 
 		// trace(word_count());
 	}
+
 
 	public static function xml_word_count(write:Bool = false, save_file_name:String = "count-en")
 	{

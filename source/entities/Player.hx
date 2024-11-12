@@ -1,7 +1,7 @@
 package entities;
 
+import data.Costumes;
 import data.types.TankmasDefs.CostumeDef;
-import data.types.TankmasEnums.Costumes;
 import data.types.TankmasEnums.PlayerAnimation;
 import entities.base.BaseUser;
 import net.tankmas.TankmasClient.NetUserDef;
@@ -13,22 +13,13 @@ class Player extends BaseUser
 
 	var last_update_json:NetUserDef;
 
-	static var debug_costume_rotation:Array<CostumeDef> = [
-		Costumes.TANKMAN,
-		Costumes.PACO,
-		Costumes.ALIEN_HOMINID,
-		Costumes.BOYFRIEND,
-		Costumes.MADNESS_GRUNT,
-		Costumes.KNIGHT_RED,
-		Costumes.KNIGHT_BLUE,
-		Costumes.KNIGHT_GREEN,
-		Costumes.KNIGHT_ORANGE,
-		Costumes.KNIGHT_PINK
-	];
+	static var debug_costume_rotation:Array<CostumeDef>;
 
 	public function new(?X:Float, ?Y:Float)
 	{
 		super(X, Y, Main.username);
+
+		debug_costume_rotation = Costumes.all_defs.copy();
 
 		last_update_json = {name: username};
 
@@ -41,7 +32,6 @@ class Player extends BaseUser
 		sstate(NEUTRAL);
 
 		screenCenter();
-		debug_rotate_costumes();
 	}
 
 	function debug_rotate_costumes()
@@ -55,7 +45,8 @@ class Player extends BaseUser
 
 	override function new_costume(costume:CostumeDef)
 	{
-		trace('New Costume: ${costume}');
+		if (costume.name == "boyfriend")
+			throw "y";
 		super.new_costume(costume);
 	}
 

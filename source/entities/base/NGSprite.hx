@@ -3,7 +3,6 @@ package entities.base;
 import data.types.TankmasDefs.CostumeDef;
 import data.types.TankmasDefs.SpriteAnimationDef;
 import data.types.TankmasDefs.SpriteAnimationFrameDef;
-import data.types.TankmasEnums.Costumes;
 import data.types.TankmasEnums.PlayerAnimation;
 import data.types.TankmasEnums.UnlockCondition;
 

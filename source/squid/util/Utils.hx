@@ -986,6 +986,9 @@ class Inflect
 		return return_me;
 	}
 
+	public static function load_file_string(file_name:String):String
+		return Assets.getText(Paths.get(file_name));
+
 	/**
 	 * Gets animation duration (does NOT give you time remaining)
 	 * @param sprite sprite to get duration of

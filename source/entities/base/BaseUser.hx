@@ -1,7 +1,7 @@
 package entities.base;
 
+import data.Costumes;
 import data.types.TankmasDefs.CostumeDef;
-import data.types.TankmasEnums.Costumes;
 import data.types.TankmasEnums.PlayerAnimation;
 import entities.base.NGSprite;
 
@@ -24,7 +24,7 @@ class BaseUser extends NGSprite
 		
 		this.username = username;
 
-		new_costume(Costumes.TANKMAN);
+		new_costume(Costumes.get("tankman"));
 		sprite_anim.anim(PlayerAnimation.MOVING);
 
 		PlayState.self.users.add(this);

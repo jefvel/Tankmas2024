@@ -1,0 +1,65 @@
+{
+    "costumes": [
+        {
+            "name": "tankman",
+            "display": "Tankman",
+            "desc": "The problems of the future, today!"
+        },
+        {
+            "name": "paco",
+            "display": "Pico",
+            "desc": "The most popular school shooter hero of 1999"
+        },
+        {
+            "name": "knight-red",
+            "display": "Red Knight",
+            "desc": "Castle Crasher video game but red"
+        },
+        {
+            "name": "knight-blue",
+            "display": "Blue Knight",
+            "desc": "Castle Crasher video game but blue"
+        },
+        {
+            "name": "knight-green",
+            "display": "Green Knight",
+            "desc": "Castle Crasher video game but green"
+        },
+        {
+            "name": "knight-orange",
+            "display": "Orange Knight",
+            "desc": "Castle Crasher video game but orange"
+        },
+        {
+            "name": "knight-pink",
+            "display": "Pink Knight UwU",
+            "desc": "Castle Crasher video game but pink uwu"
+        },
+        {
+            "name": "boyfriend",
+            "display": "Boyfriend",
+            "desc": "BEEP BEEP BEEP ⬆️⬇️⬅️➡️ BEEP BEEP BEEP"
+        },
+        {
+            "name": "madness-grunt",
+            "display": "Grunt",
+            "desc": "As seen on addicting games dot com"
+        },
+        {
+            "name": "alien-hominid",
+            "display": "Alien Hominid",
+            "desc": "It's an absolute invasion!"
+        },
+        {
+            "name": "thomas",
+            "display": "Thomas",
+            "unlock": "ANGRY_FAIC"
+        },
+        {
+            "name": "santa",
+            "display": "Santa",
+            "unlock": "DATE",
+            "data": 1735102800
+        }
+    ]
+}
