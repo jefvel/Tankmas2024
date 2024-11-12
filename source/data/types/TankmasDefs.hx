@@ -5,6 +5,8 @@ import data.types.TankmasEnums.UnlockCondition;
 typedef CostumeDef =
 {
 	var name:String;
+	var display:String;
+	var ?desc:String;
 	var ?unlock:UnlockCondition;
 	var ?data:Dynamic;
 }
@@ -26,4 +28,17 @@ typedef SpriteAnimationFrameDef =
 	var ?height:Float;
 	var ?angle:Int;
 	var duration:Int;
+}
+typedef SheetGridDef =
+{
+	var name:String;
+	var ?angle:Int;
+	var ?xOffset:Int;
+	var ?yOffset:Int;
+}
+
+typedef OverallSheetDef =
+{
+	var ?graphic:String;
+	var items:Array<SheetGridDef>;
 }

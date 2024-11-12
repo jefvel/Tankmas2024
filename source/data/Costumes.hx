@@ -27,6 +27,13 @@ class Costumes
 	public static function get(costume_name:String)
 		return costumes.get(costume_name);
 
+	public static function check_for_unlock(costume:CostumeDef):Bool
+	{
+		if (costume.unlock == null)
+			return true;
+		return data.types.TankmasEnums.UnlockCondition.get_unlocked(costume.unlock, costume.data);
+	}
+
 	static function get_all_defs():Array<CostumeDef>
 	{
 		var arr:Array<CostumeDef> = [];
