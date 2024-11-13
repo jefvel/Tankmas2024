@@ -78,6 +78,9 @@ class Player extends BaseUser
 		final RIGHT:Bool = Ctrl.right[1];
 		final NO_KEYS:Bool = !UP && !DOWN && !LEFT && !RIGHT;
 
+		if (Ctrl.jjump[1])
+			new fx.StickerFX(this, "common-tamago");
+
 
 		if (UP)
 			velocity.y -= move_speed / move_acl * (velocity.y > 0 ? 1 : move_reverse_mod);

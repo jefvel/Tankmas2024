@@ -987,7 +987,9 @@ class Inflect
 	}
 
 	public static function load_file_string(file_name:String):String
+	{
 		return Assets.getText(Paths.get(file_name));
+	}
 
 	/**
 	 * Gets animation duration (does NOT give you time remaining)

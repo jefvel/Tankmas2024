@@ -1,5 +1,6 @@
 package states;
 
+import fx.StickerFX;
 import entities.Player;
 import entities.Present;
 import entities.base.BaseUser;
@@ -19,6 +20,7 @@ class PlayState extends BaseState
 	public var users:FlxTypedGroup<BaseUser> = new FlxTypedGroup<BaseUser>();
 	public var presents:FlxTypedGroup<Present> = new FlxTypedGroup<Present>();
 	public var shadows:FlxTypedGroup<FlxSpriteExt> = new FlxTypedGroup<FlxSpriteExt>();
+	public var stickers:FlxTypedGroup<StickerFX> = new FlxTypedGroup<StickerFX>();
 
 	override public function create()
 	{
@@ -34,6 +36,7 @@ class PlayState extends BaseState
 		add(shadows);
 		add(presents);
 		add(users);
+		add(stickers);
 
 		new Player();
 		

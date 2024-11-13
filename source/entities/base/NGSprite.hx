@@ -71,6 +71,13 @@ class SpriteAnimationController
 		if (animation == null)
 			return;
 
+		if (finished)
+		{
+			trace('${animation.name} finished');
+			on_complete == null ? false : on_complete();
+			return;
+		}
+
 		tick++;
 
 		var frame_length:Float = 60 / animation.fps;
@@ -83,14 +90,6 @@ class SpriteAnimationController
 		tick = 0;
 
 		index++;
-
-		if (finished)
-		{
-			trace('${animation.name} finished');
-			animation = null;
-			on_complete == null ? false : on_complete();
-			return;
-		}
 
 		if (index > max_index)
 			index = 0;
