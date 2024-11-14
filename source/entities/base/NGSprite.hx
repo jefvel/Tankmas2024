@@ -5,6 +5,7 @@ import data.types.TankmasDefs.SpriteAnimationDef;
 import data.types.TankmasDefs.SpriteAnimationFrameDef;
 import data.types.TankmasEnums.PlayerAnimation;
 import data.types.TankmasEnums.UnlockCondition;
+import flixel.system.FlxAssets.FlxGraphicAsset;
 
 class NGSprite extends FlxSpriteExt
 {
@@ -12,9 +13,9 @@ class NGSprite extends FlxSpriteExt
 
 	var sprite_anim:SpriteAnimationController;
 
-	public function new(?X:Float, ?Y:Float)
+	public function new(?X:Float, ?Y:Float, ?SimpleGraphic:FlxGraphicAsset)
 	{
-		super(X, Y);
+		super(X, Y, SimpleGraphic);
 		sprite_anim = new SpriteAnimationController(this);
 	}
 
@@ -31,16 +32,17 @@ class NGSprite extends FlxSpriteExt
 
 class SpriteAnimationController
 {
+	var sprite:NGSprite;
 	var animation:SpriteAnimationDef;
-	var index:Int = 0;
+
 	var tick:Int = 0;
 
-	var sprite:NGSprite;
+	public var frame_num:Int = 0;
 
 	public var finished(get, never):Bool;
 	public var name(get, never):String;
 
-	var max_index(get, never):Int;
+	var max_frame_num(get, never):Int;
 	var frame(get, never):SpriteAnimationFrameDef;
 
 	var on_complete:Void->Void;
@@ -60,7 +62,7 @@ class SpriteAnimationController
 		this.on_complete = on_complete;
 		this.animation = animation;
 		tick = 0;
-		index = 0;
+		frame_num = 0;
 
 		reset_sprite();
 		update_sprite();
@@ -89,10 +91,10 @@ class SpriteAnimationController
 
 		tick = 0;
 
-		index++;
+		frame_num++;
 
-		if (index > max_index)
-			index = 0;
+		if (frame_num > max_frame_num)
+			frame_num = 0;
 
 		update_sprite();
 	}
@@ -118,11 +120,11 @@ class SpriteAnimationController
 		return animation == null ? null : animation.name;
 
 	public function get_frame():SpriteAnimationFrameDef
-		return animation == null ? null : animation.frames[index];
+		return animation == null ? null : animation.frames[frame_num];
 
 	public function get_finished():Bool
-		return animation == null || !animation.looping && index >= max_index;
+		return animation == null || !animation.looping && frame_num >= max_frame_num;
 
-	public function get_max_index():Int
+	public function get_max_frame_num():Int
 		return animation == null ? 0 : animation.frames.length - 1;
 }

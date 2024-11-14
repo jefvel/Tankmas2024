@@ -1,11 +1,12 @@
 package states;
 
-import fx.StickerFX;
 import entities.Player;
 import entities.Present;
 import entities.base.BaseUser;
+import entities.base.NGSprite;
 import flixel.FlxState;
 import flixel.text.FlxText;
+import fx.StickerFX;
 import net.tankmas.OnlineLoop;
 import net.tankmas.TankmasClient;
 
@@ -21,6 +22,7 @@ class PlayState extends BaseState
 	public var presents:FlxTypedGroup<Present> = new FlxTypedGroup<Present>();
 	public var shadows:FlxTypedGroup<FlxSpriteExt> = new FlxTypedGroup<FlxSpriteExt>();
 	public var stickers:FlxTypedGroup<StickerFX> = new FlxTypedGroup<StickerFX>();
+	public var sticker_fx:FlxTypedGroup<NGSprite> = new FlxTypedGroup<NGSprite>();
 
 	override public function create()
 	{
@@ -37,6 +39,7 @@ class PlayState extends BaseState
 		add(presents);
 		add(users);
 		add(stickers);
+		add(sticker_fx);
 
 		new Player();
 		

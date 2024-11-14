@@ -98,7 +98,7 @@ class OnlineLoop
 		for (username in usernames)
 		{
 			var def:NetUserDef = Reflect.field(data.data, username);
-			var costume:CostumeDef = Lists.costumes.get(def.costume);
+			var costume:CostumeDef = data.Costumes.get(def.costume);
 			var user:BaseUser = BaseUser.get_user(username, function()
 			{
 				return new NetUser(def.x, def.y, username, costume);

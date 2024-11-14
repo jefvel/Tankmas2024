@@ -9,16 +9,20 @@ class StickerFX extends NGSprite
 {
 	var idle_time:Int = 60;
 	var parent:NGSprite;
+	var cover:NGSprite;
+
+	/*since offset is actually used by animations*/
+	var base_sticker_offset_y:Int = -16;
 
 	public function new(parent:NGSprite, name:String)
 	{
-		super();
+		super(Paths.get(name + ".png"));
+		cover = new NGSprite(Paths.get("sticker-cover.png"));
 
 		this.parent = parent;
 
-		loadGraphic(Paths.get(name + ".png"));
-
 		PlayState.self.stickers.add(this);
+		PlayState.self.sticker_fx.add(cover);
 
 		sstate(IN);
 
@@ -28,6 +32,10 @@ class StickerFX extends NGSprite
 	override function updateMotion(elapsed:Float)
 	{
 		this.center_on_top(parent);
+		this.y = y + base_sticker_offset_y;
+
+		cover.center_on(this);
+		
 		super.updateMotion(elapsed);
 	}
 
@@ -41,18 +49,44 @@ class StickerFX extends NGSprite
 		switch (cast(state, State))
 		{
 			case IN:
+				cover.sprite_anim.anim(StickerAnimations.IN);
 				sprite_anim.anim(StickerAnimations.IN);
+				switch (sprite_anim.frame_num)
+				{
+					case 0:
+						cover.alpha = 1;
+					case 1:
+						cover.alpha = 0.5;
+					case 2:
+						cover.alpha = 0;
+				}
 				if (sprite_anim.finished)
 					sstate(IDLE);
 			case IDLE:
+				cover.sprite_anim.anim(StickerAnimations.IDLE);
 				sprite_anim.anim(StickerAnimations.IDLE);
 				if (ttick() > idle_time)
 					sstate(OUT);
 			case OUT:
+				cover.sprite_anim.anim(StickerAnimations.OUT);
 				sprite_anim.anim(StickerAnimations.OUT);
+				switch (sprite_anim.frame_num)
+				{
+					case 0:
+						cover.alpha = 0;
+					case 1:
+						cover.alpha = 0.5;
+					case 2:
+						cover.alpha = 1;
+				}
 				if (sprite_anim.finished)
 					kill();
 		}
+	override function kill()
+	{
+		super.kill();
+		cover.kill();
+	}
 }
 
 private enum abstract State(String) from String to String
@@ -76,11 +110,13 @@ enum abstract StickerAnimations(SpriteAnimationDef) from SpriteAnimationDef to S
 			},
 			{
 				duration: 1,
+				// x: 5,
 				y: -10,
 				height: 0.5
 			},
 			{
 				duration: 2,
+				// x: -5,
 				y: 20,
 				height: 0.75,
 			},
