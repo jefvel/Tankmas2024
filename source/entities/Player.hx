@@ -44,11 +44,7 @@ class Player extends BaseUser
 	}
 
 	override function new_costume(costume:CostumeDef)
-	{
-		if (costume.name == "boyfriend")
-			throw "y";
 		super.new_costume(costume);
-	}
 
 	override function update(elapsed:Float)
 	{
