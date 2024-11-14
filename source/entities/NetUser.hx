@@ -30,8 +30,6 @@ class NetUser extends BaseUser
 
 	override function update(elapsed:Float)
 	{
-		if (moving)
-			trace(distance(move_target));
 		if (moving && distance(move_target) > 0)
 			move_update();
 

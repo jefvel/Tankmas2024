@@ -16,6 +16,8 @@ class BaseUser extends NGSprite
 
 	public var username:String;
 
+	public var sticker_name:String;
+
 	public function new(?X:Float, ?Y:Float, username:String)
 	{
 		super(X, Y);
@@ -35,6 +37,15 @@ class BaseUser extends NGSprite
 		sprite_anim.anim(PlayerAnimation.IDLE);
 
 		drag.set(300, 300);
+	}
+
+	public function use_sticker(sticker_name:String):Bool
+	{
+		if (this.sticker_name == sticker_name)
+			return false;
+		this.sticker_name = sticker_name;
+		new fx.StickerFX(this, sticker_name, () -> this.sticker_name = null);
+		return true;
 	}
 
 	function move_animation_handler(moving:Bool)

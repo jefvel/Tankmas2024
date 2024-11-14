@@ -8,7 +8,14 @@ typedef NetUserDef =
 	?x:Int,
 	?y:Int,
 	?costume:String,
-	?timestamp:Int
+	?timestamp:Int,
+	?sticker:NetStickerDef
+}
+
+typedef NetStickerDef =
+{
+	name:String,
+	timestamp:Float
 }
 
 class TankmasClient

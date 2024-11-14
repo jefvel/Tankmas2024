@@ -1,5 +1,6 @@
 package net.tankmas;
 
+import data.Costumes;
 import data.types.TankmasDefs.CostumeDef;
 import entities.NetUser;
 import entities.Player;
@@ -14,6 +15,8 @@ class OnlineLoop
 	public static var post_tick_rate:Float = 0;
 	public static var get_tick_rate:Float = 0;
 
+	public static var emote_tick_limit:Int = 1000;
+
 	// base server tick rate is 200 rn
 	public static var post_tick_rate_multiplier:Float = 1;
 	public static var get_tick_rate_multiplier:Float = 5;
@@ -21,7 +24,7 @@ class OnlineLoop
 	static var last_post_timestamp:Float;
 	static var last_get_timestamp:Float;
 
-	static var current_timestamp(get, default):Float;
+	public static var current_timestamp(get, default):Float;
 
 	public static var force_send_full_user:Bool;
 
@@ -95,16 +98,24 @@ class OnlineLoop
 
 		usernames.remove(Main.username);
 
+		trace(usernames);
+
 		for (username in usernames)
 		{
 			var def:NetUserDef = Reflect.field(data.data, username);
-			var costume:CostumeDef = data.Costumes.get(def.costume);
+			var costume:CostumeDef = Costumes.get(def.costume);
 			var user:BaseUser = BaseUser.get_user(username, function()
 			{
 				return new NetUser(def.x, def.y, username, costume);
 			});
 
 			cast(user, NetUser).move_to(def.x, def.y);
+
+			trace(def);
+			trace(def.sticker);
+
+			if (def.sticker != null)
+				trace(def.sticker.timestamp - current_timestamp);
 
 			if (user.costume == null || user.costume.name != costume.name)
 				user.new_costume(costume);

@@ -14,10 +14,14 @@ class StickerFX extends NGSprite
 	/*since offset is actually used by animations*/
 	var base_sticker_offset_y:Int = -16;
 
-	public function new(parent:NGSprite, name:String)
+	var on_complete:Void->Void;
+
+	public function new(parent:NGSprite, name:String, on_complete:Void->Void)
 	{
 		super(Paths.get(name + ".png"));
 		cover = new NGSprite(Paths.get("sticker-cover.png"));
+
+		this.on_complete = on_complete;
 
 		this.parent = parent;
 
@@ -86,6 +90,7 @@ class StickerFX extends NGSprite
 	{
 		super.kill();
 		cover.kill();
+		on_complete != null ? on_complete() : null;
 	}
 }
 
