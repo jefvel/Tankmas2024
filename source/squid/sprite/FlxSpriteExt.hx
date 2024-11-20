@@ -531,10 +531,12 @@ class FlxSpriteExt extends FlxSprite
 
 	/**
 	 * Switch state
-	 * @param s new state
-	 * @param reset_tick resets ticking int
+	 * @param new_state new state to switch to 
+	 * @param reset_tick resets ticking int (if the state changes)
+	 * @param on_state_change function to perform (if the state changes)
+	 * @return if the state changed
 	 */
-	public function sstate(new_state:String, ?reset_tick:Bool = true, ?post_function:Void->Void)
+	public function sstate(new_state:String, ?reset_tick:Bool = true, ?on_state_change:Void->Void):Bool
 	{
 		var state_changing:Bool = new_state_check(new_state);
 
@@ -542,17 +544,14 @@ class FlxSpriteExt extends FlxSprite
 		if (trace_new_state && state_changing)
 			trace('[${type}] New State: ${state} -> ${new_state}');
 		#end
+		if (!state_changing)
+			return false;
 
-		if (reset_tick)
-			tick = 0;
-
-		if (state_changing)
-		{
+		tick = reset_tick ? tick : 0;
 			state = new_state;
 			state_history.push(new_state);
-		}
-
-		post_function != null ? post_function() : null;
+		on_state_change != null ? on_state_change() : null;
+		return true;
 	}
 
 	public function sstateAnim(new_state:String, reset_tick:Bool = true)
