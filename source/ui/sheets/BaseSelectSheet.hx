@@ -1,39 +1,38 @@
-package ui;
+package ui.sheets;
 
-package states.substates;
 
 import data.types.TankmasDefs.CostumeDef;
-import data.types.TankmasDefs.OverallSheetDef;
-import data.types.TankmasDefs.SheetGridDef;
 import flixel.FlxBasic;
 import flixel.group.FlxSpriteGroup.FlxTypedSpriteGroup;
+import states.substates.SheetSubstate;
+import ui.sheets.defs.SheetDefs;
 
 class BaseSelectSheet extends FlxTypedGroup<FlxSprite>
 {
 	var stickerSheetBase:FlxSprite;
-	var title:FlxText;
 	var description:FlxText;
-	var sheetCollection:{grid:Array<OverallSheetDef>};
+	var title:FlxText;
+
+	var sheet_collection:SheetFileDef;
 	var characterSpritesArray:Array<FlxTypedSpriteGroup<FlxSprite>> = [];
-	var isCharacters:Bool = true;
 
-	static var sheetCharacters:Int = 0;
-	static var sheetStickers:Int = 0;
+	var current_sheet(default, set):Int = 0;
+	var current_selection:Int = 0;
 
-	var currentSheet:Int = 0;
-	var curSelection:Int = 0;
 	var graphicSheet:Bool = false;
 
-	override public function new(?isCharacters:Bool = true)
+	/**
+	 * This is private, should be only made through things that extend it
+	 * @param saved_sheet 
+	 */
+	function new(saved_sheet:Int)
 	{
+		trace("sheet exists");
+		
 		super();
-		this.isCharacters = isCharacters;
-		currentSheet = isCharacters ? sheetCharacters : sheetStickers;
-		trace("substate exists");
-	}
 
-	override public function create()
-	{
+		FlxG.state.openSubState(new SheetSubstate(this));
+
 		final notepad:FlxSprite = new FlxSprite(1500, 150);
 		add(notepad);
 
@@ -48,9 +47,9 @@ class BaseSelectSheet extends FlxTypedGroup<FlxSprite>
 		title.setFormat(null, 24, FlxColor.BLACK, LEFT, OUTLINE, FlxColor.WHITE);
 		add(title);
 
-		sheetCollection = make_sheet_collection();
+		sheet_collection = make_sheet_collection();
 
-		for (sheet in sheetCollection.grid)
+		for (sheet in sheet_collection.sheets)
 		{
 			final characterSprites:FlxTypedSpriteGroup<FlxSprite> = new FlxTypedSpriteGroup<FlxSprite>();
 			add(characterSprites);
@@ -87,88 +86,92 @@ class BaseSelectSheet extends FlxTypedGroup<FlxSprite>
 			}
 			characterSprites.kill();
 		}
-		changeSheet(isCharacters ? sheetCharacters : sheetStickers, true);
-		changeSelection();
+		update_sheet_graphics();
+		update_selection_graphics();
 		members.for_all_members((member:FlxBasic) -> cast(member, FlxObject).scrollFactor.set(0, 0));
 
 		trace("sheet exists");
 
-		super.create();
 	}
 
-	function make_sheet_collection()
+	function make_sheet_collection():SheetFileDef
 		throw "not implemented";
 
 	override function update(elapsed:Float)
 	{
 		super.update(elapsed);
 		control();
-
-		trace(stickerSheetBase);
 	}
 
 	function control()
 	{
 		if (Ctrl.cleft[0])
-			changeSelection(-1);
+			current_selection = current_selection - 1;
 		if (Ctrl.cright[0])
-			changeSelection(1);
+			current_selection = current_selection + 1;
 		if (Ctrl.cup[0])
-			changeSheet(1);
+			current_sheet = current_sheet + 1;
 		if (Ctrl.cdown[0])
-			changeSheet(-1);
+			current_sheet = current_sheet - 1;
 
 		if (Ctrl.menuBack[0])
-			close();
+			kill();
 	}
 
-	function changeSheet(?int:Int = 0, ?set:Bool = false)
+	function set_current_sheet(val:Int):Int
 	{
-		characterSpritesArray[currentSheet].kill();
-		if (set)
-			currentSheet = int
-		else
-			currentSheet += int;
+		if (characterSpritesArray.length > 0)
+			characterSpritesArray[current_sheet].kill();
 
-		if (currentSheet < 0)
-			currentSheet = characterSpritesArray.length - 1;
-		if (currentSheet > characterSpritesArray.length - 1)
-			currentSheet = 0;
+		if (current_sheet < 0)
+			current_sheet = characterSpritesArray.length - 1;
+		if (current_sheet > characterSpritesArray.length - 1)
+			current_sheet = 0;
 
-		if (sheetCollection.grid[currentSheet].graphic != null && !graphicSheet)
-		{
-			graphicSheet = true;
-			stickerSheetBase.loadGraphic(Paths.get(sheetCollection.grid[currentSheet].graphic));
-		}
-		else if (sheetCollection.grid[currentSheet].graphic == null && graphicSheet)
-		{
-			graphicSheet = false;
+		current_sheet = val;
+
+		update_sheet_graphics();
+
+		return current_sheet;
+	}
+	function set_current_selection(val:Int):Int
+	{
+		current_selection = val;
+
+		if (current_selection < 0)
+			current_selection = characterSpritesArray[current_sheet].members.length - 1;
+		if (current_selection > characterSpritesArray[current_sheet].members.length - 1)
+			current_selection = 0;
+
+		update_selection_graphics();
+
+		return current_selection;
+	}
+
+	function update_sheet_graphics()
+	{
+		graphicSheet = sheet_collection.sheets[current_sheet].graphic != null;
+		if (graphicSheet)
+			stickerSheetBase.loadGraphic(Paths.get(sheet_collection.sheets[current_sheet].graphic));
+		else 
 			stickerSheetBase.makeGraphic(1430, 845, FlxColor.BLACK);
-		}
-		characterSpritesArray[currentSheet].revive();
-		changeSelection();
+
+		characterSpritesArray[current_sheet].revive();
+
+		update_selection_graphics();
 	}
 
-	function changeSelection(?int:Int = 0, ?set:Bool = false)
+	function update_selection_graphics()
 	{
-		if (set)
-			curSelection = int
-		else
-			curSelection += int;
-
-		if (curSelection < 0)
-			curSelection = characterSpritesArray[currentSheet].members.length - 1;
-		if (curSelection > characterSpritesArray[currentSheet].members.length - 1)
-			curSelection = 0;
-
-		final costume:CostumeDef = data.Costumes.get(sheetCollection.grid[currentSheet].items[curSelection].name);
+		final costume:CostumeDef = data.Costumes.get(sheet_collection.sheets[current_sheet].items[current_selection].name);
 		title.text = costume.display;
 		description.text = (costume.desc != null ? costume.desc : '');
 	}
 
-	override function close()
+	override function kill()
 	{
+		FlxG.state.closeSubState();
 		// TODO: save currently-selected costume
-		super.close();
+		super.kill();
 	}
 }

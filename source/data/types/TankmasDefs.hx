@@ -29,16 +29,4 @@ typedef SpriteAnimationFrameDef =
 	var ?angle:Int;
 	var duration:Int;
 }
-typedef SheetGridDef =
-{
-	var name:String;
-	var ?angle:Int;
-	var ?xOffset:Int;
-	var ?yOffset:Int;
-}
 
-typedef OverallSheetDef =
-{
-	var ?graphic:String;
-	var items:Array<SheetGridDef>;
-}

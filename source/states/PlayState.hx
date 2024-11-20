@@ -7,6 +7,7 @@ import flixel.FlxState;
 import flixel.text.FlxText;
 import net.tankmas.OnlineLoop;
 import net.tankmas.TankmasClient;
+import ui.sheets.CostumeSelectSheet;
 
 
 class PlayState extends BaseState
@@ -56,7 +57,7 @@ class PlayState extends BaseState
 		if (FlxG.keys.anyJustPressed(["R"]))
 			FlxG.switchState(new PlayState());
 		if (FlxG.keys.anyJustPressed(["C"]))
-			openSubState(new states.substates.SheetSubstate());
+			new CostumeSelectSheet();
 	}
 
 	override function destroy()
