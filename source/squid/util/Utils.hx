@@ -349,6 +349,27 @@ class Utils
 		return a;
 	}
 
+	/**
+	 * Recursive action on members
+	 * @param members 
+	 * @param t 
+	 * @return Int
+	 */
+	public static inline function for_all_members(members:Array<Dynamic>, function_to_do:FlxBasic->Void)
+	{
+		for (member in members)
+			if (member != null)
+			{
+				var member_class_name:String = Type.getClassName(Type.getClass(member));
+				if (member_class_name == "flixel.group.FlxTypedGroup")
+					for_all_members(cast(member, FlxTypedGroup<Dynamic>).members, function_to_do);
+				else
+					function_to_do(member);
+			}
+	}
+
+
+
 	public static function traceMembers(members:Array<Dynamic>, t:Int = 0):Int
 	{
 		for (s in members)

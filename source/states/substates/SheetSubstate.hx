@@ -3,6 +3,7 @@ package states.substates;
 import data.types.TankmasDefs.CostumeDef;
 import data.types.TankmasDefs.OverallSheetDef;
 import data.types.TankmasDefs.SheetGridDef;
+import flixel.FlxBasic;
 import flixel.group.FlxSpriteGroup.FlxTypedSpriteGroup;
 
 class SheetSubstate extends flixel.FlxSubState
@@ -26,6 +27,7 @@ class SheetSubstate extends flixel.FlxSubState
 		super();
 		this.isCharacters = isCharacters;
 		currentSheet = isCharacters ? sheetCharacters : sheetStickers;
+		trace("substate exists");
 	}
 
 	override public function create()
@@ -44,7 +46,7 @@ class SheetSubstate extends flixel.FlxSubState
 		title.setFormat(null, 24, FlxColor.BLACK, LEFT, OUTLINE, FlxColor.WHITE);
 		add(title);
 
-		sheetCollection = haxe.Json.parse(Utils.load_file_string((isCharacters ? 'char' : 'sticker') + '-grid.json'));
+		sheetCollection = haxe.Json.parse(Utils.load_file_string((isCharacters ? 'costume' : 'sticker') + '-grid.json'));
 
 		for (sheet in sheetCollection.grid)
 		{
@@ -58,12 +60,18 @@ class SheetSubstate extends flixel.FlxSubState
 				final character:CostumeDef = data.Costumes.get(sheet.items[i].name);
 				if (!data.Costumes.check_for_unlock(character))
 					continue;
-				final sprite:FlxSprite = new FlxSprite(190
-					+ (340 * (i % 4))
-					+ (sheet.items[i].xOffset != null ? sheet.items[i].xOffset : 0),
-					420
-					+ (270 * Math.floor(i / 4))
-					+ (sheet.items[i].yOffset != null ? sheet.items[i].yOffset : 0)).loadGraphic(Paths.get(character.name));
+				var sprite_position:FlxPoint = FlxPoint.weak();
+
+				// initial positions
+				sprite_position.x = 190 + (340 * (i % 4));
+				sprite_position.y = 420 + (270 * Math.floor(i / 4));
+
+				// add offsets
+				sprite_position.x += sheet.items[i].xOffset != null ? sheet.items[i].xOffset : 0;
+				sprite_position.y += sheet.items[i].yOffset != null ? sheet.items[i].yOffset : 0;
+
+				final sprite:FlxSprite = new FlxSprite(sprite_position.x, sprite_position.y).loadGraphic(Paths.get('${character.name}.png'));
+
 				if (sheet.items[i].angle != null)
 					sprite.angle = sheet.items[i].angle;
 				characterSprites.add(sprite);
@@ -79,12 +87,18 @@ class SheetSubstate extends flixel.FlxSubState
 		}
 		changeSheet(isCharacters ? sheetCharacters : sheetStickers, true);
 		changeSelection();
+		members.for_all_members((member:FlxBasic) -> cast(member, FlxObject).scrollFactor.set(0, 0));
+
+		trace("substate really exists");
+
 		super.create();
 	}
 
 	override function update(elapsed:Float)
 	{
 		super.update(elapsed);
+
+		trace(stickerSheetBase);
 
 		if (Ctrl.cleft[0])
 			changeSelection(-1);
