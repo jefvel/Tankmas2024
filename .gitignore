@@ -6,3 +6,6 @@
 export
 archive
 scripts/server
+data/events/events-archive.json
+data/events/requests-log.json
+data/events/events.json
