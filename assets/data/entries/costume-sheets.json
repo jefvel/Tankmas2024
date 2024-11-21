@@ -1,0 +1,57 @@
+{
+    "sheets": [
+        {
+            "items": [
+                {
+                    "name":"tankman",
+                    "angle": 10
+                }, {
+                    "name":"paco",
+                    "angle": -10,
+                    "xOffset": -30,
+                    "yOffset": -5
+                }, {
+                    "name":"knight-red",
+                    "angle": 10,
+                    "xOffset": 30,
+                    "yOffset": -5
+                }, {
+                    "name":"knight-blue",
+                    "angle": -10
+                }, {
+                    "name":"knight-green",
+                    "angle": -10
+                }, {
+                    "name":"knight-orange",
+                    "angle": 10,
+                    "xOffset": -30,
+                    "yOffset": -5
+                }, {
+                    "name":"knight-pink",
+                    "angle": -10,
+                    "xOffset": 30,
+                    "yOffset": -5
+                }, {
+                    "name":"boyfriend",
+                    "angle": 10
+                }, {
+                    "name":"madness-grunt",
+                    "angle": 10
+                }, {
+                    "name":"alien-hominid",
+                    "angle": -10,
+                    "xOffset": -30,
+                    "yOffset": -5
+                }, {
+                    "name":null,
+                    "angle": 10,
+                    "xOffset": 30,
+                    "yOffset": -5
+                }, {
+                    "name":"thomas",
+                    "angle": -10
+                }
+            ]
+        }
+    ]
+}

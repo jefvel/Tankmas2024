@@ -5,6 +5,8 @@ import data.types.TankmasEnums.UnlockCondition;
 typedef CostumeDef =
 {
 	var name:String;
+	var display:String;
+	var ?desc:String;
 	var ?unlock:UnlockCondition;
 	var ?data:Dynamic;
 }
@@ -27,3 +29,4 @@ typedef SpriteAnimationFrameDef =
 	var ?angle:Int;
 	var duration:Int;
 }
+
