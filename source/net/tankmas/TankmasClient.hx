@@ -1,22 +1,8 @@
 package net.tankmas;
 
 import net.core.Client;
+import net.tankmas.NetDefs;
 
-typedef NetUserDef =
-{
-	name:String,
-	?x:Int,
-	?y:Int,
-	?costume:String,
-	?timestamp:Int,
-	?sticker:NetStickerDef
-}
-
-typedef NetStickerDef =
-{
-	name:String,
-	timestamp:Float
-}
 
 class TankmasClient
 {
@@ -34,5 +20,18 @@ class TankmasClient
 		var url:String = '$address/rooms/$room_id/users';
 
 		Client.post(url, user, on_complete);
+	}
+	public static function get_events(room_id:String, ?on_complete:Dynamic->Void)
+	{
+		var url:String = '$address/rooms/$room_id/events/get';
+
+		Client.post(url, {username: Main.username}, on_complete);
+	}
+
+	public static function post_event(room_id:String, event:NetEventDef, ?on_complete:Dynamic->Void)
+	{
+		var url:String = '$address/rooms/$room_id/events/post';
+
+		Client.post(url, event, on_complete);
 	}
 }

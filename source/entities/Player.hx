@@ -4,8 +4,8 @@ import data.Costumes;
 import data.types.TankmasDefs.CostumeDef;
 import data.types.TankmasEnums.PlayerAnimation;
 import entities.base.BaseUser;
+import net.tankmas.NetDefs.NetUserDef;
 import net.tankmas.OnlineLoop;
-import net.tankmas.TankmasClient.NetUserDef;
 
 class Player extends BaseUser
 {
@@ -134,15 +134,16 @@ class Player extends BaseUser
 	override function use_sticker(sticker_name:String):Bool
 	{
 		var sticker_got_used:Bool = super.use_sticker(sticker_name);
+		#if !offline
 		if (sticker_got_used)
-			queued_online_sticker = sticker_name;
+			OnlineLoop.post_sticker(Main.current_room_id, sticker_name);
+		#end
 		return sticker_got_used;
 	}
 
 	public function get_user_update_json(force_send_full_user:Bool = false):NetUserDef
 	{
 		var def:NetUserDef = {name: username};
-
 
 		if (last_update_json.x != x.floor() || force_send_full_user)
 			def.x = x.floor();
@@ -153,14 +154,6 @@ class Player extends BaseUser
 
 		if (last_update_json.costume != costume.name || force_send_full_user)
 			def.costume = costume.name;
-
-		trace(queued_online_sticker);
-		if (queued_online_sticker != null)
-		{
-			def.sticker = {timestamp: OnlineLoop.current_timestamp, name: queued_online_sticker};
-			queued_online_sticker = null;
-			trace(def.sticker);
-		}
 
 		last_update_json = {
 			name: username,

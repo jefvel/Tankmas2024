@@ -83,7 +83,7 @@ class BaseUser extends NGSprite
 		super.kill();
 	}
 
-	public static function get_user(username:String, make_user_function:Void->BaseUser):BaseUser
+	public static function get_user(username:String, ?make_user_function:Void->BaseUser):BaseUser
 	{
 		for (user in PlayState.self.users)
 			if (user.username == username)
