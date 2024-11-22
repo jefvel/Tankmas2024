@@ -31,7 +31,14 @@
 
 	<set name="BUILD_DIR" value="export" />
 	<source path="source" />
-	<assets path="assets" embed="false" exclude="*.gif"/>
+	
+	<section if="hl||cpp">
+		<assets path="assets" embed="false" exclude="*.gif"/>
+	</section>
+
+	<section if="js">
+		<assets path="assets" embed="true" exclude="*.gif"/>
+	</section>
 
 	<section if="offline">
 		<haxedef name="ghost_town" />
