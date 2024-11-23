@@ -7,8 +7,11 @@ import entities.base.NGSprite;
 import flixel.FlxState;
 import flixel.text.FlxText;
 import fx.StickerFX;
+import fx.Thumbnail;
+import haxe.display.Protocol.HaxeRequestMethod;
 import net.tankmas.OnlineLoop;
 import net.tankmas.TankmasClient;
+import states.substates.SheetSubstate;
 import ui.sheets.CostumeSelectSheet;
 
 
@@ -21,6 +24,7 @@ class PlayState extends BaseState
 	public var player:Player;
 	public var users:FlxTypedGroup<BaseUser> = new FlxTypedGroup<BaseUser>();
 	public var presents:FlxTypedGroup<Present> = new FlxTypedGroup<Present>();
+	public var thumbnails:FlxTypedGroup<Thumbnail> = new FlxTypedGroup<Thumbnail>();
 	public var shadows:FlxTypedGroup<FlxSpriteExt> = new FlxTypedGroup<FlxSpriteExt>();
 	public var stickers:FlxTypedGroup<StickerFX> = new FlxTypedGroup<StickerFX>();
 	public var sticker_fx:FlxTypedGroup<NGSprite> = new FlxTypedGroup<NGSprite>();
@@ -39,6 +43,7 @@ class PlayState extends BaseState
 		add(shadows);
 		add(presents);
 		add(users);
+		add(thumbnails);
 		add(stickers);
 		add(sticker_fx);
 
@@ -59,10 +64,11 @@ class PlayState extends BaseState
 		OnlineLoop.iterate();
 
 		super.update(elapsed);
+		// Ctrl.update();
 
-		if (FlxG.keys.anyJustPressed(["R"]))
+		if (Ctrl.reset[1])
 			FlxG.switchState(new PlayState());
-		if (FlxG.keys.anyJustPressed(["C"]))
+		if (Ctrl.jaction[1])
 			new CostumeSelectSheet();
 	}
 
