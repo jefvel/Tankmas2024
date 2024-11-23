@@ -14,9 +14,8 @@ import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 import squid.sprite.FlxSpriteExt;
 import squid.types.Fonts;
-import squid.types.ListsTypes.AnimSet;
 import squid.types.ListsTypes.AnimDef;
-import squid.types.ListsTypes.FontSave;
+import squid.types.ListsTypes.AnimSet;
 import states.*;
 
 using Math;

@@ -30,6 +30,7 @@ import openfl.geom.ColorTransform;
 import openfl.net.SharedObject;
 import openfl.net.URLLoader;
 import openfl.net.URLRequest;
+import squid.types.FontTypes;
 
 using Math;
 using Utils.Inflect;
@@ -510,20 +511,19 @@ class Utils
 		return list;
 	}
 
-	public static inline function formatText(text:FlxText, ?alignment:String = "left", ?color:Int = FlxColor.WHITE, ?outline:Bool = false):FlxText
+	public static inline function formatText(text:FlxText, format:TextFormatDef):FlxText
 	{
-		if (outline)
-		{
-			text.setFormat(Fonts.DIALOGUE.name, Fonts.DIALOGUE.size, color, alignment, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		}
+		var font_name:String = format.font.name;
+		var font_size:Int = format.size != null ? format.size : format.font.size;
+		var color:FlxColor = format.color != null ? format.color : FlxColor.WHITE;
+
+		trace(font_name, font_size, color);
+
+		if (format.outline != null)
+			text.setFormat(font_name, font_size, color, format.alignment, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		else
-		{
-			text.setFormat(Fonts.DIALOGUE.name, Fonts.DIALOGUE.size, color, alignment);
-		}
-		#if !flash
-		text.x -= 1;
-		text.y -= 1;
-		#end
+			text.setFormat(font_name, font_size, color, format.alignment);
+
 		return text;
 	}
 
@@ -1098,6 +1098,30 @@ class Inflect
 				similar_strings.push(b);
 		}
 		return similar_strings;
+	}
+	/**
+	 * Debug tool for offsets, call on update, only works with -Ddev flag
+	 */
+	public static inline function offset_adjust(sprite:FlxSprite, ?rate:Int = 1, addString:String = "")
+	{
+		#if dev
+		if (FlxG.keys.anyJustPressed(["UP"]))
+			sprite.offset.y -= rate;
+		if (FlxG.keys.anyJustPressed(["DOWN"]))
+			sprite.offset.y += rate;
+		if (FlxG.keys.anyJustPressed(["LEFT"]))
+			sprite.offset.x -= rate;
+		if (FlxG.keys.anyJustPressed(["RIGHT"]))
+			sprite.offset.x += rate;
+
+		if (FlxG.keys.anyJustPressed(["F"]))
+			sprite.flipX = !sprite.flipX;
+
+		if (FlxG.keys.anyJustPressed(["LEFT", "RIGHT", "UP", "DOWN"]))
+		{
+			trace(addString + "\n" + "offset.set(" + sprite.offset.x + ", " + sprite.offset.y + ");");
+		}
+		#end
 	}
 }
 

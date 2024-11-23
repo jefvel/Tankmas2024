@@ -51,15 +51,6 @@ typedef DialogueText =
 	var ?if_flag:String;
 }
 
-/**
- * Saved info about a font
- */
-typedef FontSave =
-{
-	var name:String;
-	var size:Int;
-}
-
 typedef PointDef =
 {
 	x:Float,

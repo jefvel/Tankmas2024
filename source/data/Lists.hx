@@ -42,8 +42,6 @@ class Lists
 	{
 		var start = Date.now().getTime();
 
-		Fonts.init();
-
 		Flags.generate();
 
 		Costumes.init();

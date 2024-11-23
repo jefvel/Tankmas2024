@@ -9,6 +9,7 @@ import flixel.text.FlxText;
 import fx.StickerFX;
 import net.tankmas.OnlineLoop;
 import net.tankmas.TankmasClient;
+import ui.DialogueBox;
 import ui.sheets.CostumeSelectSheet;
 
 
@@ -24,6 +25,7 @@ class PlayState extends BaseState
 	public var shadows:FlxTypedGroup<FlxSpriteExt> = new FlxTypedGroup<FlxSpriteExt>();
 	public var stickers:FlxTypedGroup<StickerFX> = new FlxTypedGroup<StickerFX>();
 	public var sticker_fx:FlxTypedGroup<NGSprite> = new FlxTypedGroup<NGSprite>();
+	public var dialogues:FlxTypedGroup<DialogueBox> = new FlxTypedGroup<DialogueBox>();
 
 	override public function create()
 	{
@@ -41,6 +43,9 @@ class PlayState extends BaseState
 		add(users);
 		add(stickers);
 		add(sticker_fx);
+		add(dialogues);
+
+		add(new DialogueBox("Hey! This is test text!"));
 
 		new Player();
 		
