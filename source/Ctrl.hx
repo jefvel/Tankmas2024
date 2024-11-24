@@ -91,7 +91,7 @@ class Ctrl
 			controls.push(Assets.getText("assets/data/config/controls/plyrc" + c + ".txt").split("\n"));
 			for (f in 0...controls[c].length)
 			{
-				controls[c][f] = controls[c][f].substring(0, controls[c][f].length - 1);
+				controls[c][f] = controls[c][f].trim();
 			}
 		}
 		// ProgressManager("keys_load");

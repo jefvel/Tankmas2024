@@ -12,6 +12,11 @@ class Wombo extends FlxSpriteExt
 		super.update(elapsed);
 	}
 
+	override function updateMotion(elapsed:Float)
+	{
+		super.updateMotion(elapsed);
+	}
+
 	function fsm()
 		switch (cast(state, State))
 		{

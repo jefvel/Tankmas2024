@@ -17,7 +17,7 @@ class BaseSelectSheet extends FlxGroupExt
 	var characterSpritesArray:Array<FlxTypedSpriteGroup<FlxSprite>> = [];
 
 	var current_sheet(default, set):Int = 0;
-	var current_selection:Int = 0;
+	var current_selection(default, set):Int = 0;
 
 	var graphicSheet:Bool = false;
 
@@ -37,14 +37,14 @@ class BaseSelectSheet extends FlxGroupExt
 		add(notepad);
 
 		description = new FlxText(1500, 250, 430, '');
-		description.setFormat(null, 16, FlxColor.BLACK, LEFT);
+		description.setFormat(null, 32, FlxColor.BLACK, LEFT);
 		add(description);
 
 		stickerSheetBase = new FlxSprite(66, 239);
 		add(stickerSheetBase);
 
 		title = new FlxText(70, 70, 1420, '');
-		title.setFormat(null, 24, FlxColor.BLACK, LEFT, OUTLINE, FlxColor.WHITE);
+		title.setFormat(null, 48, FlxColor.BLACK, LEFT, OUTLINE, FlxColor.WHITE);
 		add(title);
 
 		sheet_collection = make_sheet_collection();
@@ -68,8 +68,8 @@ class BaseSelectSheet extends FlxGroupExt
 				sprite_position.y = 420 + (270 * Math.floor(i / 4));
 
 				// add offsets
-				sprite_position.x += sheet.items[i].xOffset != null ? sheet.items[i].xOffset : 0;
-				sprite_position.y += sheet.items[i].yOffset != null ? sheet.items[i].yOffset : 0;
+				sprite_position.x += sheet.items[i].xOffset;
+				sprite_position.y += sheet.items[i].yOffset;
 
 				final sprite:FlxSprite = new FlxSprite(sprite_position.x, sprite_position.y).loadGraphic(Paths.get('${character.name}.png'));
 
@@ -105,16 +105,22 @@ class BaseSelectSheet extends FlxGroupExt
 
 	function control()
 	{
-		if (Ctrl.cleft[0])
+		for (i in 0...characterSpritesArray[current_sheet].length - 1)
+		{
+			// TODO: make this mobile-friendly
+			if (FlxG.mouse.overlaps(characterSpritesArray[current_sheet].members[i]))
+				current_selection = i;
+		}
+		if (Ctrl.cleft[1])
 			current_selection = current_selection - 1;
-		if (Ctrl.cright[0])
+		if (Ctrl.cright[1])
 			current_selection = current_selection + 1;
-		if (Ctrl.cup[0])
+		if (Ctrl.cup[1])
 			current_sheet = current_sheet + 1;
-		if (Ctrl.cdown[0])
+		if (Ctrl.cdown[1])
 			current_sheet = current_sheet - 1;
 
-		if (Ctrl.menuBack[0])
+		if (Ctrl.menuBack[1] || Ctrl.menuConfirm[1])
 			kill();
 	}
 
@@ -136,6 +142,8 @@ class BaseSelectSheet extends FlxGroupExt
 	}
 	function set_current_selection(val:Int):Int
 	{
+		characterSpritesArray[current_sheet].members[current_selection].scale.set(1, 1);
+		
 		current_selection = val;
 
 		if (current_selection < 0)
@@ -166,6 +174,7 @@ class BaseSelectSheet extends FlxGroupExt
 		final costume:CostumeDef = data.Costumes.get(sheet_collection.sheets[current_sheet].items[current_selection].name);
 		title.text = costume.display;
 		description.text = (costume.desc != null ? costume.desc : '');
+		characterSpritesArray[current_sheet].members[current_selection].scale.set(1.1, 1.1);
 	}
 
 	override function kill()
