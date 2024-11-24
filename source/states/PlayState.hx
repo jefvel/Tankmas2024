@@ -45,7 +45,7 @@ class PlayState extends BaseState
 		add(sticker_fx);
 		add(dialogues);
 
-		add(new DialogueBox("Hey! This is test text! AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"));
+		add(new DialogueBox("Hey! This is test text!"));
 
 		new Player();
 		

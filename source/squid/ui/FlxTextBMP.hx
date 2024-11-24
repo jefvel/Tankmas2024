@@ -17,6 +17,8 @@ class FlxTextBMP extends FlxBitmapText
 		var bmp_graphic:String = Paths.get('${format.font.name}_0.png');
 		var bmp_defines:String = Paths.get('${format.font.name}.fnt');
 
+		wrap = WORD(WordSplitConditions.LINE_WIDTH);
+
 		var bmpFont:FlxBitmapFont = FlxBitmapFont.fromAngelCode(bmp_graphic, bmp_defines);
 
 		if (fieldWidth != null)
@@ -38,7 +40,6 @@ class FlxTextBMP extends FlxBitmapText
 
 	public static inline function set_format(text:FlxTextBMP, format:TextFormatDef):FlxTextBMP
 	{
-		text.lineSpacing = 2;
 		text.color = format.color;
 		if (format.outline != null)
 			text.setBorderStyle(OUTLINE, format.outline.color);
