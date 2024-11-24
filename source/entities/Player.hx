@@ -29,6 +29,11 @@ class Player extends BaseUser
 		while (costume.name != "tankman")
 			debug_rotate_costumes();
 
+		#if vanity
+		while (costume.name != "sodaman")
+			debug_rotate_costumes();
+		#end
+
 		last_update_json = {name: username};
 
 		type = "player";
