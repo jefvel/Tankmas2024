@@ -45,7 +45,7 @@ class PlayState extends BaseState
 		add(sticker_fx);
 		add(dialogues);
 
-		add(new DialogueBox("Hey! This is test text!"));
+		add(new DialogueBox(Lists.npcs.get("thomas").get_state_dlg("default")));
 
 		new Player();
 		

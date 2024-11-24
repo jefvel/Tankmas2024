@@ -22,7 +22,6 @@ class Main extends Sprite
 	public function make_game()
 	{
 		Lists.init();
-		NPCLoader.load_npc_defs_from_file(Paths.get("test-npcs.xml"));
 		addChild(new FlxGame(1920, 1080, PlayState, true));
 	}
 }

@@ -1,5 +1,6 @@
 package data;
 
+import data.loaders.NPCLoader;
 import flixel.addons.text.FlxTextField;
 import flixel.system.FlxAssets;
 import flixel.system.FlxLinkedList;
@@ -33,6 +34,9 @@ class Lists
 	#end
 
 
+	public static var npcs:Map<String, NPCDef> = [];
+
+
 	static var assets_path(get, never):String;
 
 	static function get_assets_path():String
@@ -45,6 +49,8 @@ class Lists
 		Flags.generate();
 
 		Costumes.init();
+
+		NPCLoader.load_npc_defs_from_file(npcs, Paths.get("test-npcs.xml"));
 
 
 		/*

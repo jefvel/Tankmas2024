@@ -1,5 +1,6 @@
 package ui;
 
+import data.loaders.NPCLoader;
 import data.types.TankmasFontTypes;
 import flixel.text.FlxText;
 import squid.ext.FlxGroupExt;
@@ -12,9 +13,21 @@ class DialogueBox extends FlxGroupExt
 	#else
 	var text:FlxTextBMP;
 	#end
+
 	var bg:FlxSpriteExt;
 
-	public function new(input_text:String)
+	var dlgs:Array<NPCDLG>;
+
+	var dlg(get, never):NPCDLG;
+
+	var index:Int = 0;
+
+	var type_rate:Int = 2;
+
+	public function get_dlg():NPCDLG
+		return dlgs[index];
+
+	public function new(dlgs:Array<NPCDLG>)
 	{
 		super();
 
@@ -37,8 +50,6 @@ class DialogueBox extends FlxGroupExt
 
 		bg.setPosition(FlxG.width / 2 - bg.width / 2, 0);
 
-		text.text = input_text;
-
 		#if ttf
 		// temp
 		text.setPosition(bg.x + 194, bg.y + 130);
@@ -59,8 +70,20 @@ class DialogueBox extends FlxGroupExt
 
 		add(bg);
 		add(text);
+		load_dlg(dlgs[index]);
 	}
 
+	public function load_dlg(dlg:NPCDLG)
+		text.text = dlg.text.str;
+
+	public function next_dlg()
+	{
+		index = index + 1;
+		if (index < dlgs.length)
+			load_dlg(dlgs[index]);
+	}
+
+	public function type() {}
 
 
 	override function update(elapsed:Float)

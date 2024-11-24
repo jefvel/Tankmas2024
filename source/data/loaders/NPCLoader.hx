@@ -1,6 +1,6 @@
 package data.loaders;
 
-typedef NPCDef =
+typedef NPCDefJSON =
 {
 	var name:String;
 	var image:String;
@@ -26,13 +26,29 @@ typedef NPCText =
 	var str:String;
 }
 
+@:forward
+abstract NPCDef(NPCDefJSON) from NPCDefJSON
+{
+	public function new(def:NPCDefJSON)
+		this = def;
+
+	public function get_state_dlg(state_name:String):Array<NPCDLG>
+	{
+		for (state in this.states)
+			if (state.name == state_name)
+				return state.dlg;
+		return null;
+	}
+}
+
+
 class NPCLoader
 {
-	public static function load_npc_defs_from_file(file_path:String)
+	public static function load_npc_defs_from_file(map:Map<String, NPCDef>, file_path:String)
 	{
 		var xml:Xml = Utils.file_to_xml(file_path);
 		for (npc_xml in xml.tags("npc"))
-			xml_to_npc_def(npc_xml);
+			map.set(npc_xml.get("name"), xml_to_npc_def(npc_xml));
 	}
 
 	static function xml_to_npc_def(npc_xml:Xml):NPCDef
@@ -40,7 +56,7 @@ class NPCLoader
 		var name:String = npc_xml.get("name");
 		var image:String = npc_xml.get("image") != null ? npc_xml.get("image") : name;
 
-		var def:NPCDef = {
+		var def:NPCDefJSON = {
 			name: name,
 			image: image,
 			states: parse_npc_states(npc_xml.tags("state"))
@@ -48,7 +64,7 @@ class NPCLoader
 
 		trace(haxe.Json.stringify(def, "\t"));
 
-		return def;
+		return new NPCDef(def);
 	}
 
 	static function parse_npc_states(state_xmls:Array<Xml>):Array<NPCState>
