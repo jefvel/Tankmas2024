@@ -20,19 +20,20 @@ class DialogueBox extends FlxGroupExt
 
 	var dlg(get, never):NPCDLG;
 
-	var index:Int = 0;
+	var line_number:Int = 0;
 
+	var type_index:Int;
 	var type_rate:Int = 2;
 
 	public function get_dlg():NPCDLG
-		return dlgs[index];
+		return dlgs[line_number];
 
 	var options:DialogueBoxOptions;
 
 	var line_finished(get, default):Bool;
 
 	public function get_line_finished()
-		return true;
+		return type_index >= dlg.text.str.length;
 
 	public function new(dlgs:Array<NPCDLG>, ?options:DialogueBoxOptions)
 	{
@@ -73,24 +74,30 @@ class DialogueBox extends FlxGroupExt
 		text.lineSpacing = -28;
 		#end
 
-		sstate(IDLE);
+		sstate(TYPING);
 
 		bg.scrollFactor.set(0, 0);
 		text.scrollFactor.set(0, 0);
 
 		add(bg);
 		add(text);
-		load_dlg(dlgs[index]);
+		load_dlg(dlgs[line_number]);
 	}
 
 	public function load_dlg(dlg:NPCDLG)
-		text.text = dlg.text.str;
+	{
+		text.text = "";
+		type_index = 0;
+	}
 
 	public function next_dlg()
 	{
-		index = index + 1;
-		if (index < dlgs.length)
-			load_dlg(dlgs[index]);
+		line_number = line_number + 1;
+		if (line_number < dlgs.length)
+		{
+			load_dlg(dlgs[line_number]);
+			sstate(TYPING);
+		}
 		else
 			close_dlg();
 	}
@@ -100,7 +107,13 @@ class DialogueBox extends FlxGroupExt
 		kill();
 	}
 
-	public function type() {}
+	public function type()
+	{
+		type_index = type_index + 1;
+		text.text = dlg.text.str.substr(0, type_index);
+		if (line_finished)
+			sstate(IDLE);
+	}
 
 	override function update(elapsed:Float)
 	{
@@ -114,6 +127,10 @@ class DialogueBox extends FlxGroupExt
 		{
 			default:
 			case TYPING:
+				if (Ctrl.jjump[1])
+					type_index = dlg.text.str.length - 1;
+				if (ttick() % type_rate == 0)
+					type();
 			case IDLE:
 				if (line_finished)
 				{
