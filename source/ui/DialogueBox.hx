@@ -88,7 +88,7 @@ class DialogueBox extends FlxGroupExt
 
 	override function update(elapsed:Float)
 	{
-		text.offset_adjust();
+		// text.offset_adjust();
 		fsm();
 		super.update(elapsed);
 	}

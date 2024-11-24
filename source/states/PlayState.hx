@@ -1,14 +1,13 @@
 package states;
 
+import entities.Interactable;
+import entities.NPC;
 import entities.Player;
 import entities.Present;
 import entities.base.BaseUser;
 import entities.base.NGSprite;
-import flixel.FlxState;
-import flixel.text.FlxText;
 import fx.StickerFX;
 import net.tankmas.OnlineLoop;
-import net.tankmas.TankmasClient;
 import ui.DialogueBox;
 import ui.sheets.CostumeSelectSheet;
 
@@ -26,6 +25,10 @@ class PlayState extends BaseState
 	public var stickers:FlxTypedGroup<StickerFX> = new FlxTypedGroup<StickerFX>();
 	public var sticker_fx:FlxTypedGroup<NGSprite> = new FlxTypedGroup<NGSprite>();
 	public var dialogues:FlxTypedGroup<DialogueBox> = new FlxTypedGroup<DialogueBox>();
+	public var npcs:FlxTypedGroup<NPC> = new FlxTypedGroup<NPC>();
+
+	/**Do not add to state*/
+	public var interactables:FlxTypedGroup<Interactable> = new FlxTypedGroup<Interactable>();
 
 	override public function create()
 	{
@@ -39,19 +42,22 @@ class PlayState extends BaseState
 		add(bg = new FlxSpriteExt(Paths.get("bg-outside-hotel.png")));
 
 		add(shadows);
+		add(npcs);
 		add(presents);
 		add(users);
 		add(stickers);
 		add(sticker_fx);
 		add(dialogues);
 
-		add(new DialogueBox(Lists.npcs.get("thomas").get_state_dlg("default")));
+		// add(new DialogueBox(Lists.npcs.get("thomas").get_state_dlg("default")));
 
 		new Player();
 		
 		player.center_on(bg);
 
 		new Present();
+
+		new NPC(player.x - 150, player.y, "thomas");
 
 		FlxG.camera.target = player;
 
