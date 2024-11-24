@@ -62,19 +62,11 @@ class Present extends Interactable
 				sprite_anim.anim(PresentAnimation.NEARBY);
 				thumbnail.sstate("OPEN");
 			case OPENING:
-<<<<<<< HEAD
-				animProtect("opening");
-				if (animation.finished)
-					sstate(OPENED);
-			case OPENED:
-				animProtect("opened");
-=======
 				// animProtect("opening");
 				// if(animation.finished)
 				// sstate(OPENED);
 			case OPENED:			
 				// animProtect("opened");
->>>>>>> main
 		}
 
 	override public function mark_target(mark:Bool)
