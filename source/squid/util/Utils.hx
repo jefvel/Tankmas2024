@@ -513,7 +513,7 @@ class Utils
 
 	public static inline function formatText(text:FlxText, format:TextFormatDef):FlxText
 	{
-		var font_name:String = format.font.name;
+		var font_name:String = '${format.font.name}.ttf';
 		var font_size:Int = format.size != null ? format.size : format.font.size;
 		var color:FlxColor = format.color != null ? format.color : FlxColor.WHITE;
 

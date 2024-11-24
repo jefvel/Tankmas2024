@@ -3,10 +3,15 @@ package ui;
 import data.types.TankmasFontTypes;
 import flixel.text.FlxText;
 import squid.ext.FlxGroupExt;
+import squid.ui.FlxTextBMP;
 
 class DialogueBox extends FlxGroupExt
 {
+	#if ttf
 	var text:FlxText;
+	#else
+	var text:FlxTextBMP;
+	#end
 	var bg:FlxSpriteExt;
 
 	public function new(input_text:String)
@@ -21,20 +26,31 @@ class DialogueBox extends FlxGroupExt
 			text.fieldWidthSet((FlxG.width / 2).floor());
 		 */
 
+		#if ttf
 		text = Utils.formatText(new FlxText(0, 0, 1216), TextFormatPresets.DIALOGUE);
+		#else
+		text = new FlxTextBMP(0, 0, 1216, TextFormatPresets.DIALOGUE);
+		text.fieldWidthSet(1216);
+		#end
+		
 		bg = new FlxSpriteExt(Paths.get("dialogue-box.png"));
 
 		bg.setPosition(FlxG.width / 2 - bg.width / 2, 0);
 
 		text.text = input_text;
-		text.setPosition(bg.x + 194, bg.y + 130);
 
+		#if ttf
 		// temp
-		switch (TextFormatPresets.DIALOGUE.font.name)
+		text.setPosition(bg.x + 194, bg.y + 130);
+		switch (TextFormatPresets.DIALOGUE.font.name.split(".")[0])
 		{
-			case "crappy-handwriting.ttf":
+			case "crappy-handwriting":
 				text.y += 42;
-		} 
+		}
+		#else
+		text.setPosition(bg.x + 194, bg.y + 150);
+		text.lineSpacing = -28;
+		#end
 
 		sstate(IDLE);
 
@@ -58,6 +74,7 @@ class DialogueBox extends FlxGroupExt
 		switch (cast(state, State))
 		{
 			default:
+			case TYPING:
 		}
 	override function kill()
 	{
@@ -69,4 +86,7 @@ class DialogueBox extends FlxGroupExt
 private enum abstract State(String) from String to String
 {
 	var IDLE;
+	var TYPING;
+	var IN;
+	var OUT;
 }

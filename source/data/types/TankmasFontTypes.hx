@@ -12,7 +12,7 @@ import squid.types.FontTypes;
  */
 enum abstract TankmasFonts(FontDef) from FontDef to FontDef
 {
-	public static final HANDWRITTEN:FontDef = {name: "crappy-handwriting.ttf", size: 64};
+	public static final HANDWRITTEN:FontDef = {name: "crappy-handwriting", size: 96};
 }
 
 /**
