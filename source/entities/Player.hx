@@ -3,10 +3,10 @@ package entities;
 import data.Costumes;
 import data.types.TankmasDefs.CostumeDef;
 import data.types.TankmasEnums.PlayerAnimation;
+import entities.Interactable;
 import entities.base.BaseUser;
 import net.tankmas.NetDefs.NetUserDef;
 import net.tankmas.OnlineLoop;
-
 class Player extends BaseUser
 {
 	var move_no_input_drag:Float = 0.9;
@@ -28,6 +28,11 @@ class Player extends BaseUser
 
 		while (costume.name != "tankman")
 			debug_rotate_costumes();
+
+		#if vanity
+		while (costume.name != "sodaman")
+			debug_rotate_costumes();
+		#end
 
 		last_update_json = {name: username};
 
@@ -68,7 +73,7 @@ class Player extends BaseUser
 		{
 			case NEUTRAL:
 				general_movement();
-				detect_presents();
+				detect_interactables();
 			case JUMPING:
 			case EMOTING:
 		}
@@ -81,7 +86,7 @@ class Player extends BaseUser
 		final RIGHT:Bool = Ctrl.right[1];
 		final NO_KEYS:Bool = !UP && !DOWN && !LEFT && !RIGHT;
 
-		if (Ctrl.jjump[1])
+		if (Ctrl.jaction[1])
 			use_sticker("common-tamago");
 
 		if (UP)
@@ -114,16 +119,24 @@ class Player extends BaseUser
 		sprite_anim.anim(MOVING ? PlayerAnimation.MOVING : PlayerAnimation.IDLE);
 	}
 
-	function detect_presents()
+	function detect_interactables()
 	{
-		var present:Present = Present.find_present_in_detect_range(this);
+		Interactable.unmark_all(PlayState.self.interactables);
 
-		Present.un_mark_all_presents();
+		var closest:Interactable = Interactable.find_closest_in_array(this, Interactable.find_in_detect_range(this, PlayState.self.interactables));
 
-		if (present == null)
+		if (closest == null)
 			return;
 
-		present.mark_target(true);
+		switch (cast(closest.type, InteractableType))
+		{
+			case InteractableType.NPC:
+				// nothin
+			case InteractableType.PRESENT:
+				// nothin
+		}
+
+		closest.mark_target(true);
 	}
 
 	override function kill()

@@ -1,6 +1,6 @@
 package squid.ext;
 
-class FlxTypedGroup extends FlxTypedGroup<FlxSprite>
+class FlxGroupExt extends FlxTypedGroup<FlxSprite>
 {
 	var state:String = "";
 	var tick:Int = 0;

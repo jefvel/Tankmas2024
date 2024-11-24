@@ -1,7 +1,8 @@
-package;
+package squid.ui;
 
 import flixel.graphics.frames.FlxBitmapFont;
 import flixel.text.FlxBitmapText;
+import squid.types.FontTypes;
 
 /**
  * ...
@@ -11,14 +12,20 @@ class FlxTextBMP extends FlxBitmapText
 {
 	var scroll_rate:Int = 0;
 
-	public function new(?x:Float = 0, ?y:Float = 0, ?fieldWidth:Int, ?scroll_rate:Int = 0, ?text:String, ?font_name:String = "pixelmplus10-bitmap")
+	public function new(?x:Float = 0, ?y:Float = 0, ?fieldWidth:Int, ?scroll_rate:Int = 0, ?text:String, format:TextFormatDef)
 	{
-		var bmp_graphic:String = Paths.get('${font_name}.png');
-		var bmp_defines:String = Paths.get('${font_name}.fnt');
+		var bmp_graphic:String = Paths.get('${format.font.name}_0.png');
+		var bmp_defines:String = Paths.get('${format.font.name}.fnt');
+
+		wrap = WORD(WordSplitConditions.LINE_WIDTH);
 
 		var bmpFont:FlxBitmapFont = FlxBitmapFont.fromAngelCode(bmp_graphic, bmp_defines);
 
-		this.fieldWidth = fieldWidth;
+		if (fieldWidth != null)
+		{
+			this.fieldWidth = fieldWidth;
+			set_fieldWidth(fieldWidth);
+		}
 
 		super(x, y, bmpFont);
 
@@ -31,26 +38,30 @@ class FlxTextBMP extends FlxBitmapText
 	public function fieldWidthSet(newWidth:Int)
 		set_fieldWidth(newWidth);
 
-	public function set_format(format:TextFormatPreset)
+	public static inline function set_format(text:FlxTextBMP, format:TextFormatDef):FlxTextBMP
 	{
-		lineSpacing = 2;
-		switch (format)
-		{
-			case DEFAULT_WHITE:
-				color = FlxColor.WHITE;
-				setBorderStyle(OUTLINE, FlxColor.BLACK);
-			case PAUSE_BODY_CENTERED:
-				set_format(PAUSE_BODY);
-				alignment = FlxTextAlign.CENTER;
-			case PAUSE_BODY:
-				color = FlxColor.BLACK;
-		}
+		text.color = format.color;
+		if (format.outline != null)
+			text.setBorderStyle(OUTLINE, format.outline.color);
+
+		return text;
+		
+		
+		//TODO: implement bitmap fonts?
+		// lineSpacing = 2;
+		// switch (format)
+		// {
+		// 	case DEFAULT_BLACK:
+		// 		color = FlxColor.BLACK;
+		// 	case DEFAULT_WHITE:
+		// 		color = FlxColor.WHITE;
+		// 		setBorderStyle(OUTLINE, FlxColor.BLACK);
+		// 	case PAUSE_BODY_CENTERED:
+		// 		set_format(PAUSE_BODY);
+		// 		alignment = FlxTextAlign.CENTER;
+		// 	case PAUSE_BODY:
+		// 		color = FlxColor.BLACK;
+		// }
 	}
 }
 
-enum abstract TextFormatPreset(String) from String to String
-{
-	var DEFAULT_WHITE;
-	var PAUSE_BODY;
-	var PAUSE_BODY_CENTERED;
-}

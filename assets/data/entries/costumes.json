@@ -60,6 +60,10 @@
             "display": "Santa",
             "unlock": "DATE",
             "data": 1735102800
+        },
+        {
+            "name": "sodaman",
+            "display": "Sodaman"
         }
     ]
 }

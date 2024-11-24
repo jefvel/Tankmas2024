@@ -3,6 +3,7 @@ package data.types;
 import data.types.TankmasDefs.CostumeDef;
 import data.types.TankmasDefs.SpriteAnimationDef;
 
+
 enum abstract UnlockCondition(String) from String to String
 {
 	/**On a specific date, data contains the unix timestamp, see: https://www.unixtimestamp.com/index.php**/

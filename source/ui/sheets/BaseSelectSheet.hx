@@ -1,13 +1,13 @@
 package ui.sheets;
 
-
 import data.types.TankmasDefs.CostumeDef;
 import flixel.FlxBasic;
 import flixel.group.FlxSpriteGroup.FlxTypedSpriteGroup;
+import squid.ext.FlxGroupExt;
 import states.substates.SheetSubstate;
 import ui.sheets.defs.SheetDefs;
 
-class BaseSelectSheet extends FlxTypedGroup<FlxSprite>
+class BaseSelectSheet extends FlxGroupExt
 {
 	var stickerSheetBase:FlxSprite;
 	var description:FlxText;

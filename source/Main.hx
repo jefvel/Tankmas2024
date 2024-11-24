@@ -1,6 +1,7 @@
 package;
 
 import Paths.Manifest;
+import data.loaders.NPCLoader;
 import flixel.FlxGame;
 import openfl.display.Sprite;
 
