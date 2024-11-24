@@ -3,6 +3,7 @@ package ui;
 import data.loaders.NPCLoader;
 import data.types.TankmasFontTypes;
 import flixel.text.FlxText;
+import flixel.tweens.FlxEase;
 import squid.ext.FlxGroupExt;
 import squid.ui.FlxTextBMP;
 
@@ -31,6 +32,8 @@ class DialogueBox extends FlxGroupExt
 	var options:DialogueBoxOptions;
 
 	var line_finished(get, default):Bool;
+
+	var text_position:FlxPoint;
 
 	public function get_line_finished()
 		return type_index >= dlg.text.str.length;
@@ -74,10 +77,12 @@ class DialogueBox extends FlxGroupExt
 		text.lineSpacing = -28;
 		#end
 
-		sstate(TYPING);
+		sstate(SWIPE_IN);
 
 		bg.scrollFactor.set(0, 0);
 		text.scrollFactor.set(0, 0);
+
+		text_position = new FlxPoint(text.x - bg.x, text.y - bg.y);
 
 		add(bg);
 		add(text);
@@ -88,6 +93,7 @@ class DialogueBox extends FlxGroupExt
 	{
 		text.text = "";
 		type_index = 0;
+		sstate(SWIPE_IN);
 	}
 
 	public function next_dlg()
@@ -96,7 +102,6 @@ class DialogueBox extends FlxGroupExt
 		if (line_number < dlgs.length)
 		{
 			load_dlg(dlgs[line_number]);
-			sstate(TYPING);
 		}
 		else
 			close_dlg();
@@ -117,6 +122,7 @@ class DialogueBox extends FlxGroupExt
 
 	override function update(elapsed:Float)
 	{
+		text.setPosition(bg.x + text_position.x, bg.y + text_position.y);
 		// text.offset_adjust();
 		fsm();
 		super.update(elapsed);
@@ -126,6 +132,14 @@ class DialogueBox extends FlxGroupExt
 		switch (cast(state, State))
 		{
 			default:
+			case SWIPE_IN:
+				bg.y = -bg.height;
+				FlxTween.tween(bg, {y: 0}, 0.15, {ease: FlxEase.quadIn, onComplete: (t:FlxTween) -> sstate(TYPING)});
+				sstate(WAIT);
+			case SWIPE_OUT:
+				bg.y = 0;
+				FlxTween.tween(bg, {y: -bg.height}, 0.15, {ease: FlxEase.quadIn, onComplete: (t:FlxTween) -> next_dlg()});
+				sstate(WAIT);
 			case TYPING:
 				if (Ctrl.jjump[1])
 					type_index = dlg.text.str.length - 1;
@@ -135,7 +149,7 @@ class DialogueBox extends FlxGroupExt
 				if (line_finished)
 				{
 					if (Ctrl.jjump[1])
-						next_dlg();
+						sstate(SWIPE_OUT);
 				}
 		}
 
@@ -151,8 +165,9 @@ private enum abstract State(String) from String to String
 {
 	var IDLE;
 	var TYPING;
-	var IN;
-	var OUT;
+	var SWIPE_IN;
+	var SWIPE_OUT;
+	var WAIT;
 }
 
 typedef DialogueBoxOptions =
