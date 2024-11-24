@@ -27,9 +27,13 @@ class DialogueBox extends FlxGroupExt
 	public function get_dlg():NPCDLG
 		return dlgs[index];
 
-	public function new(dlgs:Array<NPCDLG>)
+	var options:DialogueBoxOptions;
+
+	public function new(dlgs:Array<NPCDLG>, ?options:DialogueBoxOptions)
 	{
 		super();
+
+		options = options == null ? {} : options;
 
 		PlayState.self.dialogues.add(this);
 
@@ -45,7 +49,7 @@ class DialogueBox extends FlxGroupExt
 		text = new FlxTextBMP(0, 0, 1216, TextFormatPresets.DIALOGUE);
 		text.fieldWidthSet(1216);
 		#end
-		
+
 		bg = new FlxSpriteExt(Paths.get("dialogue-box.png"));
 
 		bg.setPosition(FlxG.width / 2 - bg.width / 2, 0);
@@ -85,7 +89,6 @@ class DialogueBox extends FlxGroupExt
 
 	public function type() {}
 
-
 	override function update(elapsed:Float)
 	{
 		// text.offset_adjust();
@@ -99,8 +102,10 @@ class DialogueBox extends FlxGroupExt
 			default:
 			case TYPING:
 		}
+
 	override function kill()
 	{
+		options.on_complete != null ? options.on_complete() : false;
 		PlayState.self.dialogues.remove(this, true);
 		super.kill();
 	}
@@ -112,4 +117,9 @@ private enum abstract State(String) from String to String
 	var TYPING;
 	var IN;
 	var OUT;
+}
+
+typedef DialogueBoxOptions =
+{
+	?on_complete:Void->Void
 }

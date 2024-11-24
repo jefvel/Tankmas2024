@@ -2,6 +2,7 @@ package entities;
 
 import data.types.TankmasEnums.PresentAnimation;
 import entities.base.NGSprite;
+import ui.DialogueBox;
 
 class NPC extends Interactable
 {
@@ -39,7 +40,18 @@ class NPC extends Interactable
 				sprite_anim.anim(PresentAnimation.IDLE);
 			case NEARBY:
 				sprite_anim.anim(PresentAnimation.NEARBY);
+				if (Ctrl.jjump[1])
+					start_chat();
+			case CHATTING:
+				sprite_anim.anim(PresentAnimation.IDLE);
 		}
+
+	function start_chat()
+	{
+		new DialogueBox(Lists.npcs.get(name).get_state_dlg("default"));
+		sstate(CHATTING, fsm);
+		interactable = false;
+	}
 
 	override public function mark_target(mark:Bool)
 	{
@@ -60,4 +72,5 @@ private enum abstract State(String) from String to String
 {
 	var IDLE;
 	final NEARBY;
+	final CHATTING;
 }
