@@ -29,11 +29,17 @@ class DialogueBox extends FlxGroupExt
 
 	var options:DialogueBoxOptions;
 
+	var line_finished(get, default):Bool;
+
+	public function get_line_finished()
+		return true;
+
 	public function new(dlgs:Array<NPCDLG>, ?options:DialogueBoxOptions)
 	{
 		super();
 
-		options = options == null ? {} : options;
+		this.dlgs = dlgs;
+		this.options = options == null ? {} : options;
 
 		PlayState.self.dialogues.add(this);
 
@@ -85,6 +91,13 @@ class DialogueBox extends FlxGroupExt
 		index = index + 1;
 		if (index < dlgs.length)
 			load_dlg(dlgs[index]);
+		else
+			close_dlg();
+	}
+
+	public function close_dlg()
+	{
+		kill();
 	}
 
 	public function type() {}
@@ -101,6 +114,12 @@ class DialogueBox extends FlxGroupExt
 		{
 			default:
 			case TYPING:
+			case IDLE:
+				if (line_finished)
+				{
+					if (Ctrl.jjump[1])
+						next_dlg();
+				}
 		}
 
 	override function kill()
@@ -121,5 +140,5 @@ private enum abstract State(String) from String to String
 
 typedef DialogueBoxOptions =
 {
-	?on_complete:Void->Void
+	var ?on_complete:Void->Void;
 }

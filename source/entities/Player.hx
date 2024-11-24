@@ -86,7 +86,7 @@ class Player extends BaseUser
 		final RIGHT:Bool = Ctrl.right[1];
 		final NO_KEYS:Bool = !UP && !DOWN && !LEFT && !RIGHT;
 
-		if (Ctrl.jjump[1])
+		if (Ctrl.jaction[1])
 			use_sticker("common-tamago");
 
 		if (UP)

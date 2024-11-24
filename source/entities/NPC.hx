@@ -48,7 +48,8 @@ class NPC extends Interactable
 
 	function start_chat()
 	{
-		new DialogueBox(Lists.npcs.get(name).get_state_dlg("default"));
+		Ctrl.allFalse();
+		new DialogueBox(Lists.npcs.get(name).get_state_dlg("default"), {on_complete: () -> interactable = true});
 		sstate(CHATTING, fsm);
 		interactable = false;
 	}
