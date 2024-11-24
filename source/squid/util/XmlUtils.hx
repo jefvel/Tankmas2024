@@ -15,7 +15,7 @@ class XmlUtils
 		return return_element;
 	}
 
-	public static inline function elements(xml:Xml, ?element_name:String, ?element_name_aliases:Array<String>):Array<Xml>
+	static inline function elements_array(xml:Xml, ?element_name:String, ?element_name_aliases:Array<String>):Array<Xml>
 	{
 		var return_array:Array<Xml> = [];
 
@@ -26,7 +26,7 @@ class XmlUtils
 		return return_array;
 	}
 
-	public static inline function element_exists(xml:Xml, ?element_name:String, ?element_name_aliases:Array<String>):Bool
+	static inline function element_exists(xml:Xml, ?element_name:String, ?element_name_aliases:Array<String>):Bool
 	{
 		var result:Bool = false;
 		for (n in element_aliases(element_name, element_name_aliases))
@@ -76,19 +76,19 @@ class XmlUtils
 		return element_name_aliases == null ? [element_name] : element_name_aliases;
 	}
 
-	public static inline function tags(xml:Xml, tag:String):Iterator<Xml>
+	public static inline function tags(xml:Xml, tag:String):Array<Xml>
 	{
 		var xml:Xml = xml;
 		if (xml.elementsNamed("root").hasNext())
 			xml = xml.elementsNamed("root").next();
-		return xml.elementsNamed(tag);
+		return xml.elements_array(tag);
 	}
 
 	public static inline function has_tags(xml:Xml, tag:String):Bool
-		return xml.tags(tag) == null ? false : xml.tags(tag).hasNext();
+		return xml.tags(tag).length > 0;
 
 	public static inline function first_tag(xml:Xml, tag:String):Xml
-		return xml.tags(tag).next().firstChild();
+		return xml.tags(tag)[0].firstChild();
 
 	public static inline function first_tag_val(xml:Xml, tag:String):String
 		return xml.first_tag(tag).toString();
