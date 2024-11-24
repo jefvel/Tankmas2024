@@ -29,6 +29,13 @@ class DialogueBox extends FlxGroupExt
 		text.text = input_text;
 		text.setPosition(bg.x + 194, bg.y + 130);
 
+		// temp
+		switch (TextFormatPresets.DIALOGUE.font.name)
+		{
+			case "crappy-handwriting.ttf":
+				text.y += 42;
+		} 
+
 		sstate(IDLE);
 
 		bg.scrollFactor.set(0, 0);
@@ -38,14 +45,11 @@ class DialogueBox extends FlxGroupExt
 		add(text);
 	}
 
-	override function kill()
-	{
-		PlayState.self.dialogues.remove(this, true);
-		super.kill();
-	}
+
 
 	override function update(elapsed:Float)
 	{
+		text.offset_adjust();
 		fsm();
 		super.update(elapsed);
 	}
@@ -55,6 +59,11 @@ class DialogueBox extends FlxGroupExt
 		{
 			default:
 		}
+	override function kill()
+	{
+		PlayState.self.dialogues.remove(this, true);
+		super.kill();
+	}
 }
 
 private enum abstract State(String) from String to String
