@@ -21,8 +21,6 @@ class PlayState extends BaseState
 {
 	public static var self:PlayState;
 
-	var bg:FlxSpriteExt;
-
 	public var player:Player;
 	public var users:FlxTypedGroup<BaseUser> = new FlxTypedGroup<BaseUser>();
 	public var presents:FlxTypedGroup<Present> = new FlxTypedGroup<Present>();
@@ -34,6 +32,7 @@ class PlayState extends BaseState
 	public var npcs:FlxTypedGroup<NPC> = new FlxTypedGroup<NPC>();
 
 	public var levels:FlxTypedGroup<TankmasLevel> = new FlxTypedGroup<TankmasLevel>();
+	public var level_backgrounds:FlxTypedGroup<FlxSprite> = new FlxTypedGroup<FlxSprite>();
 
 	/**Do not add to state*/
 	public var interactables:FlxTypedGroup<Interactable> = new FlxTypedGroup<Interactable>();
@@ -47,9 +46,9 @@ class PlayState extends BaseState
 		
 		bgColor = FlxColor.GRAY;
 
-		add(bg = new FlxSpriteExt(Paths.get("bg-outside-hotel.png")));
-
+		add(level_backgrounds);
 		add(levels);
+
 		add(shadows);
 		add(npcs);
 		add(presents);
@@ -65,7 +64,12 @@ class PlayState extends BaseState
 
 		FlxG.camera.target = player;
 
+		var bg:FlxObject = level_backgrounds.members[0];
+
+		trace(bg.x, bg.width, bg.y, bg.height);
+
 		FlxG.camera.setScrollBounds(bg.x, bg.width, bg.y, bg.height);
+
 		OnlineLoop.iterate();
 	}
 

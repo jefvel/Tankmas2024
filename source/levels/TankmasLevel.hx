@@ -11,6 +11,8 @@ class TankmasLevel extends LDTKLevel
 {
 	public var col:FlxTilemap;
 
+	public var bg:FlxSprite;
+
 	var level_name:String;
 
 	public function new(level_name:String, ?tilesheet_graphic:String)
@@ -27,7 +29,13 @@ class TankmasLevel extends LDTKLevel
 		//for (i in 0..._tileObjects.length)
 			//setTileProperties(i, FlxObject.NONE);
 
-		var data = get_level_by_name(level_name);
+		var data:LdtkProject_Level = get_level_by_name(level_name);
+
+		bg = new FlxSpriteExt(x, y, Paths.get(data.json.bgRelPath.split("/").last()));
+
+		trace(bg.x, bg.y, bg.width, bg.height);
+
+		PlayState.self.level_backgrounds.add(bg);
 
 		// col = new FlxTilemap();
 		// col.loadMapFromArray([for (i in 0...array_len) 1], lvl_width, lvl_height, graphic, tile_size, tile_size);
