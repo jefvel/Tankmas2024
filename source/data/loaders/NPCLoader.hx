@@ -62,7 +62,7 @@ class NPCLoader
 			states: parse_npc_states(npc_xml.tags("state"))
 		};
 
-		trace(haxe.Json.stringify(def, "\t"));
+		// trace(haxe.Json.stringify(def, "\t"));
 
 		return new NPCDef(def);
 	}

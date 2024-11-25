@@ -9,6 +9,7 @@ import haxe.Json;
 import haxe.xml.Access;
 import json2object.JsonParser;
 import json2object.reader.BaseParser;
+import levels.LdtkProject;
 import openfl.Assets;
 import openfl.display3D.textures.Texture;
 import states.PlayState;
@@ -29,13 +30,9 @@ class Lists
 
 	public static var dlg_files:Map<String, Array<String>> = [];
 
-	#if ldtk
 	public static var ldtk_project:LdtkProject = new LdtkProject();
-	#end
-
 
 	public static var npcs:Map<String, NPCDef> = [];
-
 
 	static var assets_path(get, never):String;
 

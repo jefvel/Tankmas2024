@@ -6,9 +6,11 @@ import entities.Player;
 import entities.Present;
 import entities.base.BaseUser;
 import entities.base.NGSprite;
+import flixel.addons.editors.ogmo.FlxOgmo3Loader.LevelData;
 import fx.StickerFX;
 import fx.Thumbnail;
 import haxe.display.Protocol.HaxeRequestMethod;
+import levels.TankmasLevel;
 import net.tankmas.OnlineLoop;
 import states.substates.SheetSubstate;
 import ui.DialogueBox;
@@ -31,6 +33,8 @@ class PlayState extends BaseState
 	public var dialogues:FlxTypedGroup<DialogueBox> = new FlxTypedGroup<DialogueBox>();
 	public var npcs:FlxTypedGroup<NPC> = new FlxTypedGroup<NPC>();
 
+	public var levels:FlxTypedGroup<TankmasLevel> = new FlxTypedGroup<TankmasLevel>();
+
 	/**Do not add to state*/
 	public var interactables:FlxTypedGroup<Interactable> = new FlxTypedGroup<Interactable>();
 
@@ -45,6 +49,7 @@ class PlayState extends BaseState
 
 		add(bg = new FlxSpriteExt(Paths.get("bg-outside-hotel.png")));
 
+		add(levels);
 		add(shadows);
 		add(npcs);
 		add(presents);
@@ -56,13 +61,7 @@ class PlayState extends BaseState
 
 		// add(new DialogueBox(Lists.npcs.get("thomas").get_state_dlg("default")));
 
-		new Player();
-		
-		player.center_on(bg);
-
-		new Present();
-
-		new NPC(player.x - 150, player.y, "thomas");
+		make_world();
 
 		FlxG.camera.target = player;
 
@@ -87,5 +86,10 @@ class PlayState extends BaseState
 	{
 		self = null;
 		super.destroy();
+	}
+	function make_world()
+	{
+		var level:TankmasLevel = new TankmasLevel("hotel_courtyard");
+		level.place_entities();
 	}
 }
