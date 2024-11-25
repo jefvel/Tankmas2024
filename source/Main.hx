@@ -3,6 +3,7 @@ package;
 import Paths.Manifest;
 import data.loaders.NPCLoader;
 import flixel.FlxGame;
+import levels.LdtkProject;
 import openfl.display.Sprite;
 
 class Main extends Sprite
@@ -12,6 +13,8 @@ class Main extends Sprite
 	public static var current_room_id:String = "1";
 	
 	public static var DEV:Bool = #if dev true #else false #end;
+
+	public static var ldtk_project:LdtkProject = new LdtkProject();
 
 	public function new()
 	{

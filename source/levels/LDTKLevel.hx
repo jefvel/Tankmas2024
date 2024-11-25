@@ -1,8 +1,7 @@
-#if ldtk
 package levels;
 
-import LdtkProject.LdtkProject_Level;
 import flixel.tile.FlxTilemap;
+import levels.LdtkProject.LdtkProject_Level;
 
 class LDTKLevel extends FlxTilemap
 {
@@ -18,8 +17,10 @@ class LDTKLevel extends FlxTilemap
 		generate(level_name, graphic);
 	}
 
-	function generate(level_name:String, graphic:String)
+	function generate(level_name:String, tilesheet_graphic:String)
 	{
+		if (graphic == null)
+			return;
 		var data:LdtkProject_Level = get_level_by_name(level_name);
 
 		lvl_width = Math.floor(data.pxWid / tile_size);
@@ -51,15 +52,16 @@ class LDTKLevel extends FlxTilemap
 			}
 
 		array_len = int_grid.length;
-		loadMapFromArray(int_grid, lvl_width, lvl_height, graphic, tile_size, tile_size);
+		loadMapFromArray(int_grid, lvl_width, lvl_height, tilesheet_graphic, tile_size, tile_size);
 	}
 
 	function get_level_by_name(level_name:String):LdtkProject_Level
 	{
-		for (data in Main.project.all_worlds.main.levels)
-			if (data.identifier == level_name)
-				return data;
+		for (world in Main.ldtk_project.worlds)
+			for (level in world.levels)
+				if (level.identifier == level_name)
+					return level;
 		throw "level does not exist by the name of '" + level_name + "'";
 	}
+
 }
-#end

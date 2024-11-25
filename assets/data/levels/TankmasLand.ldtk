@@ -11,14 +11,14 @@
 	"iid": "95f97850-73f0-11ef-9983-5dc181ef5475",
 	"jsonVersion": "1.5.4",
 	"appBuildId": 479150,
-	"nextUid": 13,
-	"identifierStyle": "Capitalize",
+	"nextUid": 14,
+	"identifierStyle": "Free",
 	"toc": [],
-	"worldLayout": "Free",
-	"worldGridWidth": 256,
-	"worldGridHeight": 256,
-	"defaultLevelWidth": 1920,
-	"defaultLevelHeight": 1080,
+	"worldLayout": null,
+	"worldGridWidth": null,
+	"worldGridHeight": null,
+	"defaultLevelWidth": null,
+	"defaultLevelHeight": null,
 	"defaultPivotX": 0,
 	"defaultPivotY": 0,
 	"defaultGridSize": 16,
@@ -34,13 +34,15 @@
 	"imageExportMode": "None",
 	"exportLevelBg": true,
 	"pngFilePattern": null,
-	"backupOnSave": false,
+	"backupOnSave": true,
 	"backupLimit": 10,
-	"backupRelPath": null,
+	"backupRelPath": "../../../../../../OneDrive/Pictures/LDTK/backups",
 	"levelNamePattern": "Level_%idx",
 	"tutorialDesc": null,
 	"customCommands": [],
-	"flags": [],
+	"flags": [
+		"MultiWorlds"
+	],
 	"defs": {
 		"layers": [
 			{
@@ -432,206 +434,484 @@
 		"externalEnums": [],
 		"levelFields": []
 	},
-	"levels": [
+	"levels": [],
+	"worlds": [
 		{
-			"identifier": "Level_0",
-			"iid": "95f99f60-73f0-11ef-9983-612730a885a0",
-			"uid": 0,
-			"worldX": 0,
-			"worldY": 0,
-			"worldDepth": 0,
-			"pxWid": 3284,
-			"pxHei": 3450,
-			"__bgColor": "#696A79",
-			"bgColor": null,
-			"useAutoIdentifier": true,
-			"bgRelPath": "../../Dropbox/Haxe/Tankmas 2024/assets/images/bgs/bg-outside-hotel.png",
-			"bgPos": "Cover",
-			"bgPivotX": 0.5,
-			"bgPivotY": 0.5,
-			"__smartColor": "#ADADB5",
-			"__bgPos": {
-				"topLeftPx": [
-					0,
-					0
-				],
-				"scale": [
-					1,
-					1
-				],
-				"cropRect": [
-					0,
-					0,
-					3284,
-					3450
-				]
-			},
-			"externalRelPath": null,
-			"fieldInstances": [],
-			"layerInstances": [
+			"iid": "95f97851-73f0-11ef-9983-cda8b61095c5",
+			"identifier": "outside_hotel",
+			"defaultLevelWidth": 1920,
+			"defaultLevelHeight": 1080,
+			"worldGridWidth": 256,
+			"worldGridHeight": 256,
+			"worldLayout": "Free",
+			"levels": [
 				{
-					"__identifier": "Entities",
-					"__type": "Entities",
-					"__cWid": 206,
-					"__cHei": 216,
-					"__gridSize": 16,
-					"__opacity": 1,
-					"__pxTotalOffsetX": 0,
-					"__pxTotalOffsetY": 0,
-					"__tilesetDefUid": null,
-					"__tilesetRelPath": null,
-					"iid": "1f4bee20-73f0-11ef-9983-a7372464c4f6",
-					"levelId": 0,
-					"layerDefUid": 8,
-					"pxOffsetX": 0,
-					"pxOffsetY": 0,
-					"visible": true,
-					"optionalRules": [],
-					"intGridCsv": [],
-					"autoLayerTiles": [],
-					"seed": 6759038,
-					"overrideTilesetUid": null,
-					"gridTiles": [],
-					"entityInstances": [
+					"identifier": "hotel_courtyard",
+					"iid": "95f99f60-73f0-11ef-9983-612730a885a0",
+					"uid": 0,
+					"worldX": 32,
+					"worldY": 16,
+					"worldDepth": 0,
+					"pxWid": 3284,
+					"pxHei": 3450,
+					"__bgColor": "#696A79",
+					"bgColor": null,
+					"useAutoIdentifier": false,
+					"bgRelPath": "../../images/bgs/bg-outside-hotel.png",
+					"bgPos": "Cover",
+					"bgPivotX": 0.5,
+					"bgPivotY": 0.5,
+					"__smartColor": "#ADADB5",
+					"__bgPos": {
+						"topLeftPx": [
+							0,
+							0
+						],
+						"scale": [
+							1,
+							1
+						],
+						"cropRect": [
+							0,
+							0,
+							3284,
+							3450
+						]
+					},
+					"externalRelPath": null,
+					"fieldInstances": [],
+					"layerInstances": [
 						{
-							"__identifier": "Player",
-							"__grid": [
-								72,
-								107
-							],
-							"__pivot": [
-								0,
-								0
-							],
-							"__tags": [],
-							"__tile": null,
-							"__smartColor": "#46BE2F",
-							"iid": "6bc75490-9b00-11ef-a0ea-9fe121c1b52e",
-							"width": 128,
-							"height": 128,
-							"defUid": 1,
-							"px": [
-								1152,
-								1712
-							],
-							"fieldInstances": [],
-							"__worldX": 1152,
-							"__worldY": 1712
-						},
-						{
-							"__identifier": "Present",
-							"__grid": [
-								96,
-								107
-							],
-							"__pivot": [
-								0,
-								0
-							],
-							"__tags": [],
-							"__tile": null,
-							"__smartColor": "#D74343",
-							"iid": "ad6ac440-9b00-11ef-a0ea-733c23a2ccb4",
-							"width": 128,
-							"height": 128,
-							"defUid": 2,
-							"px": [
-								1536,
-								1712
-							],
-							"fieldInstances": [
+							"__identifier": "Entities",
+							"__type": "Entities",
+							"__cWid": 206,
+							"__cHei": 216,
+							"__gridSize": 16,
+							"__opacity": 1,
+							"__pxTotalOffsetX": 0,
+							"__pxTotalOffsetY": 0,
+							"__tilesetDefUid": null,
+							"__tilesetRelPath": null,
+							"iid": "1f4bee20-73f0-11ef-9983-a7372464c4f6",
+							"levelId": 0,
+							"layerDefUid": 8,
+							"pxOffsetX": 0,
+							"pxOffsetY": 0,
+							"visible": true,
+							"optionalRules": [],
+							"intGridCsv": [],
+							"autoLayerTiles": [],
+							"seed": 6759038,
+							"overrideTilesetUid": null,
+							"gridTiles": [],
+							"entityInstances": [
 								{
-									"__identifier": "username",
-									"__type": "String",
-									"__value": null,
+									"__identifier": "Player",
+									"__grid": [
+										190,
+										188
+									],
+									"__pivot": [
+										0,
+										0
+									],
+									"__tags": [],
 									"__tile": null,
-									"defUid": 5,
-									"realEditorValues": []
+									"__smartColor": "#46BE2F",
+									"iid": "6bc75490-9b00-11ef-a0ea-9fe121c1b52e",
+									"width": 128,
+									"height": 128,
+									"defUid": 1,
+									"px": [
+										3040,
+										3008
+									],
+									"fieldInstances": [],
+									"__worldX": 3072,
+									"__worldY": 3024
 								},
 								{
-									"__identifier": "day",
-									"__type": "Int",
-									"__value": 1,
+									"__identifier": "Present",
+									"__grid": [
+										130,
+										104
+									],
+									"__pivot": [
+										0,
+										0
+									],
+									"__tags": [],
 									"__tile": null,
-									"defUid": 6,
-									"realEditorValues": []
-								}
-							],
-							"__worldX": 1536,
-							"__worldY": 1712
-						},
-						{
-							"__identifier": "NPC",
-							"__grid": [
-								86,
-								83
-							],
-							"__pivot": [
-								0,
-								0
-							],
-							"__tags": [],
-							"__tile": null,
-							"__smartColor": "#FF00D0",
-							"iid": "508ccf80-9b00-11ef-8eeb-1ff338d3010e",
-							"width": 104,
-							"height": 191,
-							"defUid": 10,
-							"px": [
-								1376,
-								1328
-							],
-							"fieldInstances": [
-								{
-									"__identifier": "name",
-									"__type": "String",
-									"__value": "thomas",
-									"__tile": null,
-									"defUid": 11,
-									"realEditorValues": [
+									"__smartColor": "#D74343",
+									"iid": "ad6ac440-9b00-11ef-a0ea-733c23a2ccb4",
+									"width": 128,
+									"height": 128,
+									"defUid": 2,
+									"px": [
+										2080,
+										1664
+									],
+									"fieldInstances": [
 										{
-											"id": "V_String",
-											"params": [
-												"thomas"
+											"__identifier": "username",
+											"__type": "String",
+											"__value": null,
+											"__tile": null,
+											"defUid": 5,
+											"realEditorValues": []
+										},
+										{
+											"__identifier": "day",
+											"__type": "Int",
+											"__value": 1,
+											"__tile": null,
+											"defUid": 6,
+											"realEditorValues": []
+										}
+									],
+									"__worldX": 2112,
+									"__worldY": 1680
+								},
+								{
+									"__identifier": "NPC",
+									"__grid": [
+										100,
+										103
+									],
+									"__pivot": [
+										0,
+										0
+									],
+									"__tags": [],
+									"__tile": null,
+									"__smartColor": "#FF00D0",
+									"iid": "508ccf80-9b00-11ef-8eeb-1ff338d3010e",
+									"width": 104,
+									"height": 191,
+									"defUid": 10,
+									"px": [
+										1600,
+										1648
+									],
+									"fieldInstances": [
+										{
+											"__identifier": "name",
+											"__type": "String",
+											"__value": "thomas",
+											"__tile": null,
+											"defUid": 11,
+											"realEditorValues": [
+												{
+													"id": "V_String",
+													"params": [
+														"thomas"
+													]
+												}
 											]
 										}
-									]
+									],
+									"__worldX": 1632,
+									"__worldY": 1664
 								}
-							],
-							"__worldX": 1376,
-							"__worldY": 1328
+							]
+						},
+						{
+							"__identifier": "Tiles",
+							"__type": "Tiles",
+							"__cWid": 206,
+							"__cHei": 216,
+							"__gridSize": 16,
+							"__opacity": 1,
+							"__pxTotalOffsetX": 0,
+							"__pxTotalOffsetY": 0,
+							"__tilesetDefUid": 4,
+							"__tilesetRelPath": null,
+							"iid": "2119f760-73f0-11ef-9983-e99c931b1228",
+							"levelId": 0,
+							"layerDefUid": 9,
+							"pxOffsetX": 0,
+							"pxOffsetY": 0,
+							"visible": true,
+							"optionalRules": [],
+							"intGridCsv": [],
+							"autoLayerTiles": [],
+							"seed": 4217174,
+							"overrideTilesetUid": null,
+							"gridTiles": [],
+							"entityInstances": []
+						}
+					],
+					"__neighbours": [
+						{
+							"levelIid": "2ccc0570-9b00-11ef-afb8-5fdaf55d6f34",
+							"dir": "e"
 						}
 					]
 				},
 				{
-					"__identifier": "Tiles",
-					"__type": "Tiles",
-					"__cWid": 206,
-					"__cHei": 216,
-					"__gridSize": 16,
-					"__opacity": 1,
-					"__pxTotalOffsetX": 0,
-					"__pxTotalOffsetY": 0,
-					"__tilesetDefUid": 4,
-					"__tilesetRelPath": null,
-					"iid": "2119f760-73f0-11ef-9983-e99c931b1228",
-					"levelId": 0,
-					"layerDefUid": 9,
-					"pxOffsetX": 0,
-					"pxOffsetY": 0,
-					"visible": true,
-					"optionalRules": [],
-					"intGridCsv": [],
-					"autoLayerTiles": [],
-					"seed": 4217174,
-					"overrideTilesetUid": null,
-					"gridTiles": [],
-					"entityInstances": []
+					"identifier": "Level_1",
+					"iid": "2ccc0570-9b00-11ef-afb8-5fdaf55d6f34",
+					"uid": 13,
+					"worldX": 3316,
+					"worldY": 2266,
+					"worldDepth": 0,
+					"pxWid": 1920,
+					"pxHei": 1200,
+					"__bgColor": "#696A79",
+					"bgColor": null,
+					"useAutoIdentifier": true,
+					"bgRelPath": "../../images/bgs/temp/bliss.png",
+					"bgPos": "Cover",
+					"bgPivotX": 0.5,
+					"bgPivotY": 0.5,
+					"__smartColor": "#ADADB5",
+					"__bgPos": {
+						"topLeftPx": [
+							0,
+							0
+						],
+						"scale": [
+							1,
+							1
+						],
+						"cropRect": [
+							0,
+							0,
+							1920,
+							1200
+						]
+					},
+					"externalRelPath": null,
+					"fieldInstances": [],
+					"layerInstances": [
+						{
+							"__identifier": "Entities",
+							"__type": "Entities",
+							"__cWid": 120,
+							"__cHei": 75,
+							"__gridSize": 16,
+							"__opacity": 1,
+							"__pxTotalOffsetX": 0,
+							"__pxTotalOffsetY": 0,
+							"__tilesetDefUid": null,
+							"__tilesetRelPath": null,
+							"iid": "2ccc0571-9b00-11ef-afb8-f1a6a4bede33",
+							"levelId": 13,
+							"layerDefUid": 8,
+							"pxOffsetX": 0,
+							"pxOffsetY": 0,
+							"visible": true,
+							"optionalRules": [],
+							"intGridCsv": [],
+							"autoLayerTiles": [],
+							"seed": 4299228,
+							"overrideTilesetUid": null,
+							"gridTiles": [],
+							"entityInstances": [
+								{
+									"__identifier": "NPC",
+									"__grid": [
+										78,
+										9
+									],
+									"__pivot": [
+										0,
+										0
+									],
+									"__tags": [],
+									"__tile": null,
+									"__smartColor": "#FF00D0",
+									"iid": "73214090-9b00-11ef-afb8-eb1b9c847c00",
+									"width": 128,
+									"height": 128,
+									"defUid": 10,
+									"px": [
+										1248,
+										144
+									],
+									"fieldInstances": [
+										{
+											"__identifier": "name",
+											"__type": "String",
+											"__value": "thomas",
+											"__tile": null,
+											"defUid": 11,
+											"realEditorValues": [
+												{
+													"id": "V_String",
+													"params": [
+														"thomas"
+													]
+												}
+											]
+										}
+									],
+									"__worldX": 4564,
+									"__worldY": 2410
+								},
+								{
+									"__identifier": "Present",
+									"__grid": [
+										7,
+										61
+									],
+									"__pivot": [
+										0,
+										0
+									],
+									"__tags": [],
+									"__tile": null,
+									"__smartColor": "#D74343",
+									"iid": "76381d80-9b00-11ef-afb8-ad53245af83f",
+									"width": 128,
+									"height": 128,
+									"defUid": 2,
+									"px": [
+										112,
+										976
+									],
+									"fieldInstances": [
+										{
+											"__identifier": "username",
+											"__type": "String",
+											"__value": null,
+											"__tile": null,
+											"defUid": 5,
+											"realEditorValues": []
+										},
+										{
+											"__identifier": "day",
+											"__type": "Int",
+											"__value": 1,
+											"__tile": null,
+											"defUid": 6,
+											"realEditorValues": []
+										}
+									],
+									"__worldX": 3428,
+									"__worldY": 3242
+								},
+								{
+									"__identifier": "Present",
+									"__grid": [
+										47,
+										61
+									],
+									"__pivot": [
+										0,
+										0
+									],
+									"__tags": [],
+									"__tile": null,
+									"__smartColor": "#D74343",
+									"iid": "8d9b0dc0-9b00-11ef-afb8-5168467a0161",
+									"width": 128,
+									"height": 128,
+									"defUid": 2,
+									"px": [
+										752,
+										976
+									],
+									"fieldInstances": [
+										{
+											"__identifier": "username",
+											"__type": "String",
+											"__value": null,
+											"__tile": null,
+											"defUid": 5,
+											"realEditorValues": []
+										},
+										{
+											"__identifier": "day",
+											"__type": "Int",
+											"__value": 1,
+											"__tile": null,
+											"defUid": 6,
+											"realEditorValues": []
+										}
+									],
+									"__worldX": 4068,
+									"__worldY": 3242
+								},
+								{
+									"__identifier": "Present",
+									"__grid": [
+										26,
+										28
+									],
+									"__pivot": [
+										0,
+										0
+									],
+									"__tags": [],
+									"__tile": null,
+									"__smartColor": "#D74343",
+									"iid": "911f7990-9b00-11ef-afb8-db8c0ae4b18e",
+									"width": 128,
+									"height": 128,
+									"defUid": 2,
+									"px": [
+										416,
+										448
+									],
+									"fieldInstances": [
+										{
+											"__identifier": "username",
+											"__type": "String",
+											"__value": null,
+											"__tile": null,
+											"defUid": 5,
+											"realEditorValues": []
+										},
+										{
+											"__identifier": "day",
+											"__type": "Int",
+											"__value": 1,
+											"__tile": null,
+											"defUid": 6,
+											"realEditorValues": []
+										}
+									],
+									"__worldX": 3732,
+									"__worldY": 2714
+								}
+							]
+						},
+						{
+							"__identifier": "Tiles",
+							"__type": "Tiles",
+							"__cWid": 120,
+							"__cHei": 75,
+							"__gridSize": 16,
+							"__opacity": 1,
+							"__pxTotalOffsetX": 0,
+							"__pxTotalOffsetY": 0,
+							"__tilesetDefUid": 4,
+							"__tilesetRelPath": null,
+							"iid": "2ccc2c80-9b00-11ef-afb8-8bfb7fe88318",
+							"levelId": 13,
+							"layerDefUid": 9,
+							"pxOffsetX": 0,
+							"pxOffsetY": 0,
+							"visible": true,
+							"optionalRules": [],
+							"intGridCsv": [],
+							"autoLayerTiles": [],
+							"seed": 6866671,
+							"overrideTilesetUid": null,
+							"gridTiles": [],
+							"entityInstances": []
+						}
+					],
+					"__neighbours": [
+						{
+							"levelIid": "95f99f60-73f0-11ef-9983-612730a885a0",
+							"dir": "w"
+						}
+					]
 				}
-			],
-			"__neighbours": []
+			]
 		}
 	],
-	"worlds": [],
 	"dummyWorldIid": "95f97851-73f0-11ef-9983-cda8b61095c5"
 }

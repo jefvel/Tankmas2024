@@ -43,8 +43,6 @@ class Player extends BaseUser
 		sprite_anim.anim(PlayerAnimation.MOVING);
 
 		sstate(NEUTRAL);
-
-		screenCenter();
 	}
 
 	function debug_rotate_costumes()

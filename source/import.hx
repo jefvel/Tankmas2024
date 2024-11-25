@@ -28,7 +28,3 @@ using squid.util.SysUtils;
 using squid.util.Utils;
 using squid.util.XmlUtils;
 
-#if ldtk
-import levels.LdtkLevel;
-import levels.Level;
-#end

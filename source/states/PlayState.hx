@@ -6,9 +6,12 @@ import entities.Player;
 import entities.Present;
 import entities.base.BaseUser;
 import entities.base.NGSprite;
+import flixel.addons.editors.ogmo.FlxOgmo3Loader.LevelData;
 import fx.StickerFX;
 import fx.Thumbnail;
 import haxe.display.Protocol.HaxeRequestMethod;
+import levels.LDTKLevel;
+import levels.TankmasLevel;
 import net.tankmas.OnlineLoop;
 import states.substates.SheetSubstate;
 import ui.DialogueBox;
@@ -19,8 +22,6 @@ class PlayState extends BaseState
 {
 	public static var self:PlayState;
 
-	var bg:FlxSpriteExt;
-
 	public var player:Player;
 	public var users:FlxTypedGroup<BaseUser> = new FlxTypedGroup<BaseUser>();
 	public var presents:FlxTypedGroup<Present> = new FlxTypedGroup<Present>();
@@ -30,6 +31,9 @@ class PlayState extends BaseState
 	public var sticker_fx:FlxTypedGroup<NGSprite> = new FlxTypedGroup<NGSprite>();
 	public var dialogues:FlxTypedGroup<DialogueBox> = new FlxTypedGroup<DialogueBox>();
 	public var npcs:FlxTypedGroup<NPC> = new FlxTypedGroup<NPC>();
+
+	public var levels:FlxTypedGroup<TankmasLevel> = new FlxTypedGroup<TankmasLevel>();
+	public var level_backgrounds:FlxTypedGroup<FlxSprite> = new FlxTypedGroup<FlxSprite>();
 
 	/**Do not add to state*/
 	public var interactables:FlxTypedGroup<Interactable> = new FlxTypedGroup<Interactable>();
@@ -43,7 +47,8 @@ class PlayState extends BaseState
 		
 		bgColor = FlxColor.GRAY;
 
-		add(bg = new FlxSpriteExt(Paths.get("bg-outside-hotel.png")));
+		add(level_backgrounds);
+		add(levels);
 
 		add(shadows);
 		add(npcs);
@@ -56,17 +61,14 @@ class PlayState extends BaseState
 
 		// add(new DialogueBox(Lists.npcs.get("thomas").get_state_dlg("default")));
 
-		new Player();
-		
-		player.center_on(bg);
-
-		new Present();
-
-		new NPC(player.x - 150, player.y, "thomas");
+		make_world();
 
 		FlxG.camera.target = player;
 
-		FlxG.camera.setScrollBounds(bg.x, bg.width, bg.y, bg.height);
+		var bg:FlxObject = level_backgrounds.members[0];
+
+		// FlxG.camera.setScrollBounds(bg.x, bg.width, bg.y, bg.height);
+
 		OnlineLoop.iterate();
 	}
 
@@ -87,5 +89,11 @@ class PlayState extends BaseState
 	{
 		self = null;
 		super.destroy();
+	}
+	function make_world()
+	{
+		TankmasLevel.make_all_levels_in_world("outside_hotel");
+		for (level in levels)
+			level.place_entities();
 	}
 }

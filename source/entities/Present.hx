@@ -23,8 +23,6 @@ class Present extends Interactable
 
 		PlayState.self.presents.add(this);
 
-		this.center_on(PlayState.self.player);
-		x += 500;
 		if (!opened)
 		{
 			sprite_anim.anim(PresentAnimation.IDLE);
