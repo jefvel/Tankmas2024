@@ -26,7 +26,7 @@ class Interactable extends NGSprite
 
 		if (interactables_with_distance.length > 0)
 		{
-			interactables_with_distance.sort((a, b) -> a.distance > b.distance ? 1 : -1); // might be other way around
+			interactables_with_distance.sort((a, b) -> a.distance > b.distance ? -1 : 1); // might be other way around
 			return interactables_with_distance.pop().interactable; // or this might be shift
 		}
 

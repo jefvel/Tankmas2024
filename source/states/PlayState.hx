@@ -10,6 +10,7 @@ import flixel.addons.editors.ogmo.FlxOgmo3Loader.LevelData;
 import fx.StickerFX;
 import fx.Thumbnail;
 import haxe.display.Protocol.HaxeRequestMethod;
+import levels.LDTKLevel;
 import levels.TankmasLevel;
 import net.tankmas.OnlineLoop;
 import states.substates.SheetSubstate;
@@ -66,9 +67,7 @@ class PlayState extends BaseState
 
 		var bg:FlxObject = level_backgrounds.members[0];
 
-		trace(bg.x, bg.width, bg.y, bg.height);
-
-		FlxG.camera.setScrollBounds(bg.x, bg.width, bg.y, bg.height);
+		// FlxG.camera.setScrollBounds(bg.x, bg.width, bg.y, bg.height);
 
 		OnlineLoop.iterate();
 	}
@@ -93,7 +92,8 @@ class PlayState extends BaseState
 	}
 	function make_world()
 	{
-		var level:TankmasLevel = new TankmasLevel("hotel_courtyard");
-		level.place_entities();
+		TankmasLevel.make_all_levels_in_world("outside_hotel");
+		for (level in levels)
+			level.place_entities();
 	}
 }

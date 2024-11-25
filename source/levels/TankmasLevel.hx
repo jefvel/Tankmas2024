@@ -26,10 +26,14 @@ class TankmasLevel extends LDTKLevel
 
 		super.generate(level_name, tilesheet_graphic);
 
+
 		//for (i in 0..._tileObjects.length)
 			//setTileProperties(i, FlxObject.NONE);
 
 		var data:LdtkProject_Level = get_level_by_name(level_name);
+
+		setPosition(data.worldX, data.worldY);
+
 
 		bg = new FlxSpriteExt(x, y, Paths.get(data.json.bgRelPath.split("/").last()));
 
@@ -65,5 +69,16 @@ class TankmasLevel extends LDTKLevel
 				for (entity in data.l_Entities.all_Boy.iterator())
 					new Boy(x + entity.pixelX, y + entity.pixelY);
 		 */
+	}
+	public static function make_all_levels_in_world(world_name:String):Array<TankmasLevel>
+	{
+		var array:Array<TankmasLevel> = [];
+
+		for (world in Main.ldtk_project.worlds)
+			if (world.identifier == world_name)
+				for (level in world.levels)
+					array.push(new TankmasLevel(level.identifier));
+
+		return array;
 	}
 }
