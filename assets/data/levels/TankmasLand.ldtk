@@ -11,7 +11,7 @@
 	"iid": "95f97850-73f0-11ef-9983-5dc181ef5475",
 	"jsonVersion": "1.5.4",
 	"appBuildId": 479150,
-	"nextUid": 14,
+	"nextUid": 18,
 	"identifierStyle": "Free",
 	"toc": [],
 	"worldLayout": null,
@@ -407,6 +407,116 @@
 						"tilesetUid": null
 					}
 				]
+			},
+			{
+				"identifier": "Door",
+				"uid": 14,
+				"tags": [],
+				"exportToToc": false,
+				"allowOutOfBounds": false,
+				"doc": null,
+				"width": 48,
+				"height": 48,
+				"resizableX": true,
+				"resizableY": true,
+				"minWidth": 48,
+				"maxWidth": null,
+				"minHeight": 48,
+				"maxHeight": null,
+				"keepAspectRatio": false,
+				"tileOpacity": 1,
+				"fillOpacity": 1,
+				"lineOpacity": 1,
+				"hollow": true,
+				"color": "#FFF100",
+				"renderMode": "Rectangle",
+				"showName": true,
+				"tilesetId": null,
+				"tileRenderMode": "FitInside",
+				"tileRect": null,
+				"uiTileRect": null,
+				"nineSliceBorders": [],
+				"maxCount": 0,
+				"limitScope": "PerLevel",
+				"limitBehavior": "MoveLastOne",
+				"pivotX": 0,
+				"pivotY": 0,
+				"fieldDefs": [
+					{
+						"identifier": "linked_door",
+						"doc": null,
+						"__type": "EntityRef",
+						"uid": 16,
+						"type": "F_EntityRef",
+						"isArray": false,
+						"canBeNull": true,
+						"arrayMinLength": null,
+						"arrayMaxLength": null,
+						"editorDisplayMode": "RefLinkBetweenCenters",
+						"editorDisplayScale": 1,
+						"editorDisplayPos": "Above",
+						"editorLinkStyle": "CurvedArrow",
+						"editorDisplayColor": null,
+						"editorAlwaysShow": false,
+						"editorShowInWorld": true,
+						"editorCutLongValues": true,
+						"editorTextSuffix": null,
+						"editorTextPrefix": null,
+						"useForSmartColor": false,
+						"exportToToc": false,
+						"searchable": false,
+						"min": null,
+						"max": null,
+						"regex": null,
+						"acceptFileTypes": null,
+						"defaultOverride": null,
+						"textLanguageMode": null,
+						"symmetricalRef": true,
+						"autoChainRef": false,
+						"allowOutOfLevelRef": true,
+						"allowedRefs": "OnlySame",
+						"allowedRefsEntityUid": null,
+						"allowedRefTags": [],
+						"tilesetUid": null
+					},
+					{
+						"identifier": "spawn",
+						"doc": null,
+						"__type": "Point",
+						"uid": 17,
+						"type": "F_Point",
+						"isArray": false,
+						"canBeNull": false,
+						"arrayMinLength": null,
+						"arrayMaxLength": null,
+						"editorDisplayMode": "PointPath",
+						"editorDisplayScale": 1,
+						"editorDisplayPos": "Above",
+						"editorLinkStyle": "StraightArrow",
+						"editorDisplayColor": null,
+						"editorAlwaysShow": false,
+						"editorShowInWorld": true,
+						"editorCutLongValues": true,
+						"editorTextSuffix": null,
+						"editorTextPrefix": null,
+						"useForSmartColor": false,
+						"exportToToc": false,
+						"searchable": false,
+						"min": null,
+						"max": null,
+						"regex": null,
+						"acceptFileTypes": null,
+						"defaultOverride": null,
+						"textLanguageMode": null,
+						"symmetricalRef": false,
+						"autoChainRef": true,
+						"allowOutOfLevelRef": true,
+						"allowedRefs": "OnlySame",
+						"allowedRefsEntityUid": null,
+						"allowedRefTags": [],
+						"tilesetUid": null
+					}
+				]
 			}
 		],
 		"tilesets": [
@@ -508,8 +618,8 @@
 								{
 									"__identifier": "Player",
 									"__grid": [
-										190,
-										188
+										115,
+										128
 									],
 									"__pivot": [
 										0,
@@ -523,12 +633,12 @@
 									"height": 128,
 									"defUid": 1,
 									"px": [
-										3040,
-										3008
+										1840,
+										2048
 									],
 									"fieldInstances": [],
-									"__worldX": 3072,
-									"__worldY": 3024
+									"__worldX": 1872,
+									"__worldY": 2064
 								},
 								{
 									"__identifier": "Present",
@@ -612,6 +722,70 @@
 									],
 									"__worldX": 1632,
 									"__worldY": 1664
+								},
+								{
+									"__identifier": "Door",
+									"__grid": [
+										168,
+										129
+									],
+									"__pivot": [
+										0,
+										0
+									],
+									"__tags": [],
+									"__tile": null,
+									"__smartColor": "#FFF100",
+									"iid": "f3c8b250-9b00-11ef-9354-3f2472078c53",
+									"width": 128,
+									"height": 336,
+									"defUid": 14,
+									"px": [
+										2688,
+										2064
+									],
+									"fieldInstances": [
+										{
+											"__identifier": "linked_door",
+											"__type": "EntityRef",
+											"__value": {
+												"entityIid": "99315cb0-9b00-11ef-967e-e1adc4478bbe",
+												"layerIid": "0b13d4d2-9b00-11ef-9354-9d2ed3d4a6a1",
+												"levelIid": "0b13d4d1-9b00-11ef-9354-cb54b317af20",
+												"worldIid": "0b13d4d0-9b00-11ef-9354-a71a8f29f283"
+											},
+											"__tile": null,
+											"defUid": 16,
+											"realEditorValues": [
+												{
+													"id": "V_String",
+													"params": [
+														"99315cb0-9b00-11ef-967e-e1adc4478bbe"
+													]
+												}
+											]
+										},
+										{
+											"__identifier": "spawn",
+											"__type": "Point",
+											"__value": {
+												"cx": 151,
+												"cy": 141
+											},
+											"__tile": null,
+											"defUid": 17,
+											"realEditorValues": [
+												{
+													"id": "V_String",
+													"params": [
+														"151,141"
+													]
+												}
+											]
+										}
+									],
+									"__worldX": 2720,
+									"__worldY": 2080
 								}
 							]
 						},
@@ -909,6 +1083,196 @@
 							"dir": "w"
 						}
 					]
+				}
+			]
+		},
+		{
+			"iid": "0b13d4d0-9b00-11ef-9354-a71a8f29f283",
+			"identifier": "World",
+			"defaultLevelWidth": 256,
+			"defaultLevelHeight": 256,
+			"worldGridWidth": 256,
+			"worldGridHeight": 256,
+			"worldLayout": "Free",
+			"levels": [
+				{
+					"identifier": "hotel_interior",
+					"iid": "0b13d4d1-9b00-11ef-9354-cb54b317af20",
+					"uid": 15,
+					"worldX": 0,
+					"worldY": 0,
+					"worldDepth": 0,
+					"pxWid": 2048,
+					"pxHei": 2048,
+					"__bgColor": "#696A79",
+					"bgColor": null,
+					"useAutoIdentifier": false,
+					"bgRelPath": "../../images/bgs/temp/hotel-interior.png",
+					"bgPos": "Cover",
+					"bgPivotX": 0.5,
+					"bgPivotY": 0.5,
+					"__smartColor": "#ADADB5",
+					"__bgPos": {
+						"topLeftPx": [
+							0,
+							0
+						],
+						"scale": [
+							1,
+							1
+						],
+						"cropRect": [
+							0,
+							0,
+							2048,
+							2048
+						]
+					},
+					"externalRelPath": null,
+					"fieldInstances": [],
+					"layerInstances": [
+						{
+							"__identifier": "Entities",
+							"__type": "Entities",
+							"__cWid": 128,
+							"__cHei": 128,
+							"__gridSize": 16,
+							"__opacity": 1,
+							"__pxTotalOffsetX": 0,
+							"__pxTotalOffsetY": 0,
+							"__tilesetDefUid": null,
+							"__tilesetRelPath": null,
+							"iid": "0b13d4d2-9b00-11ef-9354-9d2ed3d4a6a1",
+							"levelId": 15,
+							"layerDefUid": 8,
+							"pxOffsetX": 0,
+							"pxOffsetY": 0,
+							"visible": true,
+							"optionalRules": [],
+							"intGridCsv": [],
+							"autoLayerTiles": [],
+							"seed": 6119033,
+							"overrideTilesetUid": null,
+							"gridTiles": [],
+							"entityInstances": [
+								{
+									"__identifier": "Player",
+									"__grid": [
+										60,
+										26
+									],
+									"__pivot": [
+										0,
+										0
+									],
+									"__tags": [],
+									"__tile": null,
+									"__smartColor": "#46BE2F",
+									"iid": "4f3f7600-9b00-11ef-9354-1359e3d6d97f",
+									"width": 128,
+									"height": 128,
+									"defUid": 1,
+									"px": [
+										960,
+										416
+									],
+									"fieldInstances": [],
+									"__worldX": 960,
+									"__worldY": 416
+								},
+								{
+									"__identifier": "Door",
+									"__grid": [
+										57,
+										5
+									],
+									"__pivot": [
+										0,
+										0
+									],
+									"__tags": [],
+									"__tile": null,
+									"__smartColor": "#FFF100",
+									"iid": "99315cb0-9b00-11ef-967e-e1adc4478bbe",
+									"width": 224,
+									"height": 80,
+									"defUid": 14,
+									"px": [
+										912,
+										80
+									],
+									"fieldInstances": [
+										{
+											"__identifier": "linked_door",
+											"__type": "EntityRef",
+											"__value": {
+												"entityIid": "f3c8b250-9b00-11ef-9354-3f2472078c53",
+												"layerIid": "1f4bee20-73f0-11ef-9983-a7372464c4f6",
+												"levelIid": "95f99f60-73f0-11ef-9983-612730a885a0",
+												"worldIid": "95f97851-73f0-11ef-9983-cda8b61095c5"
+											},
+											"__tile": null,
+											"defUid": 16,
+											"realEditorValues": [
+												{
+													"id": "V_String",
+													"params": [
+														"f3c8b250-9b00-11ef-9354-3f2472078c53"
+													]
+												}
+											]
+										},
+										{
+											"__identifier": "spawn",
+											"__type": "Point",
+											"__value": {
+												"cx": 64,
+												"cy": 22
+											},
+											"__tile": null,
+											"defUid": 17,
+											"realEditorValues": [
+												{
+													"id": "V_String",
+													"params": [
+														"64,22"
+													]
+												}
+											]
+										}
+									],
+									"__worldX": 912,
+									"__worldY": 80
+								}
+							]
+						},
+						{
+							"__identifier": "Tiles",
+							"__type": "Tiles",
+							"__cWid": 128,
+							"__cHei": 128,
+							"__gridSize": 16,
+							"__opacity": 1,
+							"__pxTotalOffsetX": 0,
+							"__pxTotalOffsetY": 0,
+							"__tilesetDefUid": 4,
+							"__tilesetRelPath": null,
+							"iid": "0b13d4d3-9b00-11ef-9354-891d49a8af30",
+							"levelId": 15,
+							"layerDefUid": 9,
+							"pxOffsetX": 0,
+							"pxOffsetY": 0,
+							"visible": true,
+							"optionalRules": [],
+							"intGridCsv": [],
+							"autoLayerTiles": [],
+							"seed": 5200960,
+							"overrideTilesetUid": null,
+							"gridTiles": [],
+							"entityInstances": []
+						}
+					],
+					"__neighbours": []
 				}
 			]
 		}
