@@ -12,8 +12,9 @@ class SoundPlayer
 
 	public static function init() {}
 
-	public static function sound(sound_asset:FlxSoundAsset, vol:Float = 1):FlxSound
+	public static function sound(sound_asset:String, vol:Float = 1):FlxSound
 	{
+		sound_asset = sound_asset.replace(".ogg", "");
 		var return_sound:FlxSound = FlxG.sound.play(Paths.get('${sound_asset}.ogg'), SOUND_VOLUME * vol);
 		return return_sound;
 	}

@@ -1,6 +1,7 @@
 package states;
 
 import flixel.FlxState;
+import sound.RadioManager;
 #if gif
 import squid.recorder.GifRecorder;
 #end
@@ -11,6 +12,8 @@ class BaseState extends FlxState
 	var state:String = "";
 
 	static var FIRST_RUN:Bool = true;
+
+	var radio:RadioManager;
 
 	public function new()
 	{
@@ -23,6 +26,7 @@ class BaseState extends FlxState
 			FlxG.game.stage.quality = openfl.display.StageQuality.LOW;
 			FlxG.stage.window.borderless = true;
 			FIRST_RUN = false;
+			radio = new RadioManager();
 		}
 	}
 
