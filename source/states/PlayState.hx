@@ -16,11 +16,16 @@ import net.tankmas.OnlineLoop;
 import states.substates.SheetSubstate;
 import ui.DialogueBox;
 import ui.sheets.CostumeSelectSheet;
+import zones.Door;
 
 
 class PlayState extends BaseState
 {
 	public static var self:PlayState;
+
+	static final default_world:String = "outside_hotel";
+
+	var current_world:String;
 
 	public var player:Player;
 	public var users:FlxTypedGroup<BaseUser> = new FlxTypedGroup<BaseUser>();
@@ -37,6 +42,14 @@ class PlayState extends BaseState
 
 	/**Do not add to state*/
 	public var interactables:FlxTypedGroup<Interactable> = new FlxTypedGroup<Interactable>();
+
+	public var doors:FlxTypedGroup<Door> = new FlxTypedGroup<Door>();
+
+	public function new(?world_to_load:String)
+	{
+		current_world = world_to_load == null ? default_world : world_to_load;
+		super();
+	}
 
 	override public function create()
 	{
@@ -58,6 +71,8 @@ class PlayState extends BaseState
 		add(stickers);
 		add(sticker_fx);
 		add(dialogues);
+
+		add(doors);
 
 		// add(new DialogueBox(Lists.npcs.get("thomas").get_state_dlg("default")));
 
@@ -92,7 +107,7 @@ class PlayState extends BaseState
 	}
 	function make_world()
 	{
-		TankmasLevel.make_all_levels_in_world("outside_hotel");
+		TankmasLevel.make_all_levels_in_world(current_world);
 		for (level in levels)
 			level.place_entities();
 	}

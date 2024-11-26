@@ -6,6 +6,7 @@ import entities.Present;
 import flixel.tile.FlxTilemap;
 import levels.LDTKLevel;
 import levels.LdtkProject.LdtkProject_Level;
+import zones.Door;
 
 class TankmasLevel extends LDTKLevel
 {
@@ -34,10 +35,7 @@ class TankmasLevel extends LDTKLevel
 
 		setPosition(data.worldX, data.worldY);
 
-
 		bg = new FlxSpriteExt(x, y, Paths.get(data.json.bgRelPath.split("/").last()));
-
-		trace(bg.x, bg.y, bg.width, bg.height);
 
 		PlayState.self.level_backgrounds.add(bg);
 
@@ -50,18 +48,26 @@ class TankmasLevel extends LDTKLevel
 
 	public function place_entities()
 	{
-		var data:LdtkProject_Level = get_level_by_name(level_name);
+		var level:LdtkProject_Level = get_level_by_name(level_name);
 
-		for(entity in data.l_Entities.all_Player.iterator()){
+		for (entity in level.l_Entities.all_Player.iterator())
+		{
 			new Player(x + entity.pixelX, y + entity.pixelY);
 		}
 
-		for(entity in data.l_Entities.all_NPC.iterator()){
+		for (entity in level.l_Entities.all_NPC.iterator())
+		{
 			new NPC(x + entity.pixelX, y + entity.pixelY, entity.f_name);
 		}
 
-		for(entity in data.l_Entities.all_Present.iterator()){
+		for (entity in level.l_Entities.all_Present.iterator())
+		{
 			new Present(x + entity.pixelX, y + entity.pixelY);
+		}
+		for (entity in level.l_Entities.all_Door.iterator())
+		{
+			var spawn:FlxPoint = new FlxPoint(x + entity.f_spawn.cx * 16, y + entity.f_spawn.cy * 16);
+			new Door(x + entity.pixelX, y + entity.pixelY, entity.width, entity.height, entity.f_linked_door, spawn, entity.iid);
 		}
 		/**put entity iterators here**/
 		/* 
