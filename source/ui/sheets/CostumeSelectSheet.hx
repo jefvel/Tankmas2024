@@ -9,14 +9,16 @@ class CostumeSelectSheet extends BaseSelectSheet
 	static var saved_sheet:Int = 0;
 
 	public function new()
-		super(saved_sheet);
+		super(saved_sheet, COSTUME);
 
 	override function make_sheet_collection():SheetFileDef
 		return haxe.Json.parse(Utils.load_file_string('costume-sheets.json'));
+
 	override function kill()
 	{
+		// TODO: save currently-selected costume
 		// missing fields for the below - ?
-		// Player.costume = data.Costumes.get(sheet_collection.sheets[current_sheet].items[current_selection].name);
+		// Player.new_costume(data.JsonData.get_costume(characterNames[current_sheet][current_selection]));
 		super.kill();
 	}
 }

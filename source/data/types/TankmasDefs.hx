@@ -11,6 +11,25 @@ typedef CostumeDef =
 	var ?data:Dynamic;
 }
 
+typedef StickerDef =
+{
+	var name:String;
+	var properName:String;
+	var artist:String;
+	var ?desc:String;
+	var ?unlock:UnlockCondition;
+	var ?data:Dynamic;
+}
+
+typedef PresentDef =
+{
+	var day:String;
+	var name:String;
+	var artist:String;
+	var file:String;
+	var ?link:String;
+}
+
 typedef SpriteAnimationDef =
 {
 	var name:String;

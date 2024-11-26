@@ -15,6 +15,6 @@ typedef SheetItemDef =
 {
 	var name:String;
 	var ?angle:Int;
-	var ?xOffset:Int;
-	var ?yOffset:Int;
+	var ?xOffset:Float;
+	var ?yOffset:Float;
 }

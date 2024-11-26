@@ -1,6 +1,6 @@
 package net.tankmas;
 
-import data.Costumes;
+import data.JsonData;
 import data.types.TankmasDefs.CostumeDef;
 import entities.NetUser;
 import entities.Player;
@@ -135,7 +135,7 @@ class OnlineLoop
 		for (username in usernames)
 		{
 			var def:NetUserDef = Reflect.field(data.data, username);
-			var costume:CostumeDef = Costumes.get(def.costume);
+			var costume:CostumeDef = JsonData.get_costume(def.costume);
 			var user:BaseUser = BaseUser.get_user(username, function()
 			{
 				return new NetUser(def.x, def.y, username, costume);

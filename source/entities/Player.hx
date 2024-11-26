@@ -1,6 +1,6 @@
 package entities;
 
-import data.Costumes;
+import data.JsonData;
 import data.types.TankmasDefs.CostumeDef;
 import data.types.TankmasEnums.PlayerAnimation;
 import entities.Interactable;
@@ -19,11 +19,13 @@ class Player extends BaseUser
 	/**We send this once*/
 	public var queued_online_sticker:String;
 
+	public static var sticker:String = "common-tamago";
+
 	public function new(?X:Float, ?Y:Float)
 	{
 		super(X, Y, Main.username);
 
-		debug_costume_rotation = Costumes.all_defs.copy();
+		debug_costume_rotation = JsonData.all_costume_defs.copy();
 		costume = debug_costume_rotation[0];
 
 		while (costume.name != "tankman")
@@ -54,7 +56,7 @@ class Player extends BaseUser
 		new_costume(costume);
 	}
 
-	override function new_costume(costume:CostumeDef)
+	override public function new_costume(costume:CostumeDef)
 		super.new_costume(costume);
 
 	override function update(elapsed:Float)
@@ -84,8 +86,9 @@ class Player extends BaseUser
 		final RIGHT:Bool = Ctrl.right[1];
 		final NO_KEYS:Bool = !UP && !DOWN && !LEFT && !RIGHT;
 
-		if (Ctrl.jaction[1])
-			use_sticker("common-tamago");
+		if (Ctrl.juse[1])
+			use_sticker(sticker);
+		// keeping the sheet menus right next to each other makes sense, no?
 
 		if (UP)
 			velocity.y -= move_speed / move_acl * (velocity.y > 0 ? 1 : move_reverse_mod);

@@ -13,9 +13,8 @@ import haxe.display.Protocol.HaxeRequestMethod;
 import levels.LDTKLevel;
 import levels.TankmasLevel;
 import net.tankmas.OnlineLoop;
-import states.substates.SheetSubstate;
 import ui.DialogueBox;
-import ui.sheets.CostumeSelectSheet;
+import ui.sheets.*;
 import zones.Door;
 
 
@@ -98,6 +97,8 @@ class PlayState extends BaseState
 			FlxG.switchState(new PlayState());
 		if (Ctrl.jaction[1])
 			new CostumeSelectSheet();
+		if (Ctrl.jjump[1])
+			new StickerSelectSheet();
 	}
 
 	override function destroy()

@@ -1,6 +1,7 @@
 package ui.sheets;
 
 import data.types.TankmasDefs.CostumeDef;
+import data.types.TankmasDefs.StickerDef;
 import flixel.FlxBasic;
 import flixel.group.FlxSpriteGroup.FlxTypedSpriteGroup;
 import squid.ext.FlxGroupExt;
@@ -9,12 +10,15 @@ import ui.sheets.defs.SheetDefs;
 
 class BaseSelectSheet extends FlxGroupExt
 {
+	var type:SheetType;
+
 	var stickerSheetBase:FlxSprite;
 	var description:FlxText;
 	var title:FlxText;
 
 	var sheet_collection:SheetFileDef;
 	var characterSpritesArray:Array<FlxTypedSpriteGroup<FlxSprite>> = [];
+	var characterNames:Array<Array<String>> = [];
 
 	var current_sheet(default, set):Int = 0;
 	var current_selection(default, set):Int = 0;
@@ -25,11 +29,13 @@ class BaseSelectSheet extends FlxGroupExt
 	 * This is private, should be only made through things that extend it
 	 * @param saved_sheet 
 	 */
-	function new(saved_sheet:Int)
+	function new(saved_sheet:Int, ?type:SheetType = COSTUME)
 	{
 		trace("sheet exists");
 		
 		super();
+
+		this.type = type;
 
 		FlxG.state.openSubState(new SheetSubstate(this));
 
@@ -54,28 +60,45 @@ class BaseSelectSheet extends FlxGroupExt
 			final characterSprites:FlxTypedSpriteGroup<FlxSprite> = new FlxTypedSpriteGroup<FlxSprite>();
 			add(characterSprites);
 
+			final daNames:Array<String> = [];
+
 			for (i in 0...sheet.items.length - 1)
 			{
 				if (sheet.items[i].name == null)
 					continue;
-				final character:CostumeDef = data.Costumes.get(sheet.items[i].name);
-				if (!data.Costumes.check_for_unlock(character))
-					continue;
+				final identity:SheetItemDef = sheet.items[i];
+				final sprite:FlxSprite = new FlxSprite(0, 0);
+				if (type == STICKER)
+				{
+					final sticker:StickerDef = data.JsonData.get_sticker(identity.name);
+					if (!data.JsonData.check_for_unlock_sticker(sticker))
+						continue;
+					sprite.loadGraphic(Paths.get('${sticker.name}.png'));
+				}
+				else
+				{
+					final character:CostumeDef = data.JsonData.get_costume(identity.name);
+					if (!data.JsonData.check_for_unlock_costume(character))
+						continue;
+					sprite.loadGraphic(Paths.get('${character.name}.png'));
+				}
+
 				var sprite_position:FlxPoint = FlxPoint.weak();
 
 				// initial positions
 				sprite_position.x = 190 + (340 * (i % 4));
-				sprite_position.y = 420 + (270 * Math.floor(i / 4));
+				sprite_position.y = 320 + (270 * Math.floor(i / 4));
 
 				// add offsets
-				sprite_position.x += sheet.items[i].xOffset;
-				sprite_position.y += sheet.items[i].yOffset;
+				sprite_position.x += identity.xOffset;
+				sprite_position.y += identity.yOffset;
 
-				final sprite:FlxSprite = new FlxSprite(sprite_position.x, sprite_position.y).loadGraphic(Paths.get('${character.name}.png'));
+				sprite.setPosition(sprite_position.x, sprite_position.y);
 
-				if (sheet.items[i].angle != null)
-					sprite.angle = sheet.items[i].angle;
+				if (identity.angle != null)
+					sprite.angle = identity.angle;
 				characterSprites.add(sprite);
+				daNames.push(identity.name);
 			}
 
 			if (characterSprites.members.length != 0)
@@ -83,11 +106,12 @@ class BaseSelectSheet extends FlxGroupExt
 				characterSpritesArray.push(characterSprites);
 				if (sheet.graphic != null)
 					Paths.get(sheet.graphic);
+				characterNames.push(daNames);
 			}
 			characterSprites.kill();
 		}
 		update_sheet_graphics();
-		update_selection_graphics();
+		// update_selection_graphics();
 		members.for_all_members((member:FlxBasic) -> cast(member, FlxObject).scrollFactor.set(0, 0));
 
 		trace("sheet exists");
@@ -100,12 +124,13 @@ class BaseSelectSheet extends FlxGroupExt
 	override function update(elapsed:Float)
 	{
 		super.update(elapsed);
+		Ctrl.update();
 		control();
 	}
 
 	function control()
 	{
-		for (i in 0...characterSpritesArray[current_sheet].length - 1)
+		for (i in 0...characterSpritesArray[current_sheet].length)
 		{
 			// TODO: make this mobile-friendly
 			if (FlxG.mouse.overlaps(characterSpritesArray[current_sheet].members[i]))
@@ -119,9 +144,6 @@ class BaseSelectSheet extends FlxGroupExt
 			current_sheet = current_sheet + 1;
 		if (Ctrl.cdown[1])
 			current_sheet = current_sheet - 1;
-
-		if (Ctrl.menuBack[1] || Ctrl.menuConfirm[1])
-			kill();
 	}
 
 	function set_current_sheet(val:Int):Int
@@ -129,12 +151,12 @@ class BaseSelectSheet extends FlxGroupExt
 		if (characterSpritesArray.length > 0)
 			characterSpritesArray[current_sheet].kill();
 
-		if (current_sheet < 0)
+		if (val < 0)
 			current_sheet = characterSpritesArray.length - 1;
-		if (current_sheet > characterSpritesArray.length - 1)
+		else if (val > characterSpritesArray.length - 1)
 			current_sheet = 0;
-
-		current_sheet = val;
+		else
+			current_sheet = val;
 
 		update_sheet_graphics();
 
@@ -143,13 +165,13 @@ class BaseSelectSheet extends FlxGroupExt
 	function set_current_selection(val:Int):Int
 	{
 		characterSpritesArray[current_sheet].members[current_selection].scale.set(1, 1);
-		
-		current_selection = val;
 
-		if (current_selection < 0)
+		if (val < 0)
 			current_selection = characterSpritesArray[current_sheet].members.length - 1;
-		if (current_selection > characterSpritesArray[current_sheet].members.length - 1)
+		else if (val > characterSpritesArray[current_sheet].members.length - 1)
 			current_selection = 0;
+		else
+			current_selection = val;
 
 		update_selection_graphics();
 
@@ -158,7 +180,7 @@ class BaseSelectSheet extends FlxGroupExt
 
 	function update_sheet_graphics()
 	{
-		graphicSheet = sheet_collection.sheets[current_sheet].graphic != null;
+		graphicSheet = sheet_collection.sheets[current_sheet].graphic != null ? true : false;
 		if (graphicSheet)
 			stickerSheetBase.loadGraphic(Paths.get(sheet_collection.sheets[current_sheet].graphic));
 		else 
@@ -171,16 +193,24 @@ class BaseSelectSheet extends FlxGroupExt
 
 	function update_selection_graphics()
 	{
-		final costume:CostumeDef = data.Costumes.get(sheet_collection.sheets[current_sheet].items[current_selection].name);
-		title.text = costume.display;
-		description.text = (costume.desc != null ? costume.desc : '');
+		if (type == STICKER)
+		{
+			final sticker:StickerDef = data.JsonData.get_sticker(characterNames[current_sheet][current_selection]);
+			title.text = sticker.properName;
+			description.text = (sticker.desc != null ? (sticker.desc + ' ') : '') + 'Created by ${sticker.artist != null ? sticker.artist : "Unknown"}';
+		}
+		else
+		{
+			final costume:CostumeDef = data.JsonData.get_costume(characterNames[current_sheet][current_selection]);
+			title.text = costume.display;
+			description.text = (costume.desc != null ? costume.desc : '');
+		}
 		characterSpritesArray[current_sheet].members[current_selection].scale.set(1.1, 1.1);
 	}
+}
 
-	override function kill()
-	{
-		FlxG.state.closeSubState();
-		// TODO: save currently-selected costume
-		super.kill();
-	}
+enum abstract SheetType(String) from String to String
+{
+	final COSTUME;
+	final STICKER;
 }

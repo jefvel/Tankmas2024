@@ -2,7 +2,9 @@ package entities;
 
 import data.types.TankmasEnums.PresentAnimation;
 import entities.base.NGSprite;
+import flixel.util.FlxTimer;
 import fx.Thumbnail;
+import states.substates.ArtSubstate;
 
 class Present extends Interactable
 {
@@ -10,12 +12,14 @@ class Present extends Interactable
 	public static var opened:Bool = false;
 
 	public var thumbnail:Thumbnail;
+	var content:String;
 
 	public function new(?X:Float, ?Y:Float, ?day:Int = 1, ?content:String = 'thedyingsun', opened:Bool = false)
 	{
 		super(X, Y);
 		detect_range = 300;
 		interactable = true;
+		this.content = content;
 
 		type = Interactable.InteractableType.PRESENT;
 		
@@ -34,7 +38,6 @@ class Present extends Interactable
 			sstate(OPENED);
 		}
 		thumbnail = new Thumbnail(x, y - 200, Paths.get('$content.png'));
-		// PlayState.self.thumbnails.add(thumbnail);
 	}
 
 	override function kill()
@@ -55,14 +58,15 @@ class Present extends Interactable
 			default:
 			case IDLE:
 				sprite_anim.anim(PresentAnimation.IDLE);
-				thumbnail.sstate("CLOSE");
+				if (thumbnail.state != "CLOSE")
+					thumbnail.sstate("CLOSE");
 			case NEARBY:
 				sprite_anim.anim(PresentAnimation.NEARBY);
 				thumbnail.sstate("OPEN");
+				if (Ctrl.jspecial[1])
+					open();
 			case OPENING:
 				// animProtect("opening");
-				// if(animation.finished)
-				// sstate(OPENED);
 			case OPENED:			
 				// animProtect("opened");
 		}
@@ -78,9 +82,13 @@ class Present extends Interactable
 		}
 		else
 		{
-			if (mark && thumbnail.scale.x == 0)
-				thumbnail.sstate("OPEN")
-			else if (!mark && thumbnail.scale.x != 0 && thumbnail.state != "CLOSE")
+			if (mark /** && thumbnail.scale.x == 0**/)
+			{
+				thumbnail.sstate("OPEN");
+				if (Ctrl.jspecial[1])
+					open();
+			}
+			else if (!mark /** && thumbnail.scale.x != 0 && thumbnail.state != "CLOSE"**/)
 				thumbnail.sstate("CLOSE");
 		}
 	}
@@ -93,9 +101,26 @@ class Present extends Interactable
 
 	public function open()
 	{
-		if (openable)
+		// if (openable)
+		// {
+		if (state != "OPENED")
+		{
 			sstate(OPENING);
-		openable = false;
+			new FlxTimer().start(1, function(tmr:FlxTimer)
+			{
+				// TODO: sound effect
+				opened = true;
+				sstate(OPENED);
+				PlayState.self.openSubState(new ArtSubstate(content));
+			});
+		}
+		else
+		{
+			// TODO: sound effect
+			PlayState.self.openSubState(new ArtSubstate(content));
+		}
+		// openable = false;
+		// }
 	}
 }
 

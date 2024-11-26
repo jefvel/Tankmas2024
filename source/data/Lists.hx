@@ -45,7 +45,7 @@ class Lists
 
 		Flags.generate();
 
-		Costumes.init();
+		JsonData.init();
 
 		NPCLoader.load_npc_defs_from_file(npcs, Paths.get("test-npcs.xml"));
 
