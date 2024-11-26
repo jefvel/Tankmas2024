@@ -6,6 +6,7 @@ import entities.Present;
 import flixel.tile.FlxTilemap;
 import levels.LDTKLevel;
 import levels.LdtkProject.LdtkProject_Level;
+import zones.Door;
 
 class TankmasLevel extends LDTKLevel
 {
@@ -60,8 +61,13 @@ class TankmasLevel extends LDTKLevel
 			new NPC(x + entity.pixelX, y + entity.pixelY, entity.f_name);
 		}
 
-		for(entity in data.l_Entities.all_Present.iterator()){
+		for (entity in data.l_Entities.all_Present.iterator())
+		{
 			new Present(x + entity.pixelX, y + entity.pixelY);
+		}
+		for (entity in data.l_Entities.all_Door.iterator())
+		{
+			new Door(x + entity.pixelX, y + entity.pixelY, entity.width, entity.height, entity.f_linked_door, entity.f_spawn);
 		}
 		/**put entity iterators here**/
 		/* 

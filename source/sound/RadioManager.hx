@@ -42,6 +42,7 @@ class RadioManager
 
 	public function new()
 	{
+		#if no_radio return; #end
 		ran = new FlxRandom();
 		current_segment = make_segment(MUSIC);
         update();
