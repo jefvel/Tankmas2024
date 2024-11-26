@@ -11,23 +11,24 @@ class LDTKLevel extends FlxTilemap
 	var lvl_height:Int = 0;
 	var array_len:Int = 0;
 
-	public function new(level_name:String, graphic:String)
+	public function new(level_name:String, tilesheet_graphic:String)
 	{
 		super();
-		generate(level_name, graphic);
+		generate(level_name, tilesheet_graphic);
 	}
 
 	function generate(level_name:String, tilesheet_graphic:String)
 	{
-		if (graphic == null)
+		if (tilesheet_graphic == null)
 			return;
+
 		var data:LdtkProject_Level = get_level_by_name(level_name);
 
 		lvl_width = Math.floor(data.pxWid / tile_size);
 		lvl_height = Math.floor(data.pxHei / tile_size);
 		array_len = lvl_width * lvl_height;
 
-		var layer_name:String = "Tiles";
+		var layer_name:String = "Collision";
 
 		var layer = data.resolveLayer(layer_name);
 
@@ -43,6 +44,8 @@ class LDTKLevel extends FlxTilemap
 				{
 					case "Tiles":
 						data.l_Tiles.getTileStackAt(x, y);
+					case "Collision":
+						data.l_Collision.getTileStackAt(x, y);
 					default:
 						null;
 				}
