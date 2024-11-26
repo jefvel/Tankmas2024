@@ -31,10 +31,10 @@ class RadioManager
 		'music-chaoz-fantasy-intro-',
 		'music-chaoz-fantasy-main-',
 		'music-chaoz-fantasy-outro-',
+		'news-intro-',
+		'news-outro-',
 		'news-A-main-',
 		'news-A-followup-',
-		'news-A-intro-',
-		'news-A-outro-',
 		'shotgun-'
 	];
 
@@ -44,7 +44,7 @@ class RadioManager
 	{
 		#if no_radio return; #end
 		ran = new FlxRandom();
-		current_segment = make_segment(MUSIC);
+		current_segment = make_segment(NEWS);
         update();
 	}
 
@@ -123,7 +123,7 @@ class RadioManager
 	function make_news(segment:RadioSegment):RadioSegment
 	{
 		var n:String = 'A';
-		segment.parts = [get_part('news-$n-intro-'), get_part('news-$n-main-'), get_part('news-$n-outro-')];
+		segment.parts = [get_part('news-intro-'), get_part('news-$n-main-'), get_part('news-outro-')];
 		segment.follow_up = SHOTGUN;
 		return segment;
 	}

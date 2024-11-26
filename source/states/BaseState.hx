@@ -28,6 +28,11 @@ class BaseState extends FlxState
 			FIRST_RUN = false;
 			radio = new RadioManager();
 		}
+		else
+		{
+			if (radio != null)
+				radio.end_sound();
+		}
 	}
 
 	override function update(elapsed:Float)
