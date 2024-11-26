@@ -1,0 +1,3 @@
+[submodule "server"]
+	path = server
+	url = https://github.com/chosencharacters/Tankmas2024-Server
