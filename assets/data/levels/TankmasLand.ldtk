@@ -618,8 +618,8 @@
 								{
 									"__identifier": "Player",
 									"__grid": [
-										115,
-										128
+										136,
+										136
 									],
 									"__pivot": [
 										0,
@@ -633,12 +633,12 @@
 									"height": 128,
 									"defUid": 1,
 									"px": [
-										1840,
-										2048
+										2176,
+										2176
 									],
 									"fieldInstances": [],
-									"__worldX": 1872,
-									"__worldY": 2064
+									"__worldX": 2208,
+									"__worldY": 2192
 								},
 								{
 									"__identifier": "Present",
@@ -1088,7 +1088,7 @@
 		},
 		{
 			"iid": "0b13d4d0-9b00-11ef-9354-a71a8f29f283",
-			"identifier": "World",
+			"identifier": "hotel_interior",
 			"defaultLevelWidth": 256,
 			"defaultLevelHeight": 256,
 			"worldGridWidth": 256,
@@ -1158,8 +1158,8 @@
 								{
 									"__identifier": "Player",
 									"__grid": [
-										60,
-										26
+										58,
+										37
 									],
 									"__pivot": [
 										0,
@@ -1173,12 +1173,12 @@
 									"height": 128,
 									"defUid": 1,
 									"px": [
-										960,
-										416
+										928,
+										592
 									],
 									"fieldInstances": [],
-									"__worldX": 960,
-									"__worldY": 416
+									"__worldX": 928,
+									"__worldY": 592
 								},
 								{
 									"__identifier": "Door",
@@ -1227,7 +1227,7 @@
 											"__type": "Point",
 											"__value": {
 												"cx": 64,
-												"cy": 22
+												"cy": 21
 											},
 											"__tile": null,
 											"defUid": 17,
@@ -1235,7 +1235,7 @@
 												{
 													"id": "V_String",
 													"params": [
-														"64,22"
+														"64,21"
 													]
 												}
 											]

@@ -12,7 +12,11 @@ class Door extends FlxSpriteExt
 	var linked_door_ref:EntityReferenceInfos;
 	var spawn:FlxPoint;
 
-	public function new(?X:Float, ?Y:Float, width:Int, height:Int, linked_door_ref:EntityReferenceInfos, spawn:ldtk.Point)
+	var next_world:String;
+
+	static var level_transition_door_iid:String = "";
+
+	public function new(?X:Float, ?Y:Float, width:Int, height:Int, linked_door_ref:EntityReferenceInfos, spawn:FlxPoint, iid:String)
 	{
 		super(X, Y);
 
@@ -20,7 +24,7 @@ class Door extends FlxSpriteExt
 
 		this.linked_door_ref = linked_door_ref;
 
-		this.spawn = new FlxPoint(X + spawn.cx * 16, Y + spawn.cy * 16);
+		this.spawn = spawn;
 
 		makeGraphic(width, height, FlxColor.YELLOW);
 		alpha = 0.5;
@@ -28,19 +32,14 @@ class Door extends FlxSpriteExt
         PlayState.self.doors.add(this);
 
 		sstate(IDLE);
+		if (level_transition_door_iid == iid)
+			sstate(DOOR_IN);
 	}
 
 	override function update(elapsed:Float)
 	{
 		fsm();
 		super.update(elapsed);
-	}
-
-	function get_linked_door() {}
-
-	override function updateMotion(elapsed:Float)
-	{
-		super.updateMotion(elapsed);
 	}
 
 	function fsm()
@@ -51,19 +50,28 @@ class Door extends FlxSpriteExt
 				if (overlaps(PlayState.self.player))
 					start_door_out();
 			case DOOR_OUT:
+				// PUT TRANSITION HERE
+				sstate(WAIT);
+				dip();
 			case DOOR_IN:
+				PlayState.self.player.center_on(spawn);
+				sstate(IDLE);
 		}
 
 	function start_door_out()
 	{
-		var new_world:String="";
-
 		for (world in Main.ldtk_project.worlds)
 			if (world.iid == linked_door_ref.worldIid)
-				new_world = world.identifier;
+				next_world = world.identifier;
 
+		level_transition_door_iid = linked_door_ref.entityIid;
 
-		FlxG.switchState(new PlayState(new_world));
+		sstate(DOOR_OUT);
+	}
+
+	function dip()
+	{
+		FlxG.switchState(new PlayState(next_world));
 	}
 
 	override function kill()
@@ -78,4 +86,5 @@ private enum abstract State(String) from String to String
 	var IDLE;
 	var DOOR_OUT;
 	var DOOR_IN;
+	var WAIT;
 }
