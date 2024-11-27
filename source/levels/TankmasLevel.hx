@@ -59,8 +59,8 @@ class TankmasLevel extends LDTKLevel
 		// col.setPosition(x, y);
 
 		PlayState.self.level_collision.add(col = new LDTKLevel(level_name, Paths.get("tile-collision.png")));
-		col.setTileProperties(1, FlxDirectionFlags.NONE);
-
+		col.setTileProperties(0, FlxDirectionFlags.NONE);
+		col.setTileProperties(1, FlxDirectionFlags.ANY);
 
 		//		for (i in [0, 3, 4])
 		// col.setTileProperties(i, FlxObject.NONE);
@@ -98,5 +98,10 @@ class TankmasLevel extends LDTKLevel
 					array.push(new TankmasLevel(level.identifier));
 
 		return array;
+	}
+	override function update(elapsed:Float)
+	{
+		// getTileCollisions(getTileIndexByCoords(PlayState.self.player.mp));
+		super.update(elapsed);
 	}
 }

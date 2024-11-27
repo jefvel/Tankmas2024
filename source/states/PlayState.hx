@@ -66,12 +66,15 @@ class PlayState extends BaseState
 
 		make_world();
 
-
 		FlxG.camera.target = player;
 
 		var bg:FlxObject = level_backgrounds.members[0];
 
 		FlxG.worldBounds.set(bg.x, bg.y, bg.width, bg.height);
+
+		#if !show_collision
+		level_collision.visible = false;
+		#end
 
 		// FlxG.camera.setScrollBounds(bg.x, bg.width, bg.y, bg.height);
 
@@ -89,14 +92,12 @@ class PlayState extends BaseState
 			FlxG.switchState(new PlayState());
 		if (Ctrl.jaction[1])
 			new CostumeSelectSheet();
+
 		handle_collisions();
 	}
 
 	function handle_collisions()
-	{
-		trace("collide");
-		FlxG.collide(level_collision, users);
-	}
+		FlxG.collide(level_collision, player);
 
 	override function destroy()
 	{
