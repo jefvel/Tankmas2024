@@ -7,6 +7,7 @@ import entities.Present;
 import entities.base.BaseUser;
 import entities.base.NGSprite;
 import flixel.addons.editors.ogmo.FlxOgmo3Loader.LevelData;
+import flixel.tile.FlxTilemap;
 import fx.StickerFX;
 import fx.Thumbnail;
 import haxe.display.Protocol.HaxeRequestMethod;
@@ -38,6 +39,7 @@ class PlayState extends BaseState
 
 	public var levels:FlxTypedGroup<TankmasLevel> = new FlxTypedGroup<TankmasLevel>();
 	public var level_backgrounds:FlxTypedGroup<FlxSprite> = new FlxTypedGroup<FlxSprite>();
+	public var level_collision:FlxTypedGroup<FlxTilemap> = new FlxTypedGroup<FlxTilemap>();
 
 	/**Do not add to state*/
 	public var interactables:FlxTypedGroup<Interactable> = new FlxTypedGroup<Interactable>();
@@ -57,10 +59,11 @@ class PlayState extends BaseState
 
 		OnlineLoop.init();
 		
-		bgColor = FlxColor.GRAY;
+		bgColor = FlxColor.BLACK;
 
 		add(level_backgrounds);
 		add(levels);
+		add(level_collision);
 
 		add(shadows);
 		add(npcs);
@@ -81,6 +84,12 @@ class PlayState extends BaseState
 
 		var bg:FlxObject = level_backgrounds.members[0];
 
+		FlxG.worldBounds.set(bg.x, bg.y, bg.width, bg.height);
+
+		#if !show_collision
+		level_collision.visible = false;
+		#end
+
 		// FlxG.camera.setScrollBounds(bg.x, bg.width, bg.y, bg.height);
 
 		OnlineLoop.iterate();
@@ -95,11 +104,14 @@ class PlayState extends BaseState
 
 		if (Ctrl.reset[1])
 			FlxG.switchState(new PlayState());
-		if (Ctrl.jaction[1])
+		if (Ctrl.juse[1])
 			new CostumeSelectSheet();
-		if (Ctrl.jjump[1])
+		if (Ctrl.jspecial[1])
 			new StickerSelectSheet();
 	}
+
+	function handle_collisions()
+		FlxG.collide(level_collision, player);
 
 	override function destroy()
 	{
