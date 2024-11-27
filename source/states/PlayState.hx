@@ -108,6 +108,7 @@ class PlayState extends BaseState
 			new CostumeSelectSheet();
 		if (Ctrl.jspecial[1])
 			new StickerSelectSheet();
+		handle_collisions();
 	}
 
 	function handle_collisions()
