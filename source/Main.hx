@@ -8,7 +8,7 @@ import openfl.display.Sprite;
 
 class Main extends Sprite
 {
-	public static var username:String = #if random_username data.Uuid.v4() #else "not_very_squidly" #end;
+	public static var username:String = #if random_username 'poop_${Math.random()}' #else "not_very_squidly" #end;
 
 	public static var current_room_id:String = "1";
 	
