@@ -54,8 +54,6 @@ class JsonData
 
 		for (sticker_def in json.stickers)
 			stickers.set(sticker_def.name, sticker_def);
-
-		trace(stickers);
 	}
 
 	public static function get_costume(costume_name:String):CostumeDef

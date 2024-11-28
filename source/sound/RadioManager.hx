@@ -21,6 +21,7 @@ class RadioManager
 	var sounds:Map<String, Array<String>> = [];
 	var next_music_followup:RadioSegmentType = AD;
 	var current_sound:FlxSound;
+	public static var volume:Float = 1.0;
 
 	var next_music_track:String = "chaoz-fantasy";
 
@@ -56,9 +57,12 @@ class RadioManager
 				current_segment = make_segment(current_segment.follow_up);
 			var next_sound:String = current_segment.parts.shift();
             #if trace_radio  trace("PLAYING ", next_sound); #end
-			current_sound = SoundPlayer.sound(next_sound);
+			current_sound = SoundPlayer.sound(next_sound, volume);
+			current_sound.persist = true;
 			current_sound.onComplete = end_sound;
 		}
+		else if (current_sound.volume != volume)
+			current_sound.volume = volume;
 	}
 
 	public function end_sound()

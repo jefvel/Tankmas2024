@@ -5,6 +5,7 @@ import entities.base.NGSprite;
 import flixel.util.FlxTimer;
 import fx.Thumbnail;
 import states.substates.ArtSubstate;
+import states.substates.ComicSubstate;
 
 class Present extends Interactable
 {
@@ -13,17 +14,20 @@ class Present extends Interactable
 
 	public var thumbnail:Thumbnail;
 	var content:String;
+	var comic:Bool = false;
 
-	public function new(?X:Float, ?Y:Float, ?day:Int = 1, ?content:String = 'thedyingsun', opened:Bool = false)
+	public function new(?X:Float, ?Y:Float, ?content:String = 'thedyingsun', opened:Bool = false, isComic:Bool = false)
 	{
 		super(X, Y);
 		detect_range = 300;
 		interactable = true;
 		this.content = content;
+		this.comic = isComic;
 
 		type = Interactable.InteractableType.PRESENT;
 		
-		loadAllFromAnimationSet('present-${day}');
+		// TODO: make presents look for skins based on content string (need to get present assets done first)
+		loadAllFromAnimationSet('present-1');
 
 		PlayState.self.presents.add(this);
 
@@ -37,7 +41,7 @@ class Present extends Interactable
 			// sprite_anim.anim(PresentAnimation.OPENED);
 			sstate(OPENED);
 		}
-		thumbnail = new Thumbnail(x, y - 200, Paths.get('$content.png'));
+		thumbnail = new Thumbnail(x, y - 200, Paths.get((content + (comic ? '-0' : '') + '.png')));
 	}
 
 	override function kill()
@@ -109,15 +113,15 @@ class Present extends Interactable
 			new FlxTimer().start(1, function(tmr:FlxTimer)
 			{
 				// TODO: sound effect
-				opened = true;
 				sstate(OPENED);
-				PlayState.self.openSubState(new ArtSubstate(content));
+				PlayState.self.openSubState(comic ? new ComicSubstate(content, true) : new ArtSubstate(content));
+				opened = true;
 			});
 		}
 		else
 		{
 			// TODO: sound effect
-			PlayState.self.openSubState(new ArtSubstate(content));
+			PlayState.self.openSubState(comic ? new ComicSubstate(content, false) : new ArtSubstate(content));
 		}
 		// openable = false;
 		// }

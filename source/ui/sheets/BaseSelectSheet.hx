@@ -3,7 +3,10 @@ package ui.sheets;
 import data.types.TankmasDefs.CostumeDef;
 import data.types.TankmasDefs.StickerDef;
 import flixel.FlxBasic;
+import flixel.addons.effects.chainable.FlxEffectSprite;
+import flixel.addons.effects.chainable.FlxOutlineEffect;
 import flixel.group.FlxSpriteGroup.FlxTypedSpriteGroup;
+import flixel.tweens.FlxEase;
 import squid.ext.FlxGroupExt;
 import states.substates.SheetSubstate;
 import ui.sheets.defs.SheetDefs;
@@ -13,6 +16,7 @@ class BaseSelectSheet extends FlxGroupExt
 	var type:SheetType;
 
 	var stickerSheetBase:FlxSprite;
+	var effectSheet:FlxEffectSprite;
 	var description:FlxText;
 	var title:FlxText;
 
@@ -27,9 +31,10 @@ class BaseSelectSheet extends FlxGroupExt
 
 	/**
 	 * This is private, should be only made through things that extend it
-	 * @param saved_sheet 
+	 * @param saved_sheet
+	 * @param saved_selection
 	 */
-	function new(saved_sheet:Int, ?type:SheetType = COSTUME)
+	function new(saved_sheet:Int, saved_selection:Int, ?type:SheetType = COSTUME)
 	{
 		trace("sheet exists");
 		
@@ -46,8 +51,9 @@ class BaseSelectSheet extends FlxGroupExt
 		description.setFormat(null, 32, FlxColor.BLACK, LEFT);
 		add(description);
 
-		stickerSheetBase = new FlxSprite(66, 239);
-		add(stickerSheetBase);
+		add(stickerSheetBase = new FlxSprite(66, 239));
+
+		add(effectSheet = new FlxEffectSprite(stickerSheetBase, [new FlxOutlineEffect(FAST, FlxColor.WHITE, 8)]));
 
 		title = new FlxText(70, 70, 1420, '');
 		title.setFormat(null, 48, FlxColor.BLACK, LEFT, OUTLINE, FlxColor.WHITE);
@@ -110,11 +116,18 @@ class BaseSelectSheet extends FlxGroupExt
 			}
 			characterSprites.kill();
 		}
-		update_sheet_graphics();
-		// update_selection_graphics();
-		members.for_all_members((member:FlxBasic) -> cast(member, FlxObject).scrollFactor.set(0, 0));
+		current_sheet = saved_sheet;
+		current_selection = saved_selection;
 
-		trace("sheet exists");
+		members.for_all_members((member:FlxBasic) ->
+		{
+			final daMem:FlxObject = cast(member, FlxObject);
+			daMem.y += 700;
+			daMem.scrollFactor.set(0, 0);
+			FlxTween.tween(daMem, {y: daMem.y - 700}, 1.3, {ease: FlxEase.cubeInOut});
+		});
+
+		// trace("sheet exists");
 
 	}
 
@@ -164,7 +177,7 @@ class BaseSelectSheet extends FlxGroupExt
 	}
 	function set_current_selection(val:Int):Int
 	{
-		characterSpritesArray[current_sheet].members[current_selection].scale.set(1, 1);
+		// characterSpritesArray[current_sheet].members[current_selection].scale.set(1, 1);
 
 		if (val < 0)
 			current_selection = characterSpritesArray[current_sheet].members.length - 1;
@@ -205,7 +218,7 @@ class BaseSelectSheet extends FlxGroupExt
 			title.text = costume.display;
 			description.text = (costume.desc != null ? costume.desc : '');
 		}
-		characterSpritesArray[current_sheet].members[current_selection].scale.set(1.1, 1.1);
+		// characterSpritesArray[current_sheet].members[current_selection].scale.set(1.1, 1.1);
 	}
 }
 

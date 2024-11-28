@@ -1,6 +1,7 @@
 package data.types;
 
 import data.types.TankmasEnums.UnlockCondition;
+import dn.achievements.AbstractAchievementPlatform;
 
 typedef CostumeDef =
 {
@@ -28,6 +29,15 @@ typedef PresentDef =
 	var artist:String;
 	var file:String;
 	var ?link:String;
+	var ?comicProperties:ComicDef;
+}
+
+typedef ComicDef =
+{
+	var pages:Int;
+	var ?audio:String;
+	var ?timing:Array<Float>;
+	var ?cover:Bool;
 }
 
 typedef SpriteAnimationDef =

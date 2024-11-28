@@ -52,6 +52,7 @@
 	<haxelib name="ldtk-haxe-api"/>
 	<haxelib name="deepnightLibs"/>
 	<haxelib name="gif" if="gif"/>
+	<haxelib name="castle"/>
 
 	<!--Follow instructions in scripts! This needs core-haxe-->
 	<haxelib name="http" />
