@@ -4,6 +4,10 @@ name: CI
 
 on: [push, pull_request, workflow_dispatch]
 
+# Deployment requires giving Github Actions write access to the gh-pages branch
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
