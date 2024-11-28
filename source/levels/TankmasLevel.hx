@@ -1,5 +1,6 @@
 package levels;
 
+import activities.ActivityArea;
 import entities.NPC;
 import entities.Player;
 import entities.Present;
@@ -89,6 +90,10 @@ class TankmasLevel extends LDTKLevel
 		{
 			var spawn:FlxPoint = new FlxPoint(x + entity.f_spawn.cx * 16, y + entity.f_spawn.cy * 16);
 			new Door(x + entity.pixelX, y + entity.pixelY, entity.width, entity.height, entity.f_linked_door, spawn, entity.iid);
+		}
+		for (entity in level.l_Entities.all_ActivityArea.iterator())
+		{
+			new ActivityArea(entity.f_ActivityType, x + entity.pixelX, y + entity.pixelY, entity.width, entity.height);
 		}
 		/**put entity iterators here**/
 		/* 

@@ -11,7 +11,7 @@
 	"iid": "95f97850-73f0-11ef-9983-5dc181ef5475",
 	"jsonVersion": "1.5.4",
 	"appBuildId": 479150,
-	"nextUid": 21,
+	"nextUid": 38,
 	"identifierStyle": "Free",
 	"toc": [],
 	"worldLayout": null,
@@ -36,7 +36,7 @@
 	"pngFilePattern": null,
 	"backupOnSave": true,
 	"backupLimit": 10,
-	"backupRelPath": "../../../../../../OneDrive/Pictures/LDTK/backups",
+	"backupRelPath": "../../../ldtkbackups",
 	"levelNamePattern": "Level_%idx",
 	"tutorialDesc": null,
 	"customCommands": [],
@@ -552,6 +552,79 @@
 						"tilesetUid": null
 					}
 				]
+			},
+			{
+				"identifier": "ActivityArea",
+				"uid": 31,
+				"tags": [],
+				"exportToToc": false,
+				"allowOutOfBounds": false,
+				"doc": null,
+				"width": 16,
+				"height": 16,
+				"resizableX": true,
+				"resizableY": true,
+				"minWidth": 16,
+				"maxWidth": null,
+				"minHeight": 16,
+				"maxHeight": null,
+				"keepAspectRatio": true,
+				"tileOpacity": 1,
+				"fillOpacity": 0.44,
+				"lineOpacity": 1,
+				"hollow": false,
+				"color": "#1A4496",
+				"renderMode": "Ellipse",
+				"showName": true,
+				"tilesetId": null,
+				"tileRenderMode": "FitInside",
+				"tileRect": null,
+				"uiTileRect": null,
+				"nineSliceBorders": [],
+				"maxCount": 0,
+				"limitScope": "PerLevel",
+				"limitBehavior": "MoveLastOne",
+				"pivotX": 0.5,
+				"pivotY": 0.5,
+				"fieldDefs": [
+					{
+						"identifier": "ActivityType",
+						"doc": null,
+						"__type": "LocalEnum.ActivityType",
+						"uid": 37,
+						"type": "F_Enum(35)",
+						"isArray": false,
+						"canBeNull": false,
+						"arrayMinLength": null,
+						"arrayMaxLength": null,
+						"editorDisplayMode": "ValueOnly",
+						"editorDisplayScale": 1,
+						"editorDisplayPos": "Above",
+						"editorLinkStyle": "StraightArrow",
+						"editorDisplayColor": null,
+						"editorAlwaysShow": false,
+						"editorShowInWorld": true,
+						"editorCutLongValues": true,
+						"editorTextSuffix": null,
+						"editorTextPrefix": null,
+						"useForSmartColor": false,
+						"exportToToc": false,
+						"searchable": false,
+						"min": null,
+						"max": null,
+						"regex": null,
+						"acceptFileTypes": null,
+						"defaultOverride": null,
+						"textLanguageMode": null,
+						"symmetricalRef": false,
+						"autoChainRef": true,
+						"allowOutOfLevelRef": true,
+						"allowedRefs": "OnlySame",
+						"allowedRefsEntityUid": null,
+						"allowedRefTags": [],
+						"tilesetUid": null
+					}
+				]
 			}
 		],
 		"tilesets": [
@@ -579,7 +652,7 @@
 				"__cHei": 1,
 				"identifier": "collision",
 				"uid": 19,
-				"relPath": "../../../../../../../../users/squid/Dropbox/Haxe/Tankmas 2024/assets/images/bgs/tiles/tile-collision.png",
+				"relPath": "../../images/bgs/tiles/tile-collision.png",
 				"embedAtlas": null,
 				"pxWid": 64,
 				"pxHei": 32,
@@ -597,7 +670,23 @@
 				}
 			}
 		],
-		"enums": [],
+		"enums": [
+			{
+				"identifier": "ActivityType",
+				"uid": 35,
+				"values": [
+					{
+						"id": "Bonfire",
+						"tileRect": null,
+						"color": 12470831
+					}
+				],
+				"iconTilesetUid": null,
+				"externalRelPath": null,
+				"externalFileChecksum": null,
+				"tags": []
+			}
+		],
 		"externalEnums": [],
 		"levelFields": []
 	},
@@ -658,7 +747,7 @@
 							"__pxTotalOffsetX": 0,
 							"__pxTotalOffsetY": 0,
 							"__tilesetDefUid": 19,
-							"__tilesetRelPath": "../../../../../../../../users/squid/Dropbox/Haxe/Tankmas 2024/assets/images/bgs/tiles/tile-collision.png",
+							"__tilesetRelPath": "../../images/bgs/tiles/tile-collision.png",
 							"iid": "8b727cc0-9b00-11ef-bbae-3f6a064f9bb3",
 							"levelId": 0,
 							"layerDefUid": 20,
@@ -5057,6 +5146,22 @@
 								},
 								{
 									"px": [
+										1664,
+										2240
+									],
+									"src": [
+										0,
+										0
+									],
+									"f": 0,
+									"t": 0,
+									"d": [
+										7262
+									],
+									"a": 1
+								},
+								{
+									"px": [
 										0,
 										2272
 									],
@@ -7477,6 +7582,47 @@
 									],
 									"__worldX": 1344,
 									"__worldY": 832
+								},
+								{
+									"__identifier": "ActivityArea",
+									"__grid": [
+										102,
+										155
+									],
+									"__pivot": [
+										0.5,
+										0.5
+									],
+									"__tags": [],
+									"__tile": null,
+									"__smartColor": "#1A4496",
+									"iid": "817e7420-9b00-11ef-8fbe-4b02ded6c967",
+									"width": 1168,
+									"height": 1168,
+									"defUid": 31,
+									"px": [
+										1640,
+										2488
+									],
+									"fieldInstances": [
+										{
+											"__identifier": "ActivityType",
+											"__type": "LocalEnum.ActivityType",
+											"__value": "Bonfire",
+											"__tile": null,
+											"defUid": 37,
+											"realEditorValues": [
+												{
+													"id": "V_String",
+													"params": [
+														"Bonfire"
+													]
+												}
+											]
+										}
+									],
+									"__worldX": 1672,
+									"__worldY": 2504
 								}
 							]
 						},
@@ -7559,7 +7705,7 @@
 							"__pxTotalOffsetX": 0,
 							"__pxTotalOffsetY": 0,
 							"__tilesetDefUid": 19,
-							"__tilesetRelPath": "../../../../../../../../users/squid/Dropbox/Haxe/Tankmas 2024/assets/images/bgs/tiles/tile-collision.png",
+							"__tilesetRelPath": "../../images/bgs/tiles/tile-collision.png",
 							"iid": "8b727cc1-9b00-11ef-bbae-7d252671d07e",
 							"levelId": 13,
 							"layerDefUid": 20,
@@ -7857,7 +8003,7 @@
 							"__pxTotalOffsetX": 0,
 							"__pxTotalOffsetY": 0,
 							"__tilesetDefUid": 19,
-							"__tilesetRelPath": "../../../../../../../../users/squid/Dropbox/Haxe/Tankmas 2024/assets/images/bgs/tiles/tile-collision.png",
+							"__tilesetRelPath": "../../images/bgs/tiles/tile-collision.png",
 							"iid": "8b727cc2-9b00-11ef-bbae-af41c0a3f814",
 							"levelId": 15,
 							"layerDefUid": 20,

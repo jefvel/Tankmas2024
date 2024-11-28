@@ -11,3 +11,6 @@ data/events/requests-log.json
 data/events/events.json
 .haxelib
 server
+
+ldtkbackups
+*.png~

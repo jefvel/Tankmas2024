@@ -1,4 +1,4 @@
-package entities.bonfire;
+package activities.bonfire;
 
 import flixel.graphics.FlxAsepriteUtil;
 import flixel.util.FlxSpriteUtil;
@@ -31,9 +31,12 @@ class Marshmallow extends FlxSprite
 		AssetPaths.burned_marshmallow__wav,
 	];
 
-	public function new(x, y)
+	var own = false;
+
+	public function new(x, y, own = true)
 	{
 		super(x, y);
+		this.own = own;
 		loadGraphic(AssetPaths.marshmallow__png, true, 64, 64);
 		alpha = 0.0;
 		FlxTween.tween(this, {alpha: 1.0}, 0.15);
@@ -79,6 +82,8 @@ class Marshmallow extends FlxSprite
 		}
 
 		var heat_per_second = 100.0 / heat_speed;
+		if (!own)
+			heat_per_second *= 0.9;
 		current_heat += heat_per_second * elapsed;
 
 		if (current_heat > heat_levels[current_level])
@@ -92,13 +97,9 @@ class Marshmallow extends FlxSprite
 		burned = true;
 	}
 
-	function level_up()
+	public function set_level(level:Int)
 	{
-		if (burned)
-			return;
-
-		FlxG.sound.play(level_up_sounds[current_level], 0.3);
-		current_level++;
+		current_level = level;
 		animation.frameIndex = current_level;
 
 		if (current_level >= heat_levels.length)
@@ -106,6 +107,16 @@ class Marshmallow extends FlxSprite
 			burned_through();
 			return;
 		}
+	}
+
+	function level_up()
+	{
+		if (burned)
+			return;
+
+		if (own)
+			FlxG.sound.play(level_up_sounds[current_level], 0.3);
+		set_level(current_level + 1);
 	}
 
 	override function update(elapsed:Float)

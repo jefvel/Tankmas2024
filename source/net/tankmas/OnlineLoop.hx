@@ -83,7 +83,7 @@ class OnlineLoop
 		rooms_post_tick_rate = tick_wait_timeout;
 		var json:NetUserDef = user.get_user_update_json();
 
-		if (json.x != null || json.y != null || json.costume != null)
+		if (json.x != null || json.y != null || json.costume != null || json.sx != null)
 			TankmasClient.post_user(room_id, json, after_post_player);
 	}
 
@@ -91,6 +91,12 @@ class OnlineLoop
 	public static function post_sticker(room_id:String, sticker_name:String)
 	{
 		TankmasClient.post_event(room_id, {type: "sticker", data: {"name": sticker_name}, username: Main.username});
+	}
+
+	public static function post_marshmallow_discard(room_id:String, marshmallow_level:Int)
+	{
+		#if offline return #end
+		TankmasClient.post_event(room_id, {type: "drop_marshmallow", data: {"level": marshmallow_level}, username: Main.username});
 	}
 
 	/**This is a post request**/
@@ -130,8 +136,6 @@ class OnlineLoop
 
 		usernames.remove(Main.username);
 
-		trace(usernames);
-
 		for (username in usernames)
 		{
 			var def:NetUserDef = Reflect.field(data.data, username);
@@ -141,7 +145,7 @@ class OnlineLoop
 				return new NetUser(def.x, def.y, username, costume);
 			});
 
-			cast(user, NetUser).move_to(def.x, def.y);
+			cast(user, NetUser).move_to(def.x, def.y, def.sx);
 
 			if (user.costume == null || user.costume.name != costume.name)
 				user.new_costume(costume);
@@ -160,13 +164,9 @@ class OnlineLoop
 
 		for (event in events)
 		{
-			switch (event.type)
-			{
-				case NetEventType.STICKER:
-					var user:BaseUser = BaseUser.get_user(event.username);
-					if (user != null)
-						user.use_sticker(event.data.name);
-			}
+			var user = BaseUser.get_user(event.username);
+			if (user != null)
+				user.on_event(event);
 		}
 		rooms_get_tick_rate = data.tick_rate * rooms_get_tick_rate_multiplier;
 		#end

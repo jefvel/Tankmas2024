@@ -1,5 +1,6 @@
-package entities.bonfire;
+package activities.bonfire;
 
+import entities.base.BaseUser;
 import flixel.addons.plugin.taskManager.FlxTask;
 import flixel.graphics.FlxAsepriteUtil;
 import flixel.math.FlxMath;
@@ -17,9 +18,12 @@ class BonfireStick extends FlxSprite
 
 	public var marshmallow:Marshmallow;
 
-	public function new(x, y, area)
+	var player:BaseUser;
+
+	public function new(player:BaseUser, area)
 	{
 		super(x, y);
+		this.player = player;
 
 		bonfire = area;
 		FlxAsepriteUtil.loadAseAtlasAndTagsByIndex(this, AssetPaths.grill_stick__png, AssetPaths.grill_stick__json);
@@ -48,7 +52,7 @@ class BonfireStick extends FlxSprite
 	{
 		discardMarshmallow();
 
-		marshmallow = new Marshmallow(x, y);
+		marshmallow = new Marshmallow(x, y, player == PlayState.self.player);
 		PlayState.self.objects.add(marshmallow);
 	}
 
@@ -66,7 +70,6 @@ class BonfireStick extends FlxSprite
 		start_tween = FlxTween.tween(this, {_ang: 0.0}, 0.45, {ease: FlxEase.elasticOut});
 		start_tween.onComplete = onEquipped;
 
-		var player = PlayState.self.player;
 		x = player.x;
 		y = player.y;
 	}
@@ -83,6 +86,7 @@ class BonfireStick extends FlxSprite
 	}
 	
 	var shake_force = 0.0;
+
 	public function shake_off() {
 		discardMarshmallow();
 		shake_force = 10.0;
@@ -102,10 +106,14 @@ class BonfireStick extends FlxSprite
 		else
 		{
 			alpha *= 0.5;
+			if (alpha <= 0.1)
+			{
+				destroy();
+				return;
+			}
 		}
 		
 
-		var player = PlayState.self.player;
 		var offset_x = 128;
 
 		if (!player.flipX)

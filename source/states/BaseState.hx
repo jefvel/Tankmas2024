@@ -24,7 +24,7 @@ class BaseState extends FlxState
 			GifRecorder.init("game", "../../../export/");
 			#end
 			FlxG.game.stage.quality = openfl.display.StageQuality.LOW;
-			FlxG.stage.window.borderless = true;
+			// FlxG.stage.window.borderless = true;
 			FIRST_RUN = false;
 			radio = new RadioManager();
 		}
