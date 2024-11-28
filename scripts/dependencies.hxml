@@ -1,23 +1,19 @@
--lib ase:2.1.0
--lib aseprite:1.0.0
--lib crashdumper:git:https://github.com/larsiusprime/crashdumper
--lib csv:0.4.0
--lib datetime:3.1.4
--lib deepnightLibs:1.0.83
--lib flixel:5.8.0
--lib flixel-addons:3.2.3
--lib flixel-studio:git:https://github.com/Dovyski/flixel-studio.git
--lib flixel-ui:2.6.1
--lib hscript:2.5.0
--lib hxcpp:4.3.2
--lib hxcpp-debug-server:1.2.4
--lib hxjsonast:1.1.0
--lib hxtelemetry:0.4.0
--lib json2object:3.11.0
--lib ldtk-haxe-api:1.5.3-rc.1
--lib lime:8.2.0
--lib openfl:9.4.0
--lib unifill:0.4.1
--lib zerolib:0.8.1
--lib zerolib-flixel:0.8.1
--lib gif:git:https://github.com/snowkit/gif
+
+--library hxcpp:4.3.2
+--library hxcpp-debug-server:1.2.4
+--library lime:8.2.0
+--library openfl:9.4.0
+--library flixel:5.8.0
+--library flixel-addons:3.2.3
+--library ase:2.1.0
+--library castle
+--library json2object:3.11.0
+--library ldtk-haxe-api:1.5.3-rc.1
+--library json2object
+
+--library deepnightLibs:git:https://github.com/EliteMasterEric/deepnightLibs#bugfix/achievement
+
+--library promises:git:https://github.com/core-haxe/promises
+--library queues-core:git:https://github.com/core-haxe/queues-core
+--library logging:git:https://github.com/core-haxe/logging
+--library http:git:https://github.com/core-haxe/http

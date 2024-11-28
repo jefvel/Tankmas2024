@@ -1,11 +1,6 @@
 if exist scripts\dependencies.hxml (
-	if exist .\.haxelib (
-		echo ".haxelib found"
-	) else (
-		echo ".haxelib not found"
-		mkdir .haxelib
-	)
-	haxelib install scripts/dependencies.hxml --always --quiet
+	haxelib newrepo
+	haxelib install scripts/dependencies.hxml --always --quiet --skip-dependencies
 ) else (
 	echo "haxelibs.bat should be run from the project root"
 )

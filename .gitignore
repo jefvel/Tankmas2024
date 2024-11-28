@@ -1,13 +1,17 @@
 # Godot 4+ specific ignores
-.godot/
-/android/
 .history
 .vscode
-export
+
+# Exports
 archive
+export
+
+# Server logs and events
+server
 scripts/server
 data/events/events-archive.json
 data/events/requests-log.json
 data/events/events.json
-.haxelib
-server
+
+# Installed libraries
+.haxelib/

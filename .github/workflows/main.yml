@@ -2,7 +2,7 @@
 
 name: CI
 
-on: [push, pull_request, workflow_dispatch, repository_dispatch]
+on: [push, pull_request, workflow_dispatch]
 
 jobs:
   build:
@@ -18,16 +18,8 @@ jobs:
           haxe-version: stable
           flixel-versions: release
           target: html5
-      - run: haxelib install flixel-addons
-      - run: haxelib git logging https://github.com/core-haxe/logging --skip-dependencies
-      - run: haxelib git queues-core https://github.com/core-haxe/queues-core --skip-dependencies
-      - run: haxelib git promises https://github.com/core-haxe/promises --skip-dependencies
-      - run: haxelib git http https://github.com/core-haxe/http --skip-dependencies
-      - run: haxelib install ldtk-haxe-api 1.5.3-rc.1
-      - run: haxelib install deepnightLibs
-      - run: haxelib git gif https://github.com/snowkit/gif
-      - run: haxelib install json2object
-      - run: haxelib install ase
+      # - run: haxelib newrepo # Use local haxelib folder
+      - run: haxelib install scripts/dependencies.hxml --always --quiet --skip-dependencies
       - name: Build
         run: haxelib run lime build html5 -final -Ddev -Drandom_username -Dtest_local
       - name: Deploy

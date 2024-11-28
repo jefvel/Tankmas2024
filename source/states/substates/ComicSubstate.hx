@@ -1,9 +1,11 @@
 package states.substates;
 
+#if hl
+import hl.I64;
+#end
 import data.JsonData;
 import entities.Present;
 import flixel.util.FlxTimer;
-import hl.I64;
 import sound.RadioManager;
 
 class ComicSubstate extends flixel.FlxSubState
