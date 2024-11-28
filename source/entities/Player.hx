@@ -123,6 +123,8 @@ class Player extends BaseUser
 
 	function process_activity_area()
 	{
+		if (active_activity_area == null)
+			return;
 		if (Ctrl.jjump[1])
 		{
 			active_activity_area.on_interact(this);
