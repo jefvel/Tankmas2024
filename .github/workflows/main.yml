@@ -13,6 +13,8 @@ jobs:
           persist-credentials: false
       - name: Update libraries
         run: sudo apt-get update
+      # Lix is a dependency of setup-flixel
+      - uses: lix-pm/setup-lix@master
       - uses: HaxeFlixel/setup-flixel@master
         with:
           haxe-version: stable
