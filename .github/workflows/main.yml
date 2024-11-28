@@ -8,23 +8,26 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout codebase
+        uses: actions/checkout@v2
         with:
           persist-credentials: false
-      - run: sudo apt-get update
-      - uses: lix-pm/setup-lix@master
-      - uses: HaxeFlixel/setup-flixel@master
+      - name: Update libraries
+        run: sudo apt-get update
+      - name: Setup Haxe and Flixel
+        uses: HaxeFlixel/setup-flixel@master
         with:
           haxe-version: stable
           flixel-versions: release
           target: html5
-      # - run: haxelib newrepo # Use local haxelib folder
-      - run: haxelib install scripts/dependencies.hxml --always --quiet --skip-dependencies
-      - name: Build
+      - name: Install dependencies
+        run: haxelib install scripts/dependencies.hxml --always --quiet --skip-dependencies
+      - name: Build project
         run: haxelib run lime build html5 -final -Ddev -Drandom_username -Dtest_local
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Deploy project
+        uses: peaceiris/actions-gh-pages@v4
         with:
-          github_token: ${{secrets.GITHUB_TOKEN}}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
           publish_dir: ./export/html5/bin
           force_orphan: true
