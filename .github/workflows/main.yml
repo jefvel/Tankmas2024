@@ -8,14 +8,12 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout codebase
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
         with:
           persist-credentials: false
       - name: Update libraries
         run: sudo apt-get update
-      - name: Setup Haxe and Flixel
-        uses: HaxeFlixel/setup-flixel@master
+      - uses: HaxeFlixel/setup-flixel@master
         with:
           haxe-version: stable
           flixel-versions: release
