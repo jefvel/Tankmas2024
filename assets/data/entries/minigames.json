@@ -4,7 +4,7 @@
             "name": "Bunny Mark",
             "description": "A benchmark for rendering performance",
             "type": "overlay",
-            "crtShader": false,
+            "crtShader": true,
             "camera": {
                 "width": 640,
                 "height": 720,
@@ -25,6 +25,7 @@
             "description": "The 2018 Newgrounds collaboration!",
             "type": "external",
             "external": {
+                "prompt": "Play Tankmas 2018!",
                 "url": "https://www.newgrounds.com/portal/view/721061"
             }
         },
@@ -33,6 +34,7 @@
             "description": "The 2019 Newgrounds collaboration!",
             "type": "external",
             "external": {
+                "prompt": "Play Tankmas 2019!",
                 "url": "https://www.newgrounds.com/portal/view/743161"
             }
         },
@@ -41,6 +43,7 @@
             "description": "The 2020 Newgrounds collaboration!",
             "type": "external",
             "external": {
+                "prompt": "Play Tankmas 2020!",
                 "url": "https://www.newgrounds.com/portal/view/773236"
             }
         },
@@ -49,6 +52,7 @@
             "description": "The 2021 Newgrounds collaboration!",
             "type": "external",
             "external": {
+                "prompt": "Play Tankmas 2021!",
                 "url": "https://www.newgrounds.com/portal/view/824174"
             }
         },
@@ -57,6 +61,7 @@
             "description": "The 2022 Newgrounds collaboration!",
             "type": "external",
             "external": {
+                "prompt": "Play Tankmas 2022!",
                 "url": "https://www.newgrounds.com/portal/view/865711"
             }
         }
