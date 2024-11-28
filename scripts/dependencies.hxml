@@ -10,6 +10,7 @@
 --library json2object:3.11.0
 --library ldtk-haxe-api:1.5.3-rc.1
 --library json2object
+--library hxjsonast
 
 --library deepnightLibs:git:https://github.com/EliteMasterEric/deepnightLibs#bugfix/achievement
 
