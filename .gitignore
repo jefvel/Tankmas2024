@@ -17,5 +17,5 @@ data/events/events.json
 .haxelib
 server
 
-ldtkbackups
 *.png~
+.ldtk-backups
