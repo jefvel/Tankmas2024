@@ -98,7 +98,7 @@ class TankmasLevel extends LDTKLevel
 			new Minigame(x + entity.pixelX, y + entity.pixelY, entity.width, entity.height, entity.f_minigame_id);
 		}
 		
-		for (entity in level.l_Entities.all_ActivityArea.iterator())
+		for (entity in level.l_Entities.all_Activity_Area.iterator())
 		{
 			new ActivityArea(entity.f_ActivityType, x + entity.pixelX, y + entity.pixelY, entity.width, entity.height);
 		}
