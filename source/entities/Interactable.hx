@@ -50,4 +50,5 @@ enum abstract InteractableType(String) from String to String
 {
 	final NPC = "npc";
 	final PRESENT = "present";
+	final MINIGAME = "minigame";
 }

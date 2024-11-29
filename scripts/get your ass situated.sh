@@ -3,10 +3,10 @@ if [ -d "scripts/" ]; then
 		echo ".haxelib found"
 	else
 		echo ".haxelib not found, creating directory..."
-		mkdir .haxelib
+		haxelib newrepo
 	fi
 	echo "installing dependencies..."
-	haxelib install scripts/dependencies.hxml --always --quiet
+	haxelib install scripts/dependencies.hxml --always --quiet --skip-dependencies
 else
 	echo "haxelibs.sh should be run from the project root, ran from $PWD"
 fi

@@ -135,6 +135,8 @@ class Player extends BaseUser
 				// nothin
 			case InteractableType.PRESENT:
 				// nothin
+			case InteractableType.MINIGAME:
+				// nothin
 		}
 
 		closest.mark_target(true);

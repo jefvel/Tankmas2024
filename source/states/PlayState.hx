@@ -1,18 +1,17 @@
 package states;
 
 import entities.Interactable;
+import entities.Minigame;
 import entities.NPC;
 import entities.Player;
 import entities.Present;
 import entities.base.BaseUser;
 import entities.base.NGSprite;
-import flixel.addons.editors.ogmo.FlxOgmo3Loader.LevelData;
 import flixel.tile.FlxTilemap;
 import fx.StickerFX;
 import fx.Thumbnail;
-import haxe.display.Protocol.HaxeRequestMethod;
-import levels.LDTKLevel;
 import levels.TankmasLevel;
+import minigames.MinigameHandler;
 import net.tankmas.OnlineLoop;
 import ui.DialogueBox;
 import ui.sheets.*;
@@ -36,6 +35,7 @@ class PlayState extends BaseState
 	public var sticker_fx:FlxTypedGroup<NGSprite> = new FlxTypedGroup<NGSprite>();
 	public var dialogues:FlxTypedGroup<DialogueBox> = new FlxTypedGroup<DialogueBox>();
 	public var npcs:FlxTypedGroup<NPC> = new FlxTypedGroup<NPC>();
+	public var minigames:FlxTypedGroup<Minigame> = new FlxTypedGroup<Minigame>();
 
 	public var levels:FlxTypedGroup<TankmasLevel> = new FlxTypedGroup<TankmasLevel>();
 	public var level_backgrounds:FlxTypedGroup<FlxSprite> = new FlxTypedGroup<FlxSprite>();
@@ -66,6 +66,7 @@ class PlayState extends BaseState
 		add(level_collision);
 
 		add(shadows);
+		add(minigames);
 		add(npcs);
 		add(presents);
 		add(users);
@@ -79,6 +80,8 @@ class PlayState extends BaseState
 		// add(new DialogueBox(Lists.npcs.get("thomas").get_state_dlg("default")));
 
 		make_world();
+
+		MinigameHandler.instance.initialize();
 
 		FlxG.camera.target = player;
 

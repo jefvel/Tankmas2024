@@ -5,6 +5,7 @@ import data.loaders.NPCLoader;
 import flixel.FlxGame;
 import levels.LdtkProject;
 import openfl.display.Sprite;
+import utils.CrashHandler;
 
 class Main extends Sprite
 {
@@ -15,6 +16,14 @@ class Main extends Sprite
 	public static var DEV:Bool = #if dev true #else false #end;
 
 	public static var ldtk_project:LdtkProject = new LdtkProject();
+
+	public static function main():Void {
+		// We need to make the crash handler LITERALLY FIRST so nothing EVER gets past it.
+		CrashHandler.initialize();
+		CrashHandler.queryStatus();
+
+		openfl.Lib.current.addChild(new Main());
+	}
 
 	public function new()
 	{
