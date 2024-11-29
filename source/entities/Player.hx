@@ -87,7 +87,7 @@ class Player extends BaseUser
 		final RIGHT:Bool = Ctrl.right[1];
 		final NO_KEYS:Bool = !UP && !DOWN && !LEFT && !RIGHT;
 
-		if (Ctrl.juse[1])
+		if (Ctrl.jspecial[1])
 			use_sticker(sticker);
 		// keeping the sheet menus right next to each other makes sense, no?
 

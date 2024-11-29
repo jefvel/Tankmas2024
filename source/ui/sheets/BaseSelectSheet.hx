@@ -30,7 +30,7 @@ class BaseSelectSheet extends FlxGroupExt
 	final descGroup:FlxTypedSpriteGroup<FlxSprite> = new FlxTypedSpriteGroup<FlxSprite>(-440);
 
 	var graphicSheet:Bool = false;
-	var canSelect:Bool = false;
+	public var canSelect:Bool = false;
 
 	/**
 	 * This is private, should be only made through things that extend it
@@ -39,8 +39,6 @@ class BaseSelectSheet extends FlxGroupExt
 	 */
 	function new(saved_sheet:Int, saved_selection:Int, ?type:SheetType = COSTUME)
 	{
-		trace("sheet exists");
-		
 		super();
 
 		this.type = type;
@@ -49,10 +47,10 @@ class BaseSelectSheet extends FlxGroupExt
 
 		add(descGroup);
 
-		final notepad:FlxSprite = new FlxSpriteExt(1490, 150, Paths.get("stickersheet-note.png"));
+		final notepad:FlxSprite = new FlxSpriteExt(1490, 300, Paths.get("stickersheet-note.png"));
 		descGroup.add(notepad);
 
-		description = new FlxText(1500, 250, 420, '');
+		description = new FlxText(1500, 325, 420, '');
 		description.setFormat(Paths.get('CharlieType.otf'), 32, FlxColor.BLACK, LEFT);
 		descGroup.add(description);
 
@@ -110,22 +108,23 @@ class BaseSelectSheet extends FlxGroupExt
 				daNames.push(identity.name);
 			}
 
+			trace("sheet exists");
 			if (characterSprites.members.length != 0)
 			{
 				characterSpritesArray.push(characterSprites);
 				if (sheet.graphic != null)
-					Paths.get(sheet.graphic);
+					Paths.get(sheet.graphic + '.png');
 				characterNames.push(daNames);
 			}
 			characterSprites.kill();
 		}
-		current_sheet = saved_sheet;
 		current_selection = saved_selection;
+		current_sheet = saved_sheet;
 
 		members.for_all_members((member:FlxBasic) ->
 		{
 			final daMem:FlxObject = cast(member, FlxObject);
-			daMem.y -= 1300;
+			daMem.y += 1300;
 			daMem.scrollFactor.set(0, 0);
 			FlxTween.tween(daMem, {y: daMem.y - 1300}, 0.8, {ease: FlxEase.cubeInOut});
 		});
@@ -200,7 +199,7 @@ class BaseSelectSheet extends FlxGroupExt
 	{
 		graphicSheet = sheet_collection.sheets[current_sheet].graphic != null ? true : false;
 		if (graphicSheet)
-			stickerSheetBase.loadGraphic(Paths.get(sheet_collection.sheets[current_sheet].graphic));
+			stickerSheetBase.loadGraphic(Paths.get(sheet_collection.sheets[current_sheet].graphic + '.png'));
 		else 
 			stickerSheetBase.makeGraphic(1430, 845, FlxColor.BLACK);
 

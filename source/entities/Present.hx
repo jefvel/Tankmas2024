@@ -75,7 +75,7 @@ class Present extends Interactable
 				sprite_anim.anim(PresentAnimation.IDLE);
 			case NEARBY:
 				sprite_anim.anim(PresentAnimation.NEARBY);
-				if (Ctrl.jspecial[1])
+				if (Ctrl.jjump[1])
 					open();
 			case OPENING:
 				// animProtect("opening");
@@ -97,7 +97,7 @@ class Present extends Interactable
 			if (mark /** && thumbnail.scale.x == 0**/)
 			{
 				thumbnail.sstate("OPEN");
-				if (Ctrl.jspecial[1])
+				if (Ctrl.jjump[1])
 					open();
 			}
 			else if (!mark /** && thumbnail.scale.x != 0 && thumbnail.state != "CLOSE"**/)

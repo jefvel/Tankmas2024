@@ -24,9 +24,10 @@ class SheetSubstate extends flixel.FlxSubState
 	override function update(elapsed:Float)
 	{
 		super.update(elapsed);
-		if (Ctrl.menuConfirm[1] || Ctrl.menuBack[1])
+		if (Ctrl.jaction[1] && sheet_ui.canSelect) {
 			sheet_ui.transOut();
 			new FlxTimer().start(1.2, function(tmr:FlxTimer) {close();});
+		}
 	}
 
 

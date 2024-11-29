@@ -1,6 +1,8 @@
 package data;
 
 import entities.Player;
+import ui.sheets.CostumeSelectSheet;
+import ui.sheets.StickerSelectSheet;
 
 class SaveManager
 {
@@ -53,6 +55,8 @@ class SaveManager
 		savedCostumes = FlxG.save.data.savedCostumes;
 		if (FlxG.save.data.currentCostume != null && PlayState.self != null)
 			PlayState.self.player.new_costume(FlxG.save.data.currentCostume);
+		CostumeSelectSheet.saved_sheet = FlxG.save.data.savedCostumeSheet != null ? FlxG.save.data.savedCostumeSheet : 0;
+		CostumeSelectSheet.saved_selection = FlxG.save.data.savedCostumeSelect != null ? FlxG.save.data.savedCostumeSelect : 0;
 	}
 
 	public static function load_emotes():Void
@@ -65,6 +69,8 @@ class SaveManager
 		savedEmotes = FlxG.save.data.savedEmotes;
 		if (FlxG.save.data.currentEmote != null && PlayState.self != null)
 			PlayState.self.player.sticker = FlxG.save.data.currentEmote;
+		StickerSelectSheet.saved_sheet = FlxG.save.data.savedEmoteSheet != null ? FlxG.save.data.savedEmoteSheet : 0;
+		StickerSelectSheet.saved_selection = FlxG.save.data.savedEmoteSelect != null ? FlxG.save.data.savedEmoteSelect : 0;
 	}
 
 	public static function load_room():Void
@@ -97,6 +103,8 @@ class SaveManager
 	{
 		FlxG.save.data.savedCostumes = savedCostumes;
 		FlxG.save.data.currentCostume = PlayState.self == null ? 'tankman' : PlayState.self.player.costume.name;
+		FlxG.save.data.savedCostumeSheet = CostumeSelectSheet.saved_sheet;
+		FlxG.save.data.savedCostumeSelect = CostumeSelectSheet.saved_selection;
 		if (force)
 			FlxG.save.flush();
 	}
@@ -105,6 +113,8 @@ class SaveManager
 	{
 		FlxG.save.data.savedEmotes = savedEmotes;
 		FlxG.save.data.currentEmote = PlayState.self == null ? 'edd-sticker' : PlayState.self.player.sticker;
+		FlxG.save.data.savedEmoteSheet = StickerSelectSheet.saved_sheet;
+		FlxG.save.data.savedEmoteSelect = StickerSelectSheet.saved_selection;
 		if (force)
 			FlxG.save.flush();
 	}
