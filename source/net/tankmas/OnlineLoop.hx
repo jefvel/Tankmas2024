@@ -130,8 +130,6 @@ class OnlineLoop
 
 		usernames.remove(Main.username);
 
-		trace(usernames);
-
 		for (username in usernames)
 		{
 			var def:NetUserDef = Reflect.field(data.data, username);

@@ -7309,8 +7309,8 @@
 								{
 									"__identifier": "Player",
 									"__grid": [
-										136,
-										136
+										99,
+										80
 									],
 									"__pivot": [
 										0,
@@ -7324,12 +7324,12 @@
 									"height": 128,
 									"defUid": 1,
 									"px": [
-										2176,
-										2176
+										1584,
+										1280
 									],
 									"fieldInstances": [],
-									"__worldX": 2208,
-									"__worldY": 2192
+									"__worldX": 1616,
+									"__worldY": 1296
 								},
 								{
 									"__identifier": "Present",
@@ -7460,8 +7460,8 @@
 											"__identifier": "spawn",
 											"__type": "Point",
 											"__value": {
-												"cx": 142,
-												"cy": 128
+												"cx": 103,
+												"cy": 85
 											},
 											"__tile": null,
 											"defUid": 17,
@@ -7469,7 +7469,7 @@
 												{
 													"id": "V_String",
 													"params": [
-														"142,128"
+														"103,85"
 													]
 												}
 											]

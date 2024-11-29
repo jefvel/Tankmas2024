@@ -36,6 +36,7 @@ class Client
 			on_data(response.bodyAsJson);
 		}, (error:HttpError) ->
 			{
+				trace('GET ERROR @ $url');
 				on_error(error);
 			});
 	}
@@ -58,6 +59,7 @@ class Client
 			on_data(response.bodyAsJson);
 		}, (error:HttpError) ->
 			{
+				trace('POST ERROR @ $url');
 				on_error(error);
 			});
 	}
