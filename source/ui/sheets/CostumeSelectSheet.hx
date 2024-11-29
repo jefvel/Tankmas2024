@@ -18,8 +18,7 @@ class CostumeSelectSheet extends BaseSelectSheet
 	override function kill()
 	{
 		// TODO: save currently-selected costume
-		// missing fields for the below - ?
-		// Player.new_costume(data.JsonData.get_costume(characterNames[current_sheet][current_selection]));
+		PlayState.self.player.new_costume(data.JsonData.get_costume(characterNames[current_sheet][current_selection]));
 		saved_sheet = current_sheet;
 		saved_selection = current_selection;
 		super.kill();

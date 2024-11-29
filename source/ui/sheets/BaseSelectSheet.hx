@@ -7,6 +7,7 @@ import flixel.addons.effects.chainable.FlxEffectSprite;
 import flixel.addons.effects.chainable.FlxOutlineEffect;
 import flixel.group.FlxSpriteGroup.FlxTypedSpriteGroup;
 import flixel.tweens.FlxEase;
+import flixel.util.FlxTimer;
 import squid.ext.FlxGroupExt;
 import states.substates.SheetSubstate;
 import ui.sheets.defs.SheetDefs;
@@ -21,13 +22,15 @@ class BaseSelectSheet extends FlxGroupExt
 	var title:FlxText;
 
 	var sheet_collection:SheetFileDef;
-	var characterSpritesArray:Array<FlxTypedSpriteGroup<FlxSprite>> = [];
-	var characterNames:Array<Array<String>> = [];
+	final characterSpritesArray:Array<FlxTypedSpriteGroup<FlxSprite>> = [];
+	final characterNames:Array<Array<String>> = [];
 
 	var current_sheet(default, set):Int = 0;
 	var current_selection(default, set):Int = 0;
+	final descGroup:FlxTypedSpriteGroup<FlxSprite> = new FlxTypedSpriteGroup<FlxSprite>(-440);
 
 	var graphicSheet:Bool = false;
+	var canSelect:Bool = false;
 
 	/**
 	 * This is private, should be only made through things that extend it
@@ -44,16 +47,16 @@ class BaseSelectSheet extends FlxGroupExt
 
 		FlxG.state.openSubState(new SheetSubstate(this));
 
-		final notepad:FlxSprite = new FlxSprite(1500, 150);
-		add(notepad);
+		add(descGroup);
 
-		description = new FlxText(1500, 250, 430, '');
-		description.setFormat(null, 32, FlxColor.BLACK, LEFT);
-		add(description);
+		final notepad:FlxSprite = new FlxSpriteExt(1490, 150, Paths.get("stickersheet-note.png"));
+		descGroup.add(notepad);
+
+		description = new FlxText(1500, 250, 420, '');
+		description.setFormat(Paths.get('CharlieType.otf'), 32, FlxColor.BLACK, LEFT);
+		descGroup.add(description);
 
 		add(stickerSheetBase = new FlxSprite(66, 239));
-
-		add(effectSheet = new FlxEffectSprite(stickerSheetBase, [new FlxOutlineEffect(FAST, FlxColor.WHITE, 8)]));
 
 		title = new FlxText(70, 70, 1420, '');
 		title.setFormat(null, 48, FlxColor.BLACK, LEFT, OUTLINE, FlxColor.WHITE);
@@ -122,13 +125,14 @@ class BaseSelectSheet extends FlxGroupExt
 		members.for_all_members((member:FlxBasic) ->
 		{
 			final daMem:FlxObject = cast(member, FlxObject);
-			daMem.y += 700;
+			daMem.y -= 1300;
 			daMem.scrollFactor.set(0, 0);
-			FlxTween.tween(daMem, {y: daMem.y - 700}, 1.3, {ease: FlxEase.cubeInOut});
+			FlxTween.tween(daMem, {y: daMem.y - 1300}, 0.8, {ease: FlxEase.cubeInOut});
 		});
-
-		// trace("sheet exists");
-
+		new FlxTimer().start(0.8, function(tmr:FlxTimer) {
+			canSelect = true;
+			FlxTween.tween(descGroup, {x: 0}, 0.5, {ease: FlxEase.cubeOut});
+		});
 	}
 
 	function make_sheet_collection():SheetFileDef
@@ -143,6 +147,7 @@ class BaseSelectSheet extends FlxGroupExt
 
 	function control()
 	{
+		if(!canSelect) return;
 		for (i in 0...characterSpritesArray[current_sheet].length)
 		{
 			// TODO: make this mobile-friendly
@@ -219,6 +224,18 @@ class BaseSelectSheet extends FlxGroupExt
 			description.text = (costume.desc != null ? costume.desc : '');
 		}
 		// characterSpritesArray[current_sheet].members[current_selection].scale.set(1.1, 1.1);
+	}
+
+	public function transOut() {
+		canSelect = false;
+		FlxTween.tween(descGroup, {x: -440}, 0.5, {ease: FlxEase.quintIn});
+		new FlxTimer().start(0.3, function(tmr:FlxTimer) {
+			members.for_all_members((member:FlxBasic) ->
+			{
+				final daMem:FlxObject = cast(member, FlxObject);
+				FlxTween.tween(daMem, {y: daMem.y + 1300}, 1, {ease: FlxEase.cubeInOut});
+			});
+		});
 	}
 }
 

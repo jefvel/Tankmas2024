@@ -19,7 +19,7 @@ class Player extends BaseUser
 	/**We send this once*/
 	public var queued_online_sticker:String;
 
-	public static var sticker:String = "common-tamago";
+	public var sticker:String = "common-tamago";
 
 	public function new(?X:Float, ?Y:Float)
 	{

@@ -1,5 +1,6 @@
 package states;
 
+import data.SaveManager;
 import flixel.FlxState;
 import sound.RadioManager;
 #if gif
@@ -27,6 +28,7 @@ class BaseState extends FlxState
 			// FlxG.stage.window.borderless = true;
 			FIRST_RUN = false;
 			radio = new RadioManager();
+			SaveManager.init();
 		}
 		else
 		{

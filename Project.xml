@@ -44,6 +44,10 @@
 		<haxedef name="ghost_town" />
 	</section>
 
+	<assets path="assets/music" preload="false" />
+	<assets path="assets/art" preload="false" />
+	<assets path="assets/videos" preload="false" />
+
 	<!-- _______________________________ Libraries ______________________________ -->
 
 	<haxelib name="lime" />	

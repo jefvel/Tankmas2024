@@ -85,7 +85,7 @@ class TankmasLevel extends LDTKLevel
 
 		for (entity in level.l_Entities.all_Present.iterator())
 		{
-			new Present(x + entity.pixelX, y + entity.pixelY);
+			new Present(x + entity.pixelX, y + entity.pixelY, entity.f_username);
 		}
 		for (entity in level.l_Entities.all_Door.iterator())
 		{

@@ -1,6 +1,7 @@
 package states.substates;
 
 import flixel.FlxBasic;
+import flixel.util.FlxTimer;
 import ui.sheets.BaseSelectSheet;
 import ui.sheets.CostumeSelectSheet;
 import ui.sheets.StickerSelectSheet;
@@ -24,13 +25,13 @@ class SheetSubstate extends flixel.FlxSubState
 	{
 		super.update(elapsed);
 		if (Ctrl.menuConfirm[1] || Ctrl.menuBack[1])
-			close();
+			sheet_ui.transOut();
+			new FlxTimer().start(1.2, function(tmr:FlxTimer) {close();});
 	}
 
 
 	override function close()
 	{
-		// TODO: save currently-selected costume
 		sheet_ui.kill();
 		super.close();
 	}

@@ -17,7 +17,7 @@ class StickerSelectSheet extends BaseSelectSheet
 
 	override function kill()
 	{
-		Player.sticker = characterNames[current_sheet][current_selection];
+		PlayState.self.player.sticker_name = characterNames[current_sheet][current_selection];
 		saved_sheet = current_sheet;
 		saved_selection = current_selection;
 		super.kill();

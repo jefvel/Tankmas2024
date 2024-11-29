@@ -23,7 +23,10 @@ class RadioManager
 	var current_sound:FlxSound;
 	public static var volume:Float = 1.0;
 
-	var next_music_track:String = "chaoz-fantasy";
+	var next_music_track:Map<Int, Array<String>> = [
+		1 => ["christmasohyeah", "stixdevs"],
+		3 => ["christmasjoy", "realtin3sn"]
+	];
 
 	final sound_categories:Array<String> = [
 		'ad-intro-',
@@ -112,12 +115,12 @@ class RadioManager
 
 	function make_music(segment:RadioSegment):RadioSegment
 	{
-		var n:String = next_music_track;
+		final n:Array<String> = get_random_track();
 		segment.parts = [
-			get_part('music-$n-intro-'),
-			get_part('music-$n-main-'),
-			next_music_track,
-			get_part('music-$n-outro-')
+			get_part('music-${n[0]}-intro-'),
+			get_part('music-${n[0]}-main-'),
+			n.join("_"),
+			get_part('music-${n[0]}-outro-')
 		];
 		segment.follow_up = next_music_followup;
 		next_music_followup == AD ? NEWS : AD;
@@ -137,5 +140,12 @@ class RadioManager
 		segment.parts = [get_part('ad-intro-'), get_part('ad-main-'), get_part('ad-outro-')];
 		segment.follow_up = SHOTGUN;
 		return segment;
+	}
+
+	function get_random_track():Array<String>
+	{
+		final currentOps:Array<Array<String>> = [];
+		for(key in next_music_track.keys()) if(key <= 1) currentOps.push(next_music_track.get(key));
+		return currentOps[FlxG.random.int(0, currentOps.length - 1)];
 	}
 }

@@ -1,6 +1,7 @@
 package states;
 
 import activities.ActivityArea;
+import data.SaveManager;
 import entities.Interactable;
 import entities.Minigame;
 import entities.NPC;
@@ -52,7 +53,10 @@ class PlayState extends BaseState
 
 	public function new(?world_to_load:String)
 	{
-		current_world = world_to_load == null ? default_world : world_to_load;
+		if (world_to_load != null)
+			current_world = world_to_load
+		else
+			current_world = SaveManager.savedRoom == null ? default_world : SaveManager.savedRoom;
 		super();
 	}
 

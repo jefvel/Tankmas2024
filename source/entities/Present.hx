@@ -1,5 +1,8 @@
 package entities;
 
+import data.JsonData;
+import data.SaveManager;
+import data.types.TankmasDefs.PresentDef;
 import data.types.TankmasEnums.PresentAnimation;
 import entities.base.NGSprite;
 import flixel.util.FlxTimer;
@@ -14,20 +17,28 @@ class Present extends Interactable
 
 	public var thumbnail:Thumbnail;
 	var content:String;
+	var day:Int = 0;
 	var comic:Bool = false;
 
-	public function new(?X:Float, ?Y:Float, ?content:String = 'thedyingsun', opened:Bool = false, isComic:Bool = false)
+	public function new(?X:Float, ?Y:Float, ?content:String = 'thedyingsun')
 	{
 		super(X, Y);
 		detect_range = 300;
 		interactable = true;
 		this.content = content;
-		this.comic = isComic;
+		var presentData:PresentDef = JsonData.get_present(this.content);
+		if (presentData == null)
+		{
+			throw 'Error getting present: content ${content}; defaulting to default content';
+			presentData = JsonData.get_present('thedyingsun');
+		}
+		comic = presentData.comicProperties != null ? true : false;
+		opened = SaveManager.savedPresents.contains(content);
+		day = Std.parseInt(presentData.day);
 
 		type = Interactable.InteractableType.PRESENT;
 		
-		// TODO: make presents look for skins based on content string (need to get present assets done first)
-		loadAllFromAnimationSet('present-1');
+		loadAllFromAnimationSet('present-$content');
 
 		PlayState.self.presents.add(this);
 
@@ -62,11 +73,8 @@ class Present extends Interactable
 			default:
 			case IDLE:
 				sprite_anim.anim(PresentAnimation.IDLE);
-				if (thumbnail.state != "CLOSE")
-					thumbnail.sstate("CLOSE");
 			case NEARBY:
 				sprite_anim.anim(PresentAnimation.NEARBY);
-				thumbnail.sstate("OPEN");
 				if (Ctrl.jspecial[1])
 					open();
 			case OPENING:
@@ -105,8 +113,6 @@ class Present extends Interactable
 
 	public function open()
 	{
-		// if (openable)
-		// {
 		if (state != "OPENED")
 		{
 			sstate(OPENING);
@@ -116,6 +122,7 @@ class Present extends Interactable
 				sstate(OPENED);
 				PlayState.self.openSubState(comic ? new ComicSubstate(content, true) : new ArtSubstate(content));
 				opened = true;
+				SaveManager.open_present(content, day);
 			});
 		}
 		else
