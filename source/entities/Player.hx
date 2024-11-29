@@ -73,6 +73,7 @@ class Player extends BaseUser
 		{
 			case NEUTRAL:
 				general_movement();
+				process_activity_area();
 				detect_interactables();
 			case JUMPING:
 			case EMOTING:
@@ -120,14 +121,39 @@ class Player extends BaseUser
 		sprite_anim.anim(MOVING ? PlayerAnimation.MOVING : PlayerAnimation.IDLE);
 	}
 
+	function process_activity_area()
+	{
+		if (active_activity_area == null)
+			return;
+		if (Ctrl.jjump[1])
+		{
+			active_activity_area.on_interact(this);
+		}
+	}
+
+	var previously_closest_interactable:Interactable;
 	function detect_interactables()
 	{
-		Interactable.unmark_all(PlayState.self.interactables);
+		// Disable interactions if in activity area
+		if (active_activity_area != null)
+		{
+			Interactable.unmark_all(PlayState.self.interactables);
+			return;
+		}
 
 		var closest:Interactable = Interactable.find_closest_in_array(this, Interactable.find_in_detect_range(this, PlayState.self.interactables));
+		var target_changed = closest != previously_closest_interactable;
+
+		if (target_changed && previously_closest_interactable != null)
+		{
+			previously_closest_interactable.mark_target(false);
+		}
 
 		if (closest == null)
+		{
+			previously_closest_interactable = null;
 			return;
+		}
 
 		switch (cast(closest.type, InteractableType))
 		{
@@ -139,7 +165,12 @@ class Player extends BaseUser
 				// nothin
 		}
 
-		closest.mark_target(true);
+		if (target_changed)
+		{
+			closest.mark_target(true);
+		}
+
+		previously_closest_interactable = closest;
 	}
 
 	override function kill()
@@ -161,8 +192,12 @@ class Player extends BaseUser
 	{
 		var def:NetUserDef = {name: username};
 
+		var new_sx = flipX ? -1 : 1;
 		if (last_update_json.x != x.floor() || force_send_full_user)
+		{
 			def.x = x.floor();
+			def.sx = new_sx;
+		}
 
 		if (last_update_json.y != y.floor() || force_send_full_user)
 			def.y = y.floor();
@@ -175,6 +210,7 @@ class Player extends BaseUser
 			name: username,
 			x: x.floor(),
 			y: y.floor(),
+			sx: new_sx,
 			costume: costume.name
 		};
 

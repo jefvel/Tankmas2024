@@ -18,6 +18,8 @@ class NetUser extends BaseUser
 
 	var move_target:FlxPoint = new FlxPoint();
 
+	var facing_dir:Int = 0;
+
 	public function new(?X:Float, ?Y:Float, username:String, ?costume:CostumeDef)
 	{
 		super(X, Y, username);
@@ -47,8 +49,14 @@ class NetUser extends BaseUser
 
 		// var total_move_dist:Float = Math.abs(x - prev_x) + Math.abs(y - prev_y);
 
-		if (velocity.x != 0)
+		if (Math.abs(velocity.x) > 0.2)
+		{
 			flipX = velocity.x > 0;
+		}
+		else if (facing_dir != 0)
+		{
+			flipX = facing_dir < 0;
+		}
 	}
 
 	public function move_update()
@@ -62,7 +70,7 @@ class NetUser extends BaseUser
 		FlxVelocity.moveTowardsPoint(this, move_target, move_speed);
 	}
 
-	public function move_to(X:Float, Y:Float, teleport:Bool = false)
+	public function move_to(X:Float, Y:Float, teleport:Bool = false, sx:Int = 0)
 	{
 		if (teleport)
 		{
@@ -73,6 +81,8 @@ class NetUser extends BaseUser
 
 			return;
 		}
+
+		facing_dir = sx;
 
 		moving = true;
 

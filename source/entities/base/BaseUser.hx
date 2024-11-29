@@ -1,9 +1,12 @@
 package entities.base;
 
+import activities.ActivityArea;
 import data.JsonData;
 import data.types.TankmasDefs.CostumeDef;
 import data.types.TankmasEnums.PlayerAnimation;
 import entities.base.NGSprite;
+import net.tankmas.NetDefs.NetEventDef;
+import net.tankmas.NetDefs.NetEventType;
 
 class BaseUser extends NGSprite
 {
@@ -17,6 +20,7 @@ class BaseUser extends NGSprite
 	public var username:String;
 
 	public var sticker_name:String;
+	public var active_activity_area:ActivityArea;
 
 	public function new(?X:Float, ?Y:Float, username:String)
 	{
@@ -75,10 +79,74 @@ class BaseUser extends NGSprite
 		shadow.center_on_bottom(this);
 		shadow.offset.x = offset.x;
 		shadow.updateMotion(elapsed);
+		check_current_area();
+	}
+
+	function check_current_area()
+	{
+		var prev_area = active_activity_area;
+		var new_area:ActivityArea = null;
+		for (area in PlayState.self.activity_areas.iterator())
+		{
+			if (area.in_area(x, y))
+			{
+				new_area = area;
+				break;
+			}
+		}
+
+		if (prev_area == new_area)
+		{
+			return;
+		}
+
+		if (new_area != null)
+		{
+			enter_activity_area(new_area);
+		}
+		else
+		{
+			leave_activity_area();
+		}
+	}
+
+	public function on_event(event:NetEventDef)
+	{
+		switch (event.type)
+		{
+			case NetEventType.STICKER:
+				use_sticker(event.data.name);
+		}
+
+		if (active_activity_area != null)
+		{
+			active_activity_area.on_event(event, this);
+		}
+	}
+
+	public function leave_activity_area()
+	{
+		if (active_activity_area != null)
+		{
+			active_activity_area.on_leave(this);
+		}
+
+		active_activity_area = null;
+	}
+
+	public function enter_activity_area(area:ActivityArea)
+	{
+		if (area == active_activity_area)
+			return;
+		leave_activity_area();
+		active_activity_area = area;
+		area.on_enter(this);
 	}
 
 	override function kill()
 	{
+		leave_activity_area();
+
 		PlayState.self.users.remove(this, true);
 		super.kill();
 	}

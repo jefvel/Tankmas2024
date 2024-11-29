@@ -14,4 +14,8 @@ data/events/requests-log.json
 data/events/events.json
 
 # Installed libraries
-.haxelib/
+.haxelib
+server
+
+ldtkbackups
+*.png~

@@ -1,5 +1,6 @@
 package states;
 
+import activities.ActivityArea;
 import entities.Interactable;
 import entities.Minigame;
 import entities.NPC;
@@ -29,6 +30,7 @@ class PlayState extends BaseState
 	public var player:Player;
 	public var users:FlxTypedGroup<BaseUser> = new FlxTypedGroup<BaseUser>();
 	public var presents:FlxTypedGroup<Present> = new FlxTypedGroup<Present>();
+	public var objects:FlxTypedGroup<FlxSprite> = new FlxTypedGroup<FlxSprite>();
 	public var thumbnails:FlxTypedGroup<Thumbnail> = new FlxTypedGroup<Thumbnail>();
 	public var shadows:FlxTypedGroup<FlxSpriteExt> = new FlxTypedGroup<FlxSpriteExt>();
 	public var stickers:FlxTypedGroup<StickerFX> = new FlxTypedGroup<StickerFX>();
@@ -43,6 +45,8 @@ class PlayState extends BaseState
 
 	/**Do not add to state*/
 	public var interactables:FlxTypedGroup<Interactable> = new FlxTypedGroup<Interactable>();
+
+	public var activity_areas:FlxTypedGroup<ActivityArea> = new FlxTypedGroup();
 
 	public var doors:FlxTypedGroup<Door> = new FlxTypedGroup<Door>();
 
@@ -70,6 +74,7 @@ class PlayState extends BaseState
 		add(npcs);
 		add(presents);
 		add(users);
+		add(objects);
 		add(thumbnails);
 		add(stickers);
 		add(sticker_fx);
@@ -83,6 +88,7 @@ class PlayState extends BaseState
 
 		MinigameHandler.instance.initialize();
 
+		FlxG.autoPause = false;
 		FlxG.camera.target = player;
 
 		var bg:FlxObject = level_backgrounds.members[0];
