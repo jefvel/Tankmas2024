@@ -2,11 +2,13 @@ package ui.sheets;
 
 import data.types.TankmasDefs.CostumeDef;
 import data.types.TankmasDefs.StickerDef;
+import entities.base.NGSprite;
 import flixel.FlxBasic;
 import flixel.addons.effects.chainable.FlxEffectSprite;
 import flixel.addons.effects.chainable.FlxOutlineEffect;
 import flixel.group.FlxSpriteGroup.FlxTypedSpriteGroup;
 import flixel.tweens.FlxEase;
+import flixel.util.FlxTimer;
 import squid.ext.FlxGroupExt;
 import states.substates.SheetSubstate;
 import ui.sheets.defs.SheetDefs;
@@ -15,48 +17,58 @@ class BaseSelectSheet extends FlxGroupExt
 {
 	var type:SheetType;
 
+	var stickerSheetOutline:FlxSprite;
 	var stickerSheetBase:FlxSprite;
 	var effectSheet:FlxEffectSprite;
 	var description:FlxText;
 	var title:FlxText;
+	public var selector:FlxSprite;
+	public var backTab:FlxSpriteExt;
 
 	var sheet_collection:SheetFileDef;
-	var characterSpritesArray:Array<FlxTypedSpriteGroup<FlxSprite>> = [];
-	var characterNames:Array<Array<String>> = [];
+	final characterSpritesArray:Array<FlxTypedSpriteGroup<FlxSprite>> = [];
+	final notSeenGroup:Array<FlxTypedSpriteGroup<FlxSpriteExt>> = [];
+	final characterNames:Array<Array<String>> = [];
 
 	var current_sheet(default, set):Int = 0;
 	var current_selection(default, set):Int = 0;
+	final descGroup:FlxTypedSpriteGroup<FlxSprite> = new FlxTypedSpriteGroup<FlxSprite>(-440);
 
 	var graphicSheet:Bool = false;
+	public var canSelect:Bool = false;
+
+	public var seen:Array<String> = [];
 
 	/**
 	 * This is private, should be only made through things that extend it
 	 * @param saved_sheet
 	 * @param saved_selection
 	 */
-	function new(saved_sheet:Int, saved_selection:Int, ?type:SheetType = COSTUME)
+	function new(saved_sheet:Int, saved_selection:Int, ?type:SheetType = COSTUME, ?newState:Bool = true)
 	{
-		trace("sheet exists");
-		
 		super();
 
 		this.type = type;
 
-		FlxG.state.openSubState(new SheetSubstate(this));
+		if(newState) FlxG.state.openSubState(new SheetSubstate(this));
 
-		final notepad:FlxSprite = new FlxSprite(1500, 150);
-		add(notepad);
+		add(descGroup);
 
-		description = new FlxText(1500, 250, 430, '');
-		description.setFormat(null, 32, FlxColor.BLACK, LEFT);
-		add(description);
+		final notepad:FlxSpriteExt = new FlxSpriteExt(1490, 300, Paths.get("stickersheet-note.png"));
+		descGroup.add(notepad);
 
+		description = new FlxText(1500, 325, 420, '');
+		description.setFormat(Paths.get('CharlieType.otf'), 32, FlxColor.BLACK, LEFT);
+		descGroup.add(description);
+
+		add(backTab = new FlxSpriteExt(66 + (type == COSTUME ? 500 : 0), 130, Paths.get((type == COSTUME ? 'emotetab' : 'costumetab') + '.png')));
+
+		add(stickerSheetOutline = new FlxSprite(46, 219).makeGraphic(1446, 852, FlxColor.WHITE));
 		add(stickerSheetBase = new FlxSprite(66, 239));
 
-		add(effectSheet = new FlxEffectSprite(stickerSheetBase, [new FlxOutlineEffect(FAST, FlxColor.WHITE, 8)]));
-
 		title = new FlxText(70, 70, 1420, '');
-		title.setFormat(null, 48, FlxColor.BLACK, LEFT, OUTLINE, FlxColor.WHITE);
+		title.setFormat(Paths.get('CharlieType-Heavy.otf'), 60, FlxColor.BLACK, LEFT, OUTLINE, FlxColor.WHITE);
+		title.borderSize = 6;
 		add(title);
 
 		sheet_collection = make_sheet_collection();
@@ -66,6 +78,9 @@ class BaseSelectSheet extends FlxGroupExt
 			final characterSprites:FlxTypedSpriteGroup<FlxSprite> = new FlxTypedSpriteGroup<FlxSprite>();
 			add(characterSprites);
 
+			final notSeenSprites:FlxTypedSpriteGroup<FlxSpriteExt> = new FlxTypedSpriteGroup<FlxSpriteExt>();
+			add(notSeenSprites);
+
 			final daNames:Array<String> = [];
 
 			for (i in 0...sheet.items.length - 1)
@@ -74,6 +89,7 @@ class BaseSelectSheet extends FlxGroupExt
 					continue;
 				final identity:SheetItemDef = sheet.items[i];
 				final sprite:FlxSprite = new FlxSprite(0, 0);
+				sprite.ID = i;
 				if (type == STICKER)
 				{
 					final sticker:StickerDef = data.JsonData.get_sticker(identity.name);
@@ -88,7 +104,6 @@ class BaseSelectSheet extends FlxGroupExt
 						continue;
 					sprite.loadGraphic(Paths.get('${character.name}.png'));
 				}
-
 				var sprite_position:FlxPoint = FlxPoint.weak();
 
 				// initial positions
@@ -105,30 +120,57 @@ class BaseSelectSheet extends FlxGroupExt
 					sprite.angle = identity.angle;
 				characterSprites.add(sprite);
 				daNames.push(identity.name);
+				if(!seen.contains(identity.name)) {
+					final newFrame:FlxSpriteExt = new FlxSpriteExt(sprite_position.x + (sprite.width / 2) - 141, sprite_position.y + (sprite.height / 2) - 163);
+					newFrame.loadAllFromAnimationSet('new-sticker-overlay');
+					newFrame.ID = i;
+					notSeenSprites.add(newFrame);
+					@:privateAccess
+					newFrame.anim('idle');
+					new FlxTimer().start(4.3, function(tmr:FlxTimer) {
+						if(!newFrame.alive) return;
+						newFrame.anim('shine');
+						new FlxTimer().start(0.5, function(tmr:FlxTimer) {newFrame.anim('idle');});
+					}, 0);
+				}
 			}
 
+			trace("sheet exists");
 			if (characterSprites.members.length != 0)
 			{
 				characterSpritesArray.push(characterSprites);
 				if (sheet.graphic != null)
-					Paths.get(sheet.graphic);
+					Paths.get(sheet.graphic + '.png');
 				characterNames.push(daNames);
+				notSeenGroup.push(notSeenSprites);
 			}
 			characterSprites.kill();
+			notSeenSprites.kill();
 		}
-		current_sheet = saved_sheet;
+
+		final curTab:FlxSpriteExt = new FlxSpriteExt(66 + (type == STICKER ? 500 : 0), 130, Paths.get((type == STICKER ? 'emotetab' : 'costumetab') + '.png'));
+		curTab.scale.set(1.1, 1.1);
+		add(curTab);
+
+		selector = new FlxSprite().loadGraphic(Paths.get("itemnavigator.png"), true, 330, 334);
+		selector.animation.add("hover", [0, 1], 2);
+		add(selector);
+		selector.animation.play("hover");
+
 		current_selection = saved_selection;
+		current_sheet = saved_sheet;
 
 		members.for_all_members((member:FlxBasic) ->
 		{
 			final daMem:FlxObject = cast(member, FlxObject);
-			daMem.y += 700;
+			daMem.y += 1300;
 			daMem.scrollFactor.set(0, 0);
-			FlxTween.tween(daMem, {y: daMem.y - 700}, 1.3, {ease: FlxEase.cubeInOut});
+			FlxTween.tween(daMem, {y: daMem.y - 1300}, 0.8, {ease: FlxEase.cubeInOut});
 		});
-
-		// trace("sheet exists");
-
+		new FlxTimer().start(0.8, function(tmr:FlxTimer) {
+			canSelect = true;
+			FlxTween.tween(descGroup, {x: 0}, 0.5, {ease: FlxEase.cubeOut});
+		});
 	}
 
 	function make_sheet_collection():SheetFileDef
@@ -143,6 +185,7 @@ class BaseSelectSheet extends FlxGroupExt
 
 	function control()
 	{
+		if(!canSelect) return;
 		for (i in 0...characterSpritesArray[current_sheet].length)
 		{
 			// TODO: make this mobile-friendly
@@ -157,12 +200,22 @@ class BaseSelectSheet extends FlxGroupExt
 			current_sheet = current_sheet + 1;
 		if (Ctrl.cdown[1])
 			current_sheet = current_sheet - 1;
+		if(FlxG.mouse.overlaps(backTab)) {
+			if(backTab.y != 110)
+				backTab.y = 110;
+			if(FlxG.mouse.justPressed) {
+				if(backTab.scale.x != 0.8) backTab.scale.set(0.8, 0.8);
+				SheetSubstate.instance.reload(type == COSTUME ? "STICKER" : "COSTUME");
+			} else if (!FlxG.mouse.pressed && backTab.scale.x != 1.1) backTab.scale.set(1.1, 1.1);
+		} else if (backTab.scale.x != 1) backTab.scale.set(1, 1);
 	}
 
 	function set_current_sheet(val:Int):Int
 	{
-		if (characterSpritesArray.length > 0)
+		if (characterSpritesArray.length > 1) {
 			characterSpritesArray[current_sheet].kill();
+			notSeenGroup[current_sheet].kill();
+		}
 
 		if (val < 0)
 			current_sheet = characterSpritesArray.length - 1;
@@ -186,6 +239,13 @@ class BaseSelectSheet extends FlxGroupExt
 		else
 			current_selection = val;
 
+		if(notSeenGroup[current_sheet].members.length > 0) {
+			final matches:Array<FlxSpriteExt> = notSeenGroup[current_sheet].members.filter(i -> i.ID == characterSpritesArray[current_sheet].members[current_selection].ID);
+			if(matches.length > 0) {
+				seen.push(characterNames[current_sheet][current_selection]);
+				notSeenGroup[current_sheet].members.remove(matches[0]);
+			}
+		}
 		update_selection_graphics();
 
 		return current_selection;
@@ -195,11 +255,12 @@ class BaseSelectSheet extends FlxGroupExt
 	{
 		graphicSheet = sheet_collection.sheets[current_sheet].graphic != null ? true : false;
 		if (graphicSheet)
-			stickerSheetBase.loadGraphic(Paths.get(sheet_collection.sheets[current_sheet].graphic));
+			stickerSheetBase.loadGraphic(Paths.get(sheet_collection.sheets[current_sheet].graphic + '.png'));
 		else 
 			stickerSheetBase.makeGraphic(1430, 845, FlxColor.BLACK);
 
 		characterSpritesArray[current_sheet].revive();
+		notSeenGroup[current_sheet].revive();
 
 		update_selection_graphics();
 	}
@@ -209,16 +270,31 @@ class BaseSelectSheet extends FlxGroupExt
 		if (type == STICKER)
 		{
 			final sticker:StickerDef = data.JsonData.get_sticker(characterNames[current_sheet][current_selection]);
-			title.text = sticker.properName;
+			title.text = sticker.properName.toUpperCase();
 			description.text = (sticker.desc != null ? (sticker.desc + ' ') : '') + 'Created by ${sticker.artist != null ? sticker.artist : "Unknown"}';
+			//selector.setPosition(characterSpritesArray[current_sheet].members[current_selection].x + (characterSpritesArray[current_sheet].members[current_selection].width / 2) - 175, characterSpritesArray[current_sheet].members[current_selection].y + (characterSpritesArray[current_sheet].members[current_selection].height / 2) - 177);
 		}
 		else
 		{
 			final costume:CostumeDef = data.JsonData.get_costume(characterNames[current_sheet][current_selection]);
-			title.text = costume.display;
+			title.text = costume.display.toUpperCase();
 			description.text = (costume.desc != null ? costume.desc : '');
+			//selector.setPosition(characterSpritesArray[current_sheet].members[current_selection].x - 110, characterSpritesArray[current_sheet].members[current_selection].y - 80);
 		}
+		selector.setPosition(characterSpritesArray[current_sheet].members[current_selection].x + (characterSpritesArray[current_sheet].members[current_selection].width / 2) - 175, characterSpritesArray[current_sheet].members[current_selection].y + (characterSpritesArray[current_sheet].members[current_selection].height / 2) - 167);
 		// characterSpritesArray[current_sheet].members[current_selection].scale.set(1.1, 1.1);
+	}
+
+	public function transOut() {
+		canSelect = false;
+		FlxTween.tween(descGroup, {x: -440}, 0.5, {ease: FlxEase.quintIn});
+		new FlxTimer().start(0.3, function(tmr:FlxTimer) {
+			members.for_all_members((member:FlxBasic) ->
+			{
+				final daMem:FlxObject = cast(member, FlxObject);
+				FlxTween.tween(daMem, {y: daMem.y + 1300}, 1, {ease: FlxEase.cubeInOut});
+			});
+		});
 	}
 }
 

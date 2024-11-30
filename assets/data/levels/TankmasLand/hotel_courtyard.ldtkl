@@ -530,7 +530,7 @@
 					"defUid": 2,
 					"px": [2080,1664],
 					"fieldInstances": [
-						{ "__identifier": "username", "__type": "String", "__value": null, "__tile": null, "defUid": 5, "realEditorValues": [] },
+						{ "__identifier": "username", "__type": "String", "__value": "cymbourine", "__tile": null, "defUid": 5, "realEditorValues": [] },
 						{ "__identifier": "day", "__type": "Int", "__value": 1, "__tile": null, "defUid": 6, "realEditorValues": [] }
 					],
 					"__worldX": 2112,

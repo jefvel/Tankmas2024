@@ -237,4 +237,101 @@ enum abstract PresentAnimation(SpriteAnimationDef) from SpriteAnimationDef to Sp
 			},
 		]
 	};
+
+	public static final OPENING:SpriteAnimationDef = {
+		name: "opening",
+		fps: Utils.ms_to_frames_per_second("40ms"),
+		looping: true,
+		frames: [
+			{
+				duration: 2,
+				x: 0,
+				y: 0,
+				angle: 0,
+				height: 0.8,
+				width: 1.0,
+			},
+			{
+				duration: 2,
+				height: 0.7,
+			},
+			{
+				duration: 2,
+				y: -36,
+				height: 1.4,
+			}, // frame 6
+			{
+				duration: 2,
+				height: 1.3,
+				y: -46,
+				frameNum: 1
+			}, // frame 8
+			{
+				duration: 2,
+				height: 1.1,
+			}, // frame 10
+			{
+				duration: 2,
+				y: -50
+			}, // frame 12
+			{
+				duration: 2,
+				y: -53
+			}, // frame 13
+			{
+				duration: 2,
+				y: -56
+			}, // frame 15
+			{
+				duration: 3,
+				height: 1.2,
+				y: -40
+			}, // frame 18
+			{
+				duration: 1,
+				height: 1.5,
+				y: -40,
+			}, // frame 19
+			{
+				duration: 2,
+				y: -20,
+			}, // frame 21
+			{
+				duration: 1,
+				height: 0.7,
+				y: 10,
+			}, // frame 22 + extra bounce not in anim
+			{
+				duration: 1,
+				height: 1,
+				y: -10,
+			},
+			{
+				duration: 1,
+				y: -6,
+			},
+			{
+				duration: 5,
+				height: 1,
+				y: 0
+			},
+		]
+	};
+
+	public static final OPENED:SpriteAnimationDef = {
+		name: "opened",
+		fps: Utils.ms_to_frames_per_second("40ms"),
+		looping: true,
+		frames: [
+			{
+				duration: 1,
+				x: 0,
+				y: 0,
+				angle: 0,
+				height: 1.0,
+				width: 1.0,
+				frameNum: 1
+			}
+		]
+	};
 }

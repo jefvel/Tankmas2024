@@ -1,11 +1,17 @@
 {
     "presents": [
         {
-            "day": "1",
+            "day": "0",
             "file": "thedyingsun",
             "name": "",
             "artist": "TheDyingSun"
         }, {
+            "day": "1",
+            "file": "cymbourine",
+            "name": "",
+            "artist": "Cymbourine"
+        }, 
+        {
             "day": "1",
             "file": "night-before",
             "name": "The Night Before Tankmas",

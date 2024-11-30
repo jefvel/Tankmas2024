@@ -57,5 +57,6 @@ typedef SpriteAnimationFrameDef =
 	var ?height:Float;
 	var ?angle:Int;
 	var duration:Int;
+	var ?frameNum:Int;
 }
 
