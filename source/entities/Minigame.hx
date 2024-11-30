@@ -27,14 +27,6 @@ class Minigame extends Interactable
 		alpha = 0.5;
 	}
 
-	override function update(elapsed:Float)
-	{
-		super.update(elapsed);
-		if (!marked)
-			return;
-		if (Ctrl.jaction[1]) {}
-	}
-
 	override function on_interact()
 	{
 		start_minigame();
