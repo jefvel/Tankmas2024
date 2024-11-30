@@ -84,8 +84,6 @@ class Present extends Interactable
 				sprite_anim.anim(PresentAnimation.IDLE);
 			case NEARBY:
 				sprite_anim.anim(PresentAnimation.NEARBY);
-				if (Ctrl.jaction[1])
-					open();
 			case OPENING:
 				sprite_anim.anim(PresentAnimation.OPENING);
 			case OPENED:
