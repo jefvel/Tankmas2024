@@ -12,7 +12,13 @@ import states.substates.ComicSubstate;
 
 class Present extends Interactable
 {
-	public var openable:Bool = true;
+	public var openable(default, set):Bool = true;
+
+	function set_openable(o)
+	{
+		interactable = o;
+		return openable = o;
+	}
 
 	public static var opened:Bool = false;
 
@@ -26,7 +32,6 @@ class Present extends Interactable
 	{
 		super(X, Y);
 		detect_range = 300;
-		interactable = true;
 		this.content = content;
 		var presentData:PresentDef = JsonData.get_present(this.content);
 		if (presentData == null)
@@ -37,6 +42,8 @@ class Present extends Interactable
 		comic = presentData.comicProperties != null ? true : false;
 		opened = SaveManager.savedPresents.contains(content);
 		day = Std.parseInt(presentData.day);
+
+		openable = true;
 
 		type = Interactable.InteractableType.PRESENT;
 
@@ -85,6 +92,11 @@ class Present extends Interactable
 				sprite_anim.anim(PresentAnimation.OPENED);
 				thumbnail.sstate("OPEN");
 		}
+
+	override function on_interact()
+	{
+		open();
+	}
 
 	override public function mark_target(mark:Bool)
 	{

@@ -42,6 +42,9 @@ class Interactable extends NGSprite
 		return null;
 	}
 
+	// Called when in range and player presses interact button
+	public function on_interact() {}
+
 	function mark_target(mark:Bool) {}
 
 	public static function unmark_all<T:Interactable>(interactables:FlxTypedGroup<T>)

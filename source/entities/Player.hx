@@ -174,12 +174,13 @@ class Player extends BaseUser
 				// nothin
 		}
 
-		if (target_changed)
-		{
-			closest.marked = true;
-		}
-
+		closest.marked = true;
 		active_interactable = closest;
+
+		if (Ctrl.jaction[1])
+		{
+			active_interactable.on_interact();
+		}
 	}
 
 	override function kill()

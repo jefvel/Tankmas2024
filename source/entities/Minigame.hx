@@ -32,10 +32,12 @@ class Minigame extends Interactable
 		super.update(elapsed);
 		if (!marked)
 			return;
-		if (Ctrl.jaction[1])
-		{
-			start_minigame();
-		}
+		if (Ctrl.jaction[1]) {}
+	}
+
+	override function on_interact()
+	{
+		start_minigame();
 	}
 
 	function start_minigame()

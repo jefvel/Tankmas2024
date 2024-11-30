@@ -40,11 +40,15 @@ class NPC extends Interactable
 				sprite_anim.anim(PresentAnimation.IDLE);
 			case NEARBY:
 				sprite_anim.anim(PresentAnimation.NEARBY);
-				if (Ctrl.jaction[1])
-					start_chat();
 			case CHATTING:
 				sprite_anim.anim(PresentAnimation.IDLE);
 		}
+
+	override function on_interact()
+	{
+		if (state == NEARBY)
+			start_chat();
+	}
 
 	function start_chat()
 	{
