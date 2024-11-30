@@ -1,0 +1,62 @@
+{
+    "sheets": [
+        {
+            "graphic": "stickersheet-1",
+            "items": [
+                {
+                    "name": "toasty-warm"
+                }, {
+                    "name": "edd-sticker"
+                }, {
+                    "name": "mustard"
+                }, {
+                    "name": "pink-kight-mondo"
+                }, {
+                    "name": "tappy-sticker"
+                }, {
+                    "name": "son-christmas"
+                }, {
+                    "name": "sick-skull"
+                }, {
+                    "name": "gimme-five"
+                }, {
+                    "name": null
+                }, {
+                    "name": "john-sticker"
+                }, {
+                    "name": "pico-sticker-swag"
+                }, {
+                    "name": "common-tamago"
+                }
+            ]
+         }, {
+            "items": [
+                {
+                    "name": "cashy-peace"
+                }, {
+                    "name": null
+                }, {
+                    "name": "slimy-tankmas-sticker"
+                }, {
+                    "name": null
+                }, {
+                    "name": "alien-sticker"
+                }, {
+                    "name": "liv-sticker"
+                }, {
+                    "name": "smug-bastard"
+                }, {
+                    "name": null
+                }, {
+                    "name": "bellvonartsy-sticker"
+                }, {
+                    "name": "ena-blitzilla"
+                }, {
+                    "name": "olive-tankmas"
+                }, {
+                    "name": "questioning-you"
+                }
+            ]
+        }
+    ]
+}
