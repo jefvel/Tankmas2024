@@ -27,17 +27,20 @@ class Minigame extends Interactable
 		alpha = 0.5;
 	}
 
+	var marked:Bool = false;
 	public override function mark_target(mark:Bool)
 	{
-		if (mark)
+		marked = mark;
+	}
+
+	override function update(elapsed:Float)
+	{
+		super.update(elapsed);
+		if (!marked)
+			return;
+		if (Ctrl.jjump[1])
 		{
-			if (Ctrl.jjump[1])
-			{
-				start_minigame();
-			}
-		}
-		else
-		{
+			start_minigame();
 		}
 	}
 
