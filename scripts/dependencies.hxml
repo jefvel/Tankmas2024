@@ -11,6 +11,7 @@
 --library ldtk-haxe-api:1.5.3-rc.1
 --library json2object
 --library hxjsonast
+--library newgrounds:2.0.3
 
 --library deepnightLibs:git:https://github.com/EliteMasterEric/deepnightLibs#bugfix/achievement
 
