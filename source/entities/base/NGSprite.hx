@@ -107,6 +107,8 @@ class SpriteAnimationController
 		sprite.scale.y = frame.height == null ? sprite.scale.y : frame.height;
 
 		sprite.angle = frame.angle == null ? sprite.angle : frame.angle;
+
+		if(frame.frameNum != null && sprite.frames.frames.length >= (1 + frame.frameNum)) sprite.frame = sprite.frames.frames[frame.frameNum];
 	}
 
 	public function reset_sprite()

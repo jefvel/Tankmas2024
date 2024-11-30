@@ -24,4 +24,9 @@
 		<anim name="open" fps="100ms" looping="false">7t9</anim>
 		<anim name="opened" fps="100ms" looping="false">9</anim>
 	</animSet>
+
+	<animSet image="new-sticker-overlay">
+		<anim name="idle" fps="100ms">0</anim>
+		<anim name="shine" fps="50ms" looping="false">1t9</anim>
+	</animSet>
 </root>

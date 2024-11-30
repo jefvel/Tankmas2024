@@ -38,7 +38,7 @@ class Present extends Interactable
 
 		type = Interactable.InteractableType.PRESENT;
 		
-		loadAllFromAnimationSet('present-$content');
+		loadGraphic(Paths.get('present-$content.png'), true, 94, 94);
 
 		PlayState.self.presents.add(this);
 
@@ -78,9 +78,9 @@ class Present extends Interactable
 				if (Ctrl.jjump[1])
 					open();
 			case OPENING:
-				// animProtect("opening");
+				sprite_anim.anim(PresentAnimation.OPENING);
 			case OPENED:			
-				// animProtect("opened");
+				sprite_anim.anim(PresentAnimation.OPENED);
 		}
 
 	override public function mark_target(mark:Bool)
@@ -130,8 +130,6 @@ class Present extends Interactable
 			// TODO: sound effect
 			PlayState.self.openSubState(comic ? new ComicSubstate(content, false) : new ArtSubstate(content));
 		}
-		// openable = false;
-		// }
 	}
 }
 

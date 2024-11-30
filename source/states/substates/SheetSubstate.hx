@@ -9,12 +9,15 @@ import ui.sheets.StickerSelectSheet;
 class SheetSubstate extends flixel.FlxSubState
 {
 	var sheet_ui:BaseSelectSheet;
+	public static var instance:SheetSubstate;
 
 	override public function new(sheet_ui:BaseSelectSheet)
 	{
 		super();
 
 		this.sheet_ui = sheet_ui;
+
+		instance = this;
 
 		add(sheet_ui);
 
@@ -30,6 +33,12 @@ class SheetSubstate extends flixel.FlxSubState
 		}
 	}
 
+	public function reload(type:String)
+	{
+		remove(sheet_ui);
+		sheet_ui = type == "COSTUME" ? new CostumeSelectSheet(false) : new StickerSelectSheet(false);
+		add(sheet_ui);
+	}
 
 	override function close()
 	{

@@ -54,9 +54,10 @@ class SaveManager
 		}
 		savedCostumes = FlxG.save.data.savedCostumes;
 		if (FlxG.save.data.currentCostume != null && PlayState.self != null)
-			PlayState.self.player.new_costume(FlxG.save.data.currentCostume);
+			PlayState.self.player.new_costume(JsonData.get_costume(FlxG.save.data.currentCostume));
 		CostumeSelectSheet.saved_sheet = FlxG.save.data.savedCostumeSheet != null ? FlxG.save.data.savedCostumeSheet : 0;
 		CostumeSelectSheet.saved_selection = FlxG.save.data.savedCostumeSelect != null ? FlxG.save.data.savedCostumeSelect : 0;
+		CostumeSelectSheet.seenCostumes = FlxG.save.data.seenCostumes != null ? FlxG.save.data.seenCostumes : [];
 	}
 
 	public static function load_emotes():Void
@@ -71,6 +72,7 @@ class SaveManager
 			PlayState.self.player.sticker = FlxG.save.data.currentEmote;
 		StickerSelectSheet.saved_sheet = FlxG.save.data.savedEmoteSheet != null ? FlxG.save.data.savedEmoteSheet : 0;
 		StickerSelectSheet.saved_selection = FlxG.save.data.savedEmoteSelect != null ? FlxG.save.data.savedEmoteSelect : 0;
+		StickerSelectSheet.seenStickers = FlxG.save.data.seenEmotes != null ? FlxG.save.data.seenEmotes : [];
 	}
 
 	public static function load_room():Void
@@ -105,6 +107,7 @@ class SaveManager
 		FlxG.save.data.currentCostume = PlayState.self == null ? 'tankman' : PlayState.self.player.costume.name;
 		FlxG.save.data.savedCostumeSheet = CostumeSelectSheet.saved_sheet;
 		FlxG.save.data.savedCostumeSelect = CostumeSelectSheet.saved_selection;
+		FlxG.save.data.seenCostumes = CostumeSelectSheet.seenCostumes;
 		if (force)
 			FlxG.save.flush();
 	}
@@ -115,6 +118,7 @@ class SaveManager
 		FlxG.save.data.currentEmote = PlayState.self == null ? 'edd-sticker' : PlayState.self.player.sticker;
 		FlxG.save.data.savedEmoteSheet = StickerSelectSheet.saved_sheet;
 		FlxG.save.data.savedEmoteSelect = StickerSelectSheet.saved_selection;
+		FlxG.save.data.seenEmotes = StickerSelectSheet.seenStickers;
 		if (force)
 			FlxG.save.flush();
 	}
