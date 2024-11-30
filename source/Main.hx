@@ -6,7 +6,7 @@ import flixel.FlxGame;
 import levels.LdtkProject;
 import openfl.display.Sprite;
 import utils.CrashHandler;
-import ng.NewgroundsHandler;
+#if newgrounds import ng.NewgroundsHandler; #end
 
 class Main extends Sprite
 {
@@ -40,7 +40,9 @@ class Main extends Sprite
 	public function make_game()
 	{
 		Lists.init();
+		#if newgrounds
 		ng_api = new NewgroundsHandler();
+		#end
 		addChild(new FlxGame(1920, 1080, PlayState, true));
 	}
 }
