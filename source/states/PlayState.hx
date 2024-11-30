@@ -18,7 +18,6 @@ import ui.DialogueBox;
 import ui.sheets.*;
 import zones.Door;
 
-
 class PlayState extends BaseState
 {
 	public static var self:PlayState;
@@ -62,7 +61,7 @@ class PlayState extends BaseState
 		self = this;
 
 		OnlineLoop.init();
-		
+
 		bgColor = FlxColor.BLACK;
 
 		add(level_backgrounds);
@@ -128,6 +127,7 @@ class PlayState extends BaseState
 		self = null;
 		super.destroy();
 	}
+
 	function make_world()
 	{
 		TankmasLevel.make_all_levels_in_world(current_world);
