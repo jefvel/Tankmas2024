@@ -88,7 +88,6 @@ class Present extends Interactable
 				sprite_anim.anim(PresentAnimation.OPENING);
 			case OPENED:
 				sprite_anim.anim(PresentAnimation.OPENED);
-				thumbnail.sstate("OPEN");
 		}
 
 	override function on_interact()
@@ -102,9 +101,12 @@ class Present extends Interactable
 			return;
 
 		if (mark)
-			sstate(NEARBY);
+			sstate(opened ? OPENED : NEARBY);
 		else
 			sstate(IDLE);
+
+		if (!opened)
+			return;
 
 		if (mark /** && thumbnail.scale.x == 0**/)
 		{
@@ -129,6 +131,7 @@ class Present extends Interactable
 			{
 				// TODO: sound effect
 				sstate(OPENED);
+				thumbnail.sstate("OPEN");
 				PlayState.self.openSubState(comic ? new ComicSubstate(content, true) : new ArtSubstate(content));
 				opened = true;
 				SaveManager.open_present(content, day);
