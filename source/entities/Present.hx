@@ -13,9 +13,11 @@ import states.substates.ComicSubstate;
 class Present extends Interactable
 {
 	public var openable:Bool = true;
+
 	public static var opened:Bool = false;
 
 	public var thumbnail:Thumbnail;
+
 	var content:String;
 	var day:Int = 0;
 	var comic:Bool = false;
@@ -37,7 +39,7 @@ class Present extends Interactable
 		day = Std.parseInt(presentData.day);
 
 		type = Interactable.InteractableType.PRESENT;
-		
+
 		loadGraphic(Paths.get('present-$content.png'), true, 94, 94);
 
 		PlayState.self.presents.add(this);
@@ -75,34 +77,31 @@ class Present extends Interactable
 				sprite_anim.anim(PresentAnimation.IDLE);
 			case NEARBY:
 				sprite_anim.anim(PresentAnimation.NEARBY);
-				if (Ctrl.jjump[1])
+				if (Ctrl.jaction[1])
 					open();
 			case OPENING:
 				sprite_anim.anim(PresentAnimation.OPENING);
-			case OPENED:			
+			case OPENED:
 				sprite_anim.anim(PresentAnimation.OPENED);
+				thumbnail.sstate("OPEN");
 		}
 
 	override public function mark_target(mark:Bool)
 	{
-		if (!opened)
-		{
-			if (mark && openable)
-				sstate(NEARBY);
-			if (!mark && openable)
-				sstate(IDLE);
-		}
+		if (!openable)
+			return;
+
+		if (mark)
+			sstate(NEARBY);
 		else
+			sstate(IDLE);
+
+		if (mark /** && thumbnail.scale.x == 0**/)
 		{
-			if (mark /** && thumbnail.scale.x == 0**/)
-			{
-				thumbnail.sstate("OPEN");
-				if (Ctrl.jjump[1])
-					open();
-			}
-			else if (!mark /** && thumbnail.scale.x != 0 && thumbnail.state != "CLOSE"**/)
-				thumbnail.sstate("CLOSE");
+			thumbnail.sstate("OPEN");
 		}
+		else if (!mark /** && thumbnail.scale.x != 0 && thumbnail.state != "CLOSE"**/)
+			thumbnail.sstate("CLOSE");
 	}
 
 	override function updateMotion(elapsed:Float)
